@@ -1,0 +1,68 @@
+@use "variables" as *;
+
+.container {
+  width: min(100% - 32px, $max-width);
+  margin: 0 auto;
+}
+
+.site-header {
+  background: rgba($background, 0.96);
+  border-bottom: 1px solid $border;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px 0;
+}
+
+.section {
+  padding: $section-space 0;
+}
+
+.section-muted {
+  background: $surface;
+  border-top: 1px solid $border;
+  border-bottom: 1px solid $border;
+}
+
+.site-footer {
+  padding: 28px 0;
+  border-top: 1px solid $border;
+  color: $muted;
+
+  p {
+    margin: 0;
+  }
+}
+
+@media (min-width: $tablet) {
+  .nav {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .strength-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: $desktop) {
+  .section {
+    padding: $section-space-large 0;
+  }
+
+  .hero {
+    padding-top: 88px;
+  }
+
+  .strength-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .experience-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

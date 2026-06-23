@@ -1,0 +1,142 @@
+@use "variables" as *;
+
+.brand {
+  color: $text;
+  font-weight: 700;
+}
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+
+  a {
+    color: $muted;
+    font-size: 0.95rem;
+
+    &:hover {
+      color: $accent;
+    }
+  }
+}
+
+.hero {
+  padding-top: 68px;
+}
+
+.eyebrow {
+  max-width: 760px;
+  margin: 0 0 16px;
+  color: $accent-dark;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin-bottom: 24px;
+  color: $muted;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.summary,
+.career-text {
+  max-width: 760px;
+  color: $muted;
+  font-size: 1.05rem;
+}
+
+.actions,
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 1px solid $border;
+  border-radius: 6px;
+  background: $surface;
+  color: $text;
+  font-weight: 700;
+  line-height: 1.2;
+
+  &:hover {
+    border-color: $accent;
+    color: $accent;
+    text-decoration: none;
+  }
+}
+
+.button-primary {
+  border-color: $accent;
+  background: $accent;
+  color: $surface;
+
+  &:hover {
+    background: $accent-dark;
+    color: $surface;
+  }
+}
+
+.section-heading {
+  max-width: 720px;
+  margin-bottom: 28px;
+
+  p {
+    margin-bottom: 0;
+    color: $muted;
+  }
+}
+
+.strength-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  li {
+    padding: 16px;
+    color: $text;
+    font-weight: 650;
+  }
+}
+
+.strength-grid li,
+.experience-card {
+  border: 1px solid $border;
+  border-radius: $radius;
+  background: $surface;
+}
+
+.experience-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.experience-card {
+  padding: 20px;
+
+  p:last-child {
+    margin-bottom: 0;
+    color: $muted;
+  }
+}
+
+.company {
+  margin-bottom: 8px;
+  color: $accent-dark;
+  font-size: 0.88rem;
+  font-weight: 700;
+}

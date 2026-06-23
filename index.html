@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Minimal personal landing page.">
+  <title>Personal Landing Page</title>
+  <link rel="stylesheet" href="./dist/css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="container nav" aria-label="Primary navigation">
+      <a class="brand" href="#top" data-profile-name>Profile</a>
+      <div class="nav-links">
+        <a href="#strengths">Strengths</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero section">
+      <div class="container">
+        <p class="eyebrow" data-profile-tagline>Technical profile</p>
+        <h1 data-profile-name>Profile</h1>
+        <p class="title" data-profile-title>Professional title</p>
+        <p class="summary" data-profile-summary>Professional summary.</p>
+        <div class="actions" aria-label="Primary contact links" data-primary-actions></div>
+      </div>
+    </section>
+
+    <section id="strengths" class="section">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Core Strengths</h2>
+          <p>Hands-on engineering, technical leadership, and delivery support for reliable software teams.</p>
+        </div>
+        <ul id="strengths-list" class="strength-grid" aria-label="Core strengths"></ul>
+      </div>
+    </section>
+
+    <section id="experience" class="section section-muted">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Experience Summary</h2>
+          <p>A concise overview of roles, environments, and technical focus areas.</p>
+        </div>
+        <div id="experience-list" class="experience-list"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Career Direction</h2>
+        </div>
+        <p class="career-text" data-career-direction>Career direction.</p>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact-section">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Links / Contact</h2>
+          <p>Professional profiles and contact options.</p>
+        </div>
+        <div id="contact-links" class="contact-links"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p><span data-footer-name>Profile</span> &copy; <span id="current-year">2026</span></p>
+    </div>
+  </footer>
+
+  <script type="module" src="./src/js/main.js"></script>
+</body>
+</html>
