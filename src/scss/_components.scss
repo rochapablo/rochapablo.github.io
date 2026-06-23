@@ -128,15 +128,34 @@
 .experience-card {
   padding: 20px;
 
-  p:last-child {
+  &__role {
+    margin-bottom: 6px;
+  }
+
+  &__company {
+    margin-bottom: 8px;
+    color: $accent-dark;
+    font-size: 0.95rem;
+    font-weight: 700;
+  }
+
+  &__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 10px;
+    margin-bottom: 14px;
+    color: $muted;
+    font-size: 0.92rem;
+  }
+
+  &__location--separated::before {
+    content: "\00b7";
+    margin-right: 10px;
+    color: $muted;
+  }
+
+  &__focus {
     margin-bottom: 0;
     color: $muted;
   }
-}
-
-.company {
-  margin-bottom: 8px;
-  color: $accent-dark;
-  font-size: 0.88rem;
-  font-weight: 700;
 }

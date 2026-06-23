@@ -28,11 +28,24 @@ export function renderExperience(experience) {
 
   experience.forEach((entry) => {
     const card = createElement("article", { className: "experience-card" });
-    const company = createElement("p", { className: "company", text: entry.company });
-    const role = createElement("h3", { text: entry.role });
-    const focus = createElement("p", { text: entry.focus });
+    const role = createElement("h3", { className: "experience-card__role", text: entry.role });
 
-    card.append(company, role, focus);
+    card.appendChild(role);
+
+    if (entry.company) {
+      card.appendChild(createElement("p", { className: "experience-card__company", text: entry.company }));
+    }
+
+    const metadata = createExperienceMetadata(entry);
+
+    if (metadata) {
+      card.appendChild(metadata);
+    }
+
+    if (entry.focus) {
+      card.appendChild(createElement("p", { className: "experience-card__focus", text: entry.focus }));
+    }
+
     list.appendChild(card);
   });
 }
@@ -90,4 +103,26 @@ function createLink(link, className) {
     href: link.href,
     text: link.label
   });
+}
+
+function createExperienceMetadata(entry) {
+  const locationClass = entry.period
+    ? "experience-card__location experience-card__location--separated"
+    : "experience-card__location";
+  const metadataItems = [
+    { className: "experience-card__period", text: entry.period },
+    { className: locationClass, text: entry.location }
+  ].filter((item) => item.text);
+
+  if (metadataItems.length === 0) {
+    return null;
+  }
+
+  const metadata = createElement("p", { className: "experience-card__meta" });
+
+  metadataItems.forEach((item) => {
+    metadata.appendChild(createElement("span", item));
+  });
+
+  return metadata;
 }

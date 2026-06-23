@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   box-sizing: border-box;
 }
@@ -236,16 +237,31 @@ h3 {
 .experience-card {
   padding: 20px;
 }
-.experience-card p:last-child {
-  margin-bottom: 0;
-  color: #5b6473;
+.experience-card__role {
+  margin-bottom: 6px;
 }
-
-.company {
+.experience-card__company {
   margin-bottom: 8px;
   color: #174766;
-  font-size: 0.88rem;
+  font-size: 0.95rem;
   font-weight: 700;
+}
+.experience-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin-bottom: 14px;
+  color: #5b6473;
+  font-size: 0.92rem;
+}
+.experience-card__location--separated::before {
+  content: "·";
+  margin-right: 10px;
+  color: #5b6473;
+}
+.experience-card__focus {
+  margin-bottom: 0;
+  color: #5b6473;
 }
 
 .contact-section {
