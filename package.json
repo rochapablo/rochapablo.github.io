@@ -11,9 +11,14 @@
     "lint:size": "node src/tools/check-file-size.js",
     "lint": "npm run lint:size",
     "validate": "npm run build && npm run lint",
+    "codegraph:init": "codegraph init",
+    "codegraph:status": "codegraph status",
+    "codegraph:sync": "codegraph sync",
+    "codegraph:affected": "codegraph affected",
     "start": "npm run dev"
   },
   "devDependencies": {
+    "@colbymchenry/codegraph": "^1.0.1",
     "sass": "^1.77.0"
   }
 }
