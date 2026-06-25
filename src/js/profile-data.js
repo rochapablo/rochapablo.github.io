@@ -59,10 +59,10 @@ export const profile = {
   careerDirection:
     "I am currently focused on roles where I can combine hands-on technical contribution with technical leadership, architecture decisions, delivery coordination, engineering process improvement, and team enablement.",
   contactLinks: [
-    { label: "LinkedIn", href: "#" },
-    { label: "GitHub", href: "#" },
-    { label: "Email", href: "mailto:your.email@example.com" },
-    { label: "Resume PDF", href: "./resume.pdf" }
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/rochapabloricardo" },
+    // { label: "GitHub", href: "#" },
+    { label: "Email", href: "mailto:rocha.pabloricardo@gmail.com" },
+    // { label: "Resume PDF", href: "./resume.pdf" }
   ],
   footerName: "Pablo Rocha"
 };
