@@ -43,8 +43,7 @@ npm run validate
 |-- dist/
 |   `-- css/
 `-- agents/
-    |-- README.md
-    `-- codegraph.md
+    `-- README.md
 ```
 
 Detailed guidance for coding agents is in `agents/README.md`.
