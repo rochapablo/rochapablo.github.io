@@ -1,5 +1,5 @@
 export const profile = {
-  name: "Pablo Rocha",
+  name: "Pablo Ricardo Rocha",
   title: "Senior Full Stack Developer / Tech Lead",
   tagline: ".NET \u2022 Angular \u2022 Azure \u2022 DevOps \u2022 Technical Leadership \u2022 Production Troubleshooting",
   summary:
@@ -71,9 +71,9 @@ export const profile = {
     "I am focused on roles where I can combine hands-on technical contribution with technical leadership, architecture decisions, delivery coordination, engineering process improvement, and team enablement.",
   contactLinks: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/rochapabloricardo" },
-    { label: "GitHub", href: "#" },
+    { label: "GitHub", href: "https://github.com/rochapablo" },
     { label: "Email", href: "mailto:rocha.pabloricardo@gmail.com" },
     { label: "Resume PDF", href: "./resume.pdf" }
   ],
-  footerName: "Pablo Rocha"
+  footerName: "Pablo Ricardo Rocha"
 };
