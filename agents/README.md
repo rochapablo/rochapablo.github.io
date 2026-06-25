@@ -40,6 +40,11 @@ This file contains instructions for agents working on this small static landing 
 - Fall back to targeted manual search only when CodeGraph is insufficient.
 - Mention CodeGraph uncertainty in the final report when relevant.
 
+## Layout Preservation
+
+- Read `agents/layout-guidelines.md` before changing layout, theme, sections, SCSS, or portfolio presentation.
+- Preserve the accepted visual direction unless the user explicitly asks for a redesign.
+
 ## JavaScript Guidance
 
 - Use vanilla JavaScript only.

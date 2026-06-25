@@ -4,15 +4,26 @@ export const profile = {
   tagline: ".NET \u2022 Angular \u2022 Azure \u2022 DevOps \u2022 Technical Leadership \u2022 Production Troubleshooting",
   summary:
     "Senior Full Stack Developer and Tech Lead with experience in .NET, Angular, Azure, DevOps, production troubleshooting, code review, delivery organization, and technical leadership. I help teams build reliable systems, improve engineering practices, and solve complex technical and operational problems.",
-  strengths: [
-    "Technical Leadership",
-    ".NET / C# Backend Development",
-    "Angular / TypeScript Frontend Development",
-    "Azure, DevOps and CI/CD",
-    "Production Troubleshooting and Observability",
-    "Code Review and Engineering Practices",
-    "Delivery Organization",
-    "System Reliability"
+  facts: [
+    { label: "Based in", value: "Brazil" },
+    { label: "Profile", value: "Senior Full Stack / Tech Lead" },
+    { label: "Focus", value: "Reliable systems, delivery, production troubleshooting" }
+  ],
+  snapshot:
+    "Hands-on technical leader working across backend, frontend, cloud, DevOps, troubleshooting, delivery coordination, and code review. I help teams turn unclear technical and production problems into stable delivery plans.",
+  strengthGroups: [
+    {
+      title: "Leadership & Delivery",
+      items: ["Technical Leadership", "Code Review", "Delivery Organization", "Engineering Practices"]
+    },
+    {
+      title: "Engineering",
+      items: [".NET / C#", "Angular / TypeScript", "APIs", "System Reliability"]
+    },
+    {
+      title: "Operations",
+      items: ["Azure", "DevOps / CI/CD", "Production Troubleshooting", "Observability"]
+    }
   ],
   experience: [
     {
@@ -57,12 +68,12 @@ export const profile = {
     }
   ],
   careerDirection:
-    "I am currently focused on roles where I can combine hands-on technical contribution with technical leadership, architecture decisions, delivery coordination, engineering process improvement, and team enablement.",
+    "I am focused on roles where I can combine hands-on technical contribution with technical leadership, architecture decisions, delivery coordination, engineering process improvement, and team enablement.",
   contactLinks: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/rochapabloricardo" },
-    // { label: "GitHub", href: "#" },
+    { label: "GitHub", href: "#" },
     { label: "Email", href: "mailto:rocha.pabloricardo@gmail.com" },
-    // { label: "Resume PDF", href: "./resume.pdf" }
+    { label: "Resume PDF", href: "./resume.pdf" }
   ],
   footerName: "Pablo Rocha"
 };

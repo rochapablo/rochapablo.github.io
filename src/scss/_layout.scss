@@ -6,8 +6,12 @@
 }
 
 .site-header {
-  background: rgba($background, 0.96);
-  border-bottom: 1px solid $border;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba($color-bg, 0.94);
+  border-bottom: 1px solid $color-border;
+  backdrop-filter: blur(14px);
 }
 
 .nav {
@@ -21,16 +25,27 @@
   padding: $section-space 0;
 }
 
-.section-muted {
-  background: $surface;
-  border-top: 1px solid $border;
-  border-bottom: 1px solid $border;
+.section-inverse {
+  background: $color-inverse-bg;
+  color: $color-inverse-text;
+}
+
+.section-surface {
+  background: $color-surface;
+  border-block: 1px solid $color-border;
+}
+
+.hero-grid,
+.content-band,
+.direction-panel {
+  display: grid;
+  gap: 28px;
 }
 
 .site-footer {
   padding: 28px 0;
-  border-top: 1px solid $border;
-  color: $muted;
+  border-top: 1px solid $color-border;
+  color: $color-text-muted;
 
   p {
     margin: 0;
@@ -43,10 +58,6 @@
     align-items: center;
     justify-content: space-between;
   }
-
-  .strength-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 
 @media (min-width: $desktop) {
@@ -54,15 +65,18 @@
     padding: $section-space-large 0;
   }
 
-  .hero {
-    padding-top: 88px;
+  .hero-grid {
+    grid-template-columns: minmax(0, 1.55fr) minmax(280px, 0.75fr);
+    align-items: end;
   }
 
-  .strength-grid {
-    grid-template-columns: repeat(4, 1fr);
+  .content-band,
+  .direction-panel {
+    grid-template-columns: minmax(260px, 0.75fr) minmax(0, 1fr);
+    align-items: start;
   }
 
   .experience-list {
-    grid-template-columns: repeat(3, 1fr);
+    max-width: 900px;
   }
 }
