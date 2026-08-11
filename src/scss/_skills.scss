@@ -1,0 +1,47 @@
+@use "variables" as *;
+
+.skills-years-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.skills-group__list {
+  display: grid;
+  gap: 12px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.skills-group__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 12px;
+  border-top: 1px solid $color-border;
+}
+
+.skills-group__skill {
+  color: $color-primary-dark;
+  font-weight: 800;
+}
+
+.skills-group__years {
+  flex-shrink: 0;
+  padding: 6px 10px;
+  border: 1px solid rgba($color-primary, 0.18);
+  border-radius: 999px;
+  background: rgba($color-primary, 0.06);
+  color: $color-primary;
+  font-size: 0.9rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+@media (min-width: $tablet) {
+  .skills-years-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

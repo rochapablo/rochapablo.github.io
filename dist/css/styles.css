@@ -361,3 +361,49 @@ h3 {
 .experience-card__focus {
   margin-bottom: 0;
 }
+
+.skills-years-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.skills-group__list {
+  display: grid;
+  gap: 12px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.skills-group__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #d8cbb7;
+}
+
+.skills-group__skill {
+  color: #092825;
+  font-weight: 800;
+}
+
+.skills-group__years {
+  flex-shrink: 0;
+  padding: 6px 10px;
+  border: 1px solid rgba(15, 61, 58, 0.18);
+  border-radius: 999px;
+  background: rgba(15, 61, 58, 0.06);
+  color: #0f3d3a;
+  font-size: 0.9rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+@media (min-width: 640px) {
+  .skills-years-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
