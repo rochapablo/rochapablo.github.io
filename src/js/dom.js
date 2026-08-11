@@ -29,5 +29,17 @@ export function createElement(tagName, options = {}) {
     element.href = options.href;
   }
 
+  if (options.target) {
+    element.target = options.target;
+  }
+
+  if (options.rel) {
+    element.rel = options.rel;
+  }
+
+  if (options.download) {
+    element.download = typeof options.download === "string" ? options.download : "";
+  }
+
   return element;
 }

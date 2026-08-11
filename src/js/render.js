@@ -84,7 +84,10 @@ function createLink(link, className) {
   return createElement("a", {
     className,
     href: link.href,
-    text: link.label
+    text: link.label,
+    target: link.target,
+    rel: link.rel,
+    download: link.download
   });
 }
 
