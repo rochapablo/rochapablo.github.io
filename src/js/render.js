@@ -37,6 +37,11 @@ export function renderCareerDirection(text) {
   setText("[data-career-direction]", text);
 }
 
+export function renderPersonalNote(note) {
+  setText("[data-personal-note-title]", note.title);
+  setText("[data-personal-note-text]", note.text);
+}
+
 export function renderContacts(contacts) {
   const contactLinks = clearElement("#contact-links");
   const primaryActions = clearElement("[data-primary-actions]");
