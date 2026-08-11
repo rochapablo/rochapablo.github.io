@@ -6,9 +6,9 @@ import {
   renderContacts,
   renderFooter,
   renderHero,
+  renderPersonalNote,
   renderSnapshot,
-  renderStrengths,
-  updateMetadata
+  renderStrengths
 } from "./render.js";
 
 renderHero(profile);
@@ -17,6 +17,6 @@ renderStrengths(profile.strengthGroups);
 renderSkillsByExperience(profile.skills);
 renderExperience(profile.experience);
 renderCareerDirection(profile.careerDirection);
+renderPersonalNote(profile.personalNote);
 renderContacts(profile.contactLinks);
 renderFooter(profile);
-updateMetadata(profile);

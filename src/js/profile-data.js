@@ -11,6 +11,7 @@ export const profile = {
   skills,
   experience,
   careerDirection: profileContent.careerDirection,
+  personalNote: profileContent.personalNote,
   contactLinks,
   footerName: profileContent.footer.name
 };
