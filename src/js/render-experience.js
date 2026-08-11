@@ -1,4 +1,4 @@
-import { clearElement, createElement } from "./dom.js";
+import { appendChildren, clearElement, createElement } from "./dom.js";
 
 export function renderExperience(experience) {
   const list = clearElement("#experience-list");
@@ -7,7 +7,7 @@ export function renderExperience(experience) {
     return;
   }
 
-  experience.forEach((entry) => {
+  const cards = experience.map((entry) => {
     const card = createElement("article", { className: "experience-card" });
     const role = createElement("h3", { className: "experience-card__role", text: entry.role });
 
@@ -27,8 +27,10 @@ export function renderExperience(experience) {
       card.appendChild(createElement("p", { className: "experience-card__focus", text: entry.focus }));
     }
 
-    list.appendChild(card);
+    return card;
   });
+
+  appendChildren(list, cards);
 }
 
 function createExperienceMetadata(entry) {

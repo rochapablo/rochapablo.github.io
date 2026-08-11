@@ -43,3 +43,17 @@ export function createElement(tagName, options = {}) {
 
   return element;
 }
+
+export function appendChildren(target, children) {
+  if (!target || children.length === 0) {
+    return target;
+  }
+
+  const fragment = document.createDocumentFragment();
+  children.forEach((child) => {
+    fragment.appendChild(child);
+  });
+  target.appendChild(fragment);
+
+  return target;
+}

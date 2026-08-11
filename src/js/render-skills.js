@@ -1,4 +1,4 @@
-import { clearElement, createElement } from "./dom.js";
+import { appendChildren, clearElement, createElement } from "./dom.js";
 
 export function renderSkillsByExperience(skills) {
   const list = clearElement("#skills-years-list");
@@ -9,23 +9,26 @@ export function renderSkillsByExperience(skills) {
 
   const groups = groupSkillsByCategory(skills);
 
-  groups.forEach((groupSkills, category) => {
+  const cards = Array.from(groups, ([category, groupSkills]) => {
     const card = createElement("article", { className: "strength-card skills-group" });
     const title = createElement("h3", { className: "strength-card__title skills-group__title", text: category });
     const items = createElement("ul", { className: "skills-group__list" });
 
-    groupSkills.forEach((skill) => {
+    const skillItems = groupSkills.map((skill) => {
       const item = createElement("li", { className: "skills-group__item" });
       item.append(
         createElement("span", { className: "skills-group__skill", text: skill.name }),
         createElement("span", { className: "skills-group__years", text: skill.years })
       );
-      items.appendChild(item);
+      return item;
     });
 
+    appendChildren(items, skillItems);
     card.append(title, items);
-    list.appendChild(card);
+    return card;
   });
+
+  appendChildren(list, cards);
 }
 
 function groupSkillsByCategory(skills) {

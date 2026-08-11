@@ -1,4 +1,4 @@
-import { clearElement, createElement, setText } from "./dom.js";
+import { appendChildren, clearElement, createElement, setText } from "./dom.js";
 
 export function renderHero(profile) {
   setText("[data-profile-name]", profile.name);
@@ -19,18 +19,21 @@ export function renderStrengths(groups) {
     return;
   }
 
-  groups.forEach((group) => {
+  const cards = groups.map((group) => {
     const card = createElement("article", { className: "strength-card" });
     const title = createElement("h3", { className: "strength-card__title", text: group.title });
     const items = createElement("ul", { className: "strength-card__list" });
 
-    group.items.forEach((item) => {
-      items.appendChild(createElement("li", { text: item }));
-    });
+    appendChildren(
+      items,
+      group.items.map((item) => createElement("li", { text: item }))
+    );
 
     card.append(title, items);
-    list.appendChild(card);
+    return card;
   });
+
+  appendChildren(list, cards);
 }
 
 export function renderCareerDirection(text) {
@@ -45,20 +48,22 @@ export function renderPersonalNote(note) {
 export function renderContacts(contacts) {
   const contactLinks = clearElement("#contact-links");
   const primaryActions = clearElement("[data-primary-actions]");
+  const primaryActionLabels = new Set(["Email", "Resume PDF"]);
 
   if (contactLinks) {
-    contacts.forEach((link) => {
-      contactLinks.appendChild(createLink(link, "button"));
-    });
+    appendChildren(
+      contactLinks,
+      contacts.map((link) => createLink(link, "button"))
+    );
   }
 
   if (primaryActions) {
-    contacts
-      .filter((link) => link.label === "Email" || link.label === "Resume PDF")
-      .forEach((link, index) => {
-        const className = index === 0 ? "button button-primary" : "button";
-        primaryActions.appendChild(createLink(link, className));
-      });
+    appendChildren(
+      primaryActions,
+      contacts
+        .filter((link) => primaryActionLabels.has(link.label))
+        .map((link, index) => createLink(link, index === 0 ? "button button-primary" : "button"))
+    );
   }
 }
 
@@ -69,19 +74,6 @@ export function renderFooter(profile) {
 
   if (yearElement) {
     yearElement.textContent = new Date().getFullYear();
-  }
-}
-
-export function updateMetadata(profile) {
-  document.title = `${profile.name} | ${profile.title}`;
-
-  const description = document.querySelector('meta[name="description"]');
-
-  if (description) {
-    description.setAttribute(
-      "content",
-      `${profile.name} - ${profile.title} specializing in .NET, Angular, Azure, DevOps, and technical leadership.`
-    );
   }
 }
 

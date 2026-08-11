@@ -32,6 +32,11 @@ function setStructuredData(profile) {
     return;
   }
 
+  const socialLinks = profile.contactLinks
+    .filter((link) => link.label === "LinkedIn" || link.label === "GitHub")
+    .map((link) => link.href);
+  const skillNames = profile.skills.map((skill) => skill.name);
+
   structuredData.textContent = JSON.stringify(
     {
       "@context": "https://schema.org",
@@ -44,10 +49,8 @@ function setStructuredData(profile) {
         name: profile.name,
         jobTitle: profile.title,
         url: profile.seo.publicUrl,
-        sameAs: profile.contactLinks
-          .filter((link) => link.label === "LinkedIn" || link.label === "GitHub")
-          .map((link) => link.href),
-        knowsAbout: profile.skills.map((skill) => skill.name),
+        sameAs: socialLinks,
+        knowsAbout: skillNames,
         address: {
           "@type": "PostalAddress",
           addressLocality: profile.location.city,
