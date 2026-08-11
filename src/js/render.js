@@ -1,15 +1,22 @@
 import { appendChildren, clearElement, createElement, setText } from "./dom.js";
+import { initNavigation } from "./navigation.js";
+import { renderFacts } from "./render-facts.js";
+
+export function initSiteChrome(profile) {
+  setText("[data-hero-greeting]", profile.title);
+  initNavigation();
+}
 
 export function renderHero(profile) {
   setText("[data-profile-name]", profile.name);
   setText("[data-profile-title]", profile.title);
   setText("[data-profile-tagline]", profile.tagline);
   setText("[data-profile-summary]", profile.summary);
-  renderFacts(profile.facts);
 }
 
-export function renderSnapshot(snapshot) {
+export function renderSnapshot(snapshot, facts) {
   setText("[data-profile-snapshot]", snapshot);
+  renderFacts(facts);
 }
 
 export function renderStrengths(groups) {
@@ -19,21 +26,27 @@ export function renderStrengths(groups) {
     return;
   }
 
-  const cards = groups.map((group) => {
-    const card = createElement("article", { className: "strength-card" });
-    const title = createElement("h3", { className: "strength-card__title", text: group.title });
-    const items = createElement("ul", { className: "strength-card__list" });
+  appendChildren(
+    list,
+    groups.map((group) => {
+      const article = createElement("article", { className: "strength-group" });
+      const title = createElement("h3", { className: "strength-group__title", text: group.title });
+      const items = createElement("ul", { className: "strength-group__list" });
 
-    appendChildren(
-      items,
-      group.items.map((item) => createElement("li", { text: item }))
-    );
+      appendChildren(
+        items,
+        group.items.map((item) =>
+          createElement("li", {
+            className: "strength-group__item",
+            text: item
+          })
+        )
+      );
 
-    card.append(title, items);
-    return card;
-  });
-
-  appendChildren(list, cards);
+      article.append(title, items);
+      return article;
+    })
+  );
 }
 
 export function renderCareerDirection(text) {
@@ -45,28 +58,6 @@ export function renderPersonalNote(note) {
   setText("[data-personal-note-text]", note.text);
 }
 
-export function renderContacts(contacts) {
-  const contactLinks = clearElement("#contact-links");
-  const primaryActions = clearElement("[data-primary-actions]");
-  const primaryActionLabels = new Set(["Email", "Resume PDF"]);
-
-  if (contactLinks) {
-    appendChildren(
-      contactLinks,
-      contacts.map((link) => createLink(link, "button"))
-    );
-  }
-
-  if (primaryActions) {
-    appendChildren(
-      primaryActions,
-      contacts
-        .filter((link) => primaryActionLabels.has(link.label))
-        .map((link, index) => createLink(link, index === 0 ? "button button-primary" : "button"))
-    );
-  }
-}
-
 export function renderFooter(profile) {
   setText("[data-footer-name]", profile.footerName);
 
@@ -75,32 +66,4 @@ export function renderFooter(profile) {
   if (yearElement) {
     yearElement.textContent = new Date().getFullYear();
   }
-}
-
-function createLink(link, className) {
-  return createElement("a", {
-    className,
-    href: link.href,
-    text: link.label,
-    target: link.target,
-    rel: link.rel,
-    download: link.download
-  });
-}
-
-function renderFacts(facts) {
-  const list = clearElement("[data-profile-facts]");
-
-  if (!list) {
-    return;
-  }
-
-  facts.forEach((fact) => {
-    const item = createElement("div", { className: "profile-fact" });
-    item.append(
-      createElement("span", { className: "profile-fact__label", text: fact.label }),
-      createElement("strong", { className: "profile-fact__value", text: fact.value })
-    );
-    list.appendChild(item);
-  });
 }

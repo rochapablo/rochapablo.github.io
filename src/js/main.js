@@ -1,10 +1,11 @@
 import { updateMetadata } from "./metadata.js";
 import { profile } from "./profile-data.js";
 import { renderExperience } from "./render-experience.js";
+import { renderContacts } from "./render-links.js";
 import { renderSkillsByExperience } from "./render-skills.js";
 import {
+  initSiteChrome,
   renderCareerDirection,
-  renderContacts,
   renderFooter,
   renderHero,
   renderPersonalNote,
@@ -12,8 +13,9 @@ import {
   renderStrengths
 } from "./render.js";
 
+initSiteChrome(profile);
 renderHero(profile);
-renderSnapshot(profile.snapshot);
+renderSnapshot(profile.snapshot, profile.facts);
 renderStrengths(profile.strengthGroups);
 renderSkillsByExperience(profile.skills);
 renderExperience(profile.experience);

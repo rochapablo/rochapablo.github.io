@@ -1,45 +1,87 @@
 import { appendChildren, clearElement, createElement } from "./dom.js";
+import { getMaxYears, getPanelId, getTabId, groupSkillsByCategory } from "./skills-data.js";
+import { renderSkillsPanel } from "./skills-ui.js";
 
 export function renderSkillsByExperience(skills) {
-  const list = clearElement("#skills-years-list");
+  const tabs = clearElement("[data-skills-tabs]");
+  const panel = clearElement("[data-skills-panel]");
 
-  if (!list) {
+  if (!tabs || !panel) {
     return;
   }
 
-  const groups = groupSkillsByCategory(skills);
+  const categories = groupSkillsByCategory(skills);
+  const categoryNames = Array.from(categories.keys());
+  const maxYears = getMaxYears(skills);
+  const state = {
+    activeCategory: categoryNames[0] || "",
+    bars: []
+  };
 
-  const cards = Array.from(groups, ([category, groupSkills]) => {
-    const card = createElement("article", { className: "strength-card skills-group" });
-    const title = createElement("h3", { className: "strength-card__title skills-group__title", text: category });
-    const items = createElement("ul", { className: "skills-group__list" });
+  appendChildren(
+    tabs,
+    categoryNames.map((category, index) =>
+      createElement("button", {
+        className: `skills-tabs__button${index === 0 ? " is-active" : ""}`,
+        text: category,
+        type: "button",
+        attributes: {
+          role: "tab",
+          id: getTabId(index),
+          "aria-selected": index === 0 ? "true" : "false",
+          "aria-controls": getPanelId(index),
+          "data-category": category,
+          tabindex: index === 0 ? "0" : "-1"
+        }
+      })
+    )
+  );
 
-    const skillItems = groupSkills.map((skill) => {
-      const item = createElement("li", { className: "skills-group__item" });
-      item.append(
-        createElement("span", { className: "skills-group__skill", text: skill.name }),
-        createElement("span", { className: "skills-group__years", text: skill.years })
-      );
-      return item;
-    });
-
-    appendChildren(items, skillItems);
-    card.append(title, items);
-    return card;
+  renderSkillsPanel({
+    tabs,
+    panel,
+    categories,
+    categoryNames,
+    maxYears,
+    state
   });
 
-  appendChildren(list, cards);
-}
+  tabs.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-category]");
 
-function groupSkillsByCategory(skills) {
-  const groups = new Map();
+    if (!button) {
+      return;
+    }
 
-  skills.forEach((skill) => {
-    const category = skill.category || "Skills";
-    const categorySkills = groups.get(category) || [];
-    categorySkills.push(skill);
-    groups.set(category, categorySkills);
+    state.activeCategory = button.dataset.category || state.activeCategory;
+    renderSkillsPanel({ tabs, panel, categories, categoryNames, maxYears, state });
+    button.focus();
   });
 
-  return groups;
+  tabs.addEventListener("keydown", (event) => {
+    const currentIndex = categoryNames.indexOf(state.activeCategory);
+
+    if (currentIndex === -1) {
+      return;
+    }
+
+    let nextIndex = currentIndex;
+
+    if (event.key === "ArrowRight") {
+      nextIndex = (currentIndex + 1) % categoryNames.length;
+    } else if (event.key === "ArrowLeft") {
+      nextIndex = (currentIndex - 1 + categoryNames.length) % categoryNames.length;
+    } else if (event.key === "Home") {
+      nextIndex = 0;
+    } else if (event.key === "End") {
+      nextIndex = categoryNames.length - 1;
+    } else {
+      return;
+    }
+
+    event.preventDefault();
+    state.activeCategory = categoryNames[nextIndex];
+    renderSkillsPanel({ tabs, panel, categories, categoryNames, maxYears, state });
+    tabs.querySelector(`[data-category="${CSS.escape(state.activeCategory)}"]`)?.focus();
+  });
 }

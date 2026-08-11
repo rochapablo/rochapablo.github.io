@@ -41,6 +41,22 @@ export function createElement(tagName, options = {}) {
     element.download = typeof options.download === "string" ? options.download : "";
   }
 
+  if (options.type) {
+    element.type = options.type;
+  }
+
+  if (options.id) {
+    element.id = options.id;
+  }
+
+  if (options.attributes) {
+    Object.entries(options.attributes).forEach(([name, value]) => {
+      if (value !== undefined && value !== null) {
+        element.setAttribute(name, value);
+      }
+    });
+  }
+
   return element;
 }
 

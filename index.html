@@ -12,108 +12,161 @@
   <title>Personal Landing Page</title>
   <link rel="stylesheet" href="./dist/css/styles.css">
   <script defer src="https://cloud.umami.is/script.js" data-website-id="bad2c57a-f1a1-475e-9977-015f6af0204f"></script>
+  <script defer src="./public/vendor/progressbar.min.js"></script>
   <script id="profile-structured-data" type="application/ld+json"></script>
 </head>
 <body>
   <header class="site-header">
-    <nav class="container nav" aria-label="Primary navigation">
-      <a class="brand" href="#top" data-profile-name>Profile</a>
-      <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#experience">Experience</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </nav>
+    <div class="container site-header__inner">
+      <a class="brand" href="#top" aria-label="Go to top">
+        <span class="brand__mark" aria-hidden="true">PR</span>
+        <span class="brand__name" data-profile-name>Profile</span>
+      </a>
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="site-nav"
+        data-nav-toggle
+      >
+        Menu
+      </button>
+      <nav id="site-nav" class="site-nav" aria-label="Primary navigation" data-site-nav>
+        <div class="site-nav__links">
+          <a href="#about">About</a>
+          <a href="#strengths">What I Do</a>
+          <a href="#skills">Skills</a>
+          <a href="#experience">Experience</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <a class="site-nav__resume" href="./resume.pdf" target="_blank" rel="noopener noreferrer" download>CV</a>
+      </nav>
+    </div>
   </header>
 
   <main id="top">
-    <section class="hero section section-inverse">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow" data-profile-tagline>Technical profile</p>
+    <section class="hero section">
+      <div class="container hero__grid">
+        <div class="hero__content">
+          <p class="eyebrow" data-hero-greeting>Tech Lead / Senior Full Stack Developer</p>
           <h1 data-profile-name>Profile</h1>
-          <p class="title" data-profile-title>Professional title</p>
-          <p class="summary" data-profile-summary>Professional summary.</p>
-          <div class="actions" aria-label="Primary contact links" data-primary-actions></div>
+          <p class="hero__title" data-profile-title>Professional title</p>
+          <p class="hero__tagline" data-profile-tagline>Technical profile</p>
+          <p class="hero__summary" data-profile-summary>Professional summary.</p>
+          <div class="hero__actions" aria-label="Primary contact links" data-primary-actions></div>
         </div>
-        <aside class="profile-facts" aria-label="Profile facts" data-profile-facts></aside>
+        <div class="hero__media">
+          <div class="media-slot media-slot--portrait media-slot--offset" aria-hidden="true"></div>
+        </div>
       </div>
     </section>
 
     <section id="about" class="section section-surface">
-      <div class="container content-band">
-        <div class="section-heading">
+      <div class="container snapshot">
+        <div class="snapshot__headline">
           <p class="section-kicker">Professional Snapshot</p>
-          <h2>Hands-on technical leadership for reliable delivery.</h2>
+          <h2>Hands-on technical leadership for dependable delivery.</h2>
         </div>
-        <p class="snapshot-text" data-profile-snapshot>Professional snapshot.</p>
+        <div class="snapshot__content">
+          <p class="snapshot__text" data-profile-snapshot>Professional snapshot.</p>
+          <div class="facts-list" aria-label="Profile facts" data-profile-facts></div>
+        </div>
       </div>
     </section>
 
-    <section id="skills" class="section">
-      <div class="container">
+    <section id="strengths" class="section">
+      <div class="container strengths">
         <div class="section-heading">
-          <p class="section-kicker">Technical Focus</p>
-          <h2>Core strengths grouped around how teams ship and operate software.</h2>
+          <p class="section-kicker">What I Do Best</p>
+          <h2>Core strengths shaped by leadership, engineering, and production responsibility.</h2>
         </div>
-        <div id="strengths-list" class="strength-grid" aria-label="Core strengths"></div>
+        <div id="strengths-list" class="strengths__grid" aria-label="Core strengths"></div>
       </div>
     </section>
 
-    <section class="section section-surface">
-      <div class="container">
-        <div class="section-heading">
-          <p class="section-kicker">Skills & Experience</p>
-          <h2>Technical experience built across years of hands-on delivery.</h2>
-        </div>
-        <div id="skills-years-list" class="skills-years-grid" aria-label="Skills by years of experience"></div>
+    <section class="visual-break" aria-hidden="true">
+      <div class="visual-break__frame">
+        <div class="visual-break__inner" data-visual-break-text></div>
       </div>
     </section>
 
-    <section id="experience" class="section section-inverse">
-      <div class="container">
+    <section id="skills" class="section section-inverse">
+      <div class="container skills-section">
+        <div class="skills-section__intro">
+          <p class="section-kicker">Skills & Technologies</p>
+          <h2>Years of hands-on experience across the stack and the work around it.</h2>
+        </div>
+        <div class="skills-section__panel">
+          <div class="skills-section__sidebar">
+            <p class="skills-section__support" data-skills-support>
+              Technical experience built over years of delivery, releases, production support, and day-to-day engineering work.
+            </p>
+          </div>
+          <div class="skills-section__content">
+            <div class="skills-tabs" role="tablist" aria-label="Skill categories" data-skills-tabs></div>
+            <div class="skills-list" aria-live="polite" data-skills-panel></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="section">
+      <div class="container experience-section">
         <div class="section-heading">
           <p class="section-kicker">Experience</p>
           <h2>Recent roles across technical leadership, full stack delivery, and production support.</h2>
         </div>
-        <div id="experience-list" class="experience-list"></div>
+        <div id="experience-list" class="experience-timeline"></div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="container direction-panel">
-        <div class="section-heading">
-          <p class="section-kicker">Current Direction</p>
-          <h2>What I am looking for</h2>
-        </div>
-        <p class="career-text" data-career-direction>Career direction.</p>
+    <section class="visual-break visual-break--secondary" aria-hidden="true">
+      <div class="visual-break__frame">
+        <div class="visual-break__inner" data-visual-break-secondary-text></div>
       </div>
     </section>
 
     <section class="section section-surface">
-      <div class="container content-band">
-        <div class="section-heading">
-          <p class="section-kicker">Personal Note</p>
+      <div class="container personal-note">
+        <div class="personal-note__content">
+          <p class="section-kicker">Beyond the Stack</p>
           <h2 data-personal-note-title>Beyond the Stack</h2>
+          <p class="personal-note__text" data-personal-note-text>Personal note.</p>
         </div>
-        <p class="snapshot-text" data-personal-note-text>Personal note.</p>
+        <div class="personal-note__media" aria-hidden="true">
+          <div class="media-slot media-slot--landscape"></div>
+          <div class="personal-note__media-grid">
+            <div class="media-slot media-slot--small"></div>
+            <div class="media-slot media-slot--small"></div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section id="contact" class="section contact-section">
-      <div class="container">
-        <div class="section-heading">
+    <section class="section career-direction">
+      <div class="container career-direction__inner">
+        <p class="section-kicker">Career Direction</p>
+        <h2>What I am looking for</h2>
+        <p class="career-direction__text" data-career-direction>Career direction.</p>
+      </div>
+    </section>
+
+    <section id="contact" class="section closing">
+      <div class="container closing__grid">
+        <div class="closing__intro">
           <p class="section-kicker">Contact</p>
           <h2>Professional profiles and contact options.</h2>
         </div>
         <div id="contact-links" class="contact-links"></div>
+        <div class="closing__media" aria-hidden="true">
+          <div class="media-slot media-slot--closing"></div>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container">
+    <div class="container site-footer__inner">
       <p><span data-footer-name>Profile</span> &copy; <span id="current-year">2026</span></p>
     </div>
   </footer>

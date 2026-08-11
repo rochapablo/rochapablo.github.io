@@ -7,50 +7,28 @@ export function renderExperience(experience) {
     return;
   }
 
-  const cards = experience.map((entry) => {
-    const card = createElement("article", { className: "experience-card" });
-    const role = createElement("h3", { className: "experience-card__role", text: entry.role });
+  appendChildren(
+    list,
+    experience.map((entry) => {
+      const item = createElement("article", { className: "timeline-entry" });
+      const period = createElement("p", { className: "timeline-entry__period", text: entry.period });
+      const marker = createElement("div", { className: "timeline-entry__marker", attributes: { "aria-hidden": "true" } });
+      const body = createElement("div", { className: "timeline-entry__body" });
+      const location = createElement("p", { className: "timeline-entry__location", text: entry.location });
+      const heading = createElement("h3", { className: "timeline-entry__role", text: entry.role });
 
-    card.appendChild(role);
+      body.appendChild(heading);
 
-    if (entry.company) {
-      card.appendChild(createElement("p", { className: "experience-card__company", text: entry.company }));
-    }
+      if (entry.company) {
+        body.appendChild(createElement("p", { className: "timeline-entry__company", text: entry.company }));
+      }
 
-    const metadata = createExperienceMetadata(entry);
+      if (entry.focus) {
+        body.appendChild(createElement("p", { className: "timeline-entry__focus", text: entry.focus }));
+      }
 
-    if (metadata) {
-      card.appendChild(metadata);
-    }
-
-    if (entry.focus) {
-      card.appendChild(createElement("p", { className: "experience-card__focus", text: entry.focus }));
-    }
-
-    return card;
-  });
-
-  appendChildren(list, cards);
-}
-
-function createExperienceMetadata(entry) {
-  const locationClass = entry.period
-    ? "experience-card__location experience-card__location--separated"
-    : "experience-card__location";
-  const metadataItems = [
-    { className: "experience-card__period", text: entry.period },
-    { className: locationClass, text: entry.location }
-  ].filter((item) => item.text);
-
-  if (metadataItems.length === 0) {
-    return null;
-  }
-
-  const metadata = createElement("p", { className: "experience-card__meta" });
-
-  metadataItems.forEach((item) => {
-    metadata.appendChild(createElement("span", item));
-  });
-
-  return metadata;
+      item.append(period, marker, body, location);
+      return item;
+    })
+  );
 }
