@@ -11,5 +11,8 @@
 - Keep ordinary editable profile copy together in one clear data file rather than splitting each text section into its own module.
 - Keep links/contact destinations separate from general copy, and keep experience/history separate when its structured size justifies it.
 - Keep structured skills and years-of-experience data in a dedicated skills data file, and reuse that source instead of duplicating the same skill-duration information elsewhere.
+- Keep SEO-visible profile metadata aligned with the actual profile content and human-readable for recruiters and search engines without keyword stuffing.
+- Reuse existing identity, links, skills, and location data when building metadata or JSON-LD instead of duplicating maintainable values across files.
+- Preserve valid JSON-LD when modifying profile information, and keep readable UTF-8 text directly in source.
 - Avoid false precision for skill durations; prefer conservative maintainable values such as `7+ years` when exact totals are not defensible from the existing profile history.
 - If a requested layout change seems to require content changes, report the required content decision instead of guessing.

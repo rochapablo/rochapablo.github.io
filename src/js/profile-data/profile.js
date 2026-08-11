@@ -1,19 +1,30 @@
 export const profileContent = {
   basics: {
     name: "Pablo Ricardo Rocha",
-    title: "Tech Lead | Senior Full Stack Developer",
+    title: "Tech Lead and Senior Full Stack Developer",
     tagline:
       ".NET • Angular • TypeScript • Azure • DevOps • Delivery • Releases • Production Support",
     summary:
-      "Tech Lead and Senior Full Stack Developer with 15+ years of experience building, maintaining, and supporting web applications, internal platforms, and advertising technology systems. I combine hands-on full stack development with technical leadership, delivery coordination, code review, release support, observability, and production troubleshooting."
+      "Tech Lead and Senior Full Stack Developer based in Brazil, with 15+ years of experience building, maintaining, and supporting web applications, internal platforms, APIs, dashboards, and advertising technology systems. I work across .NET, C#, Angular, TypeScript, JavaScript, Node.js, SQL Server, Azure, Azure DevOps, CI/CD, observability, release support, and production troubleshooting."
+  },
+  seo: {
+    title: "Pablo Ricardo Rocha | Tech Lead, Senior Full Stack Developer, .NET & Angular",
+    description:
+      "Pablo Ricardo Rocha is a Tech Lead and Senior Full Stack Developer based in Brazil, with 15+ years of experience in .NET, Angular, TypeScript, Azure, DevOps, delivery coordination, releases, and production troubleshooting.",
+    publicUrl: "https://rochapablo.github.io"
+  },
+  location: {
+    city: "Maringá",
+    region: "Paraná",
+    country: "Brazil"
   },
   facts: [
-    { label: "Based in", value: "Brazil" },
+    { label: "Based in", value: "Maringá, Paraná, Brazil" },
     { label: "Profile", value: "Tech Lead / Senior Full Stack Developer" },
     { label: "Focus", value: "Delivery, reliable systems, releases, and production support" }
   ],
   snapshot:
-    "Hands-on technical leader working across frontend, backend, cloud, DevOps, code review, delivery coordination, and production troubleshooting. I help teams organize engineering work, reduce ambiguity, ship safer releases, and investigate complex production issues.",
+    "I combine hands-on full stack development with technical leadership, delivery coordination, code review, QA support, release organization, and production support. I help teams reduce ambiguity, ship safer releases, investigate production issues, and keep engineering work clear, visible, and aligned with business needs.",
   strengthGroups: [
     {
       title: "Leadership & Delivery",
@@ -28,6 +39,11 @@ export const profileContent = {
       items: ["Azure", "Azure DevOps / CI/CD", "Production Troubleshooting", "Observability"]
     }
   ],
+  personalNote: {
+    title: "Beyond the Stack",
+    text:
+      "I value clarity, reliability, and steady progress. I enjoy solving problems in a practical way, helping teams reduce ambiguity, and improving how work moves from idea to production. I work best with people who care about quality, ownership, and sustainable delivery."
+  },
   careerDirection:
     "I am focused on remote opportunities where I can combine hands-on technical contribution with technical leadership, delivery ownership, release organization, production support, engineering process improvement, and team coordination.",
   footer: {
