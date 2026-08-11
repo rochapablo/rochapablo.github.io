@@ -3,6 +3,7 @@
 - Keep the site editorial but professional.
 - Preserve the high-contrast visual direction.
 - Keep it minimal but not generic.
+- Typography: Use only Google Fonts classified as Sans Serif throughout the project. Do not introduce serif, monospace, display, handwritten, or decorative font families unless this instruction is explicitly changed.
 - Keep the tone suitable for a Senior Full Stack Developer / Tech Lead.
 - Preserve the strong hero with dark contrast background.
 - Preserve clear profile facts and focus areas.

@@ -1,0 +1,114 @@
+@use "variables" as *;
+
+.hero-rail__frame,
+.direction-panel,
+.contact-shell,
+.personal-aside__card,
+.personal-aside__detail {
+  box-shadow: $shadow-soft;
+}
+
+.hero-rail__frame {
+  position: relative;
+  padding: 22px 0 0 22px;
+}
+
+.hero-rail__paper {
+  position: relative;
+  z-index: 1;
+  padding: 24px;
+  border: 1px solid rgba($color-border-strong, 0.55);
+  background: rgba(255, 250, 242, 0.96);
+  color: $color-text;
+}
+
+.hero-rail__facts {
+  display: grid;
+  gap: 16px;
+}
+
+.hero-rail__accent {
+  position: absolute;
+  inset: 0 0 auto auto;
+  width: 62%;
+  height: calc(100% - 18px);
+  border: 1px solid rgba($color-accent, 0.55);
+  background: linear-gradient(180deg, rgba($color-accent, 0.14), rgba($color-accent, 0.03));
+}
+
+.hero-rail__accent-line {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 56px;
+  height: 1px;
+  background: $color-accent;
+}
+
+.hero-rail__accent-dot {
+  position: absolute;
+  right: 22px;
+  bottom: 22px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: $color-accent;
+}
+
+.profile-fact + .profile-fact {
+  padding-top: 16px;
+  border-top: 1px solid rgba($color-border, 0.75);
+}
+
+.profile-fact__label {
+  display: block;
+  color: $color-text-muted;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.profile-fact__value {
+  display: block;
+  margin-top: 6px;
+  color: $color-primary-dark;
+  font-size: 1.02rem;
+}
+
+.direction-panel {
+  padding: 30px;
+  border: 1px solid rgba($color-border-strong, 0.7);
+  background: linear-gradient(180deg, rgba($color-surface-strong, 0.72), rgba($color-panel, 0.96));
+}
+
+.direction-panel__content {
+  display: grid;
+  gap: 20px;
+  align-items: start;
+}
+
+.direction-panel__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  span {
+    padding: 8px 10px;
+    border: 1px solid rgba($color-primary, 0.12);
+    color: $color-primary;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+}
+
+.contact-shell {
+  padding: 34px 30px;
+  border: 1px solid rgba($color-border-strong, 0.62);
+  background:
+    linear-gradient(180deg, rgba($color-primary, 0.02), rgba($color-primary, 0.08)),
+    rgba($color-panel, 0.94);
+}
