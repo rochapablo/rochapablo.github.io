@@ -1,0 +1,157 @@
+.eyebrow,
+.section-kicker {
+  margin-bottom: 1.2rem;
+  color: var(--color-accent-strong);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hero__title,
+.hero__tagline,
+.hero__summary,
+.snapshot__text,
+.personal-note__text,
+.career-direction__text,
+.skills-section__support,
+.timeline-entry__focus,
+.contact-links__item {
+  color: var(--color-text-muted);
+}
+
+.hero__title {
+  margin-bottom: 1.25rem;
+  color: var(--color-primary);
+  font-size: clamp(1.35rem, 2.6vw, 2rem);
+  font-weight: 700;
+}
+
+.hero__tagline,
+.hero__summary {
+  max-width: var(--reading-width);
+}
+
+.hero__tagline {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.hero__summary,
+.snapshot__text,
+.career-direction__text {
+  font-size: clamp(1.05rem, 1.5vw, 1.22rem);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 2rem;
+}
+
+.snapshot__headline h2,
+.skills-section__intro h2,
+.career-direction__inner h2,
+.closing__intro h2 {
+  max-width: 12ch;
+}
+
+.snapshot__content {
+  display: grid;
+  gap: 2rem;
+}
+
+.facts-list {
+  display: grid;
+  gap: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.fact-item {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.fact-item__label {
+  color: var(--color-text-muted);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.fact-item__value {
+  color: var(--color-primary-strong);
+  font-size: 1rem;
+}
+
+.section-heading {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.strengths__grid {
+  display: grid;
+  gap: 2rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.strength-group {
+  padding-top: 1.6rem;
+}
+
+.strength-group__title {
+  margin-bottom: 1rem;
+  color: var(--color-primary-strong);
+  font-size: 1.18rem;
+}
+
+.strength-group__list {
+  display: grid;
+  gap: 0.9rem;
+  padding: 0;
+  list-style: none;
+}
+
+.strength-group__item {
+  position: relative;
+  padding-left: 1rem;
+  color: var(--color-text-muted);
+}
+
+.strength-group__item::before {
+  position: absolute;
+  top: 0.66rem;
+  left: 0;
+  width: 0.38rem;
+  height: 0.38rem;
+  border-radius: 50%;
+  background: var(--color-accent);
+  content: "";
+}
+
+.personal-note__text {
+  max-width: 42rem;
+  font-size: clamp(1.05rem, 1.45vw, 1.2rem);
+}
+
+.career-direction__inner {
+  display: grid;
+  justify-items: center;
+  gap: 1.2rem;
+  text-align: center;
+}
+
+.career-direction__text {
+  max-width: 50rem;
+}
+
+@media (min-width: 700px) {
+  .strengths__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem 2.2rem;
+  }
+}

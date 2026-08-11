@@ -1,47 +1,99 @@
-@use "variables" as *;
-
-.skills-years-grid {
+.skills-section__intro {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
+  gap: 1rem;
+  margin-bottom: 3rem;
 }
 
-.skills-group__list {
-  display: grid;
-  gap: 12px;
-  padding: 0;
-  margin: 0;
-  list-style: none;
+.skills-section__support {
+  max-width: 24rem;
+  font-size: 1rem;
 }
 
-.skills-group__item {
+.skills-tabs {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding-top: 12px;
-  border-top: 1px solid $color-border;
+  gap: 0.8rem;
+  overflow-x: auto;
+  padding-bottom: 0.35rem;
+  scrollbar-width: thin;
 }
 
-.skills-group__skill {
-  color: $color-primary-dark;
-  font-weight: 800;
-}
-
-.skills-group__years {
-  flex-shrink: 0;
-  padding: 6px 10px;
-  border: 1px solid rgba($color-primary, 0.18);
+.skills-tabs__button {
+  flex: 0 0 auto;
+  padding: 0.8rem 1rem;
+  border: 1px solid rgba(247, 241, 231, 0.16);
   border-radius: 999px;
-  background: rgba($color-primary, 0.06);
-  color: $color-primary;
-  font-size: 0.9rem;
-  font-weight: 800;
+  background: transparent;
+  color: var(--color-inverse-muted);
+  font-size: 0.92rem;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: border-color 180ms ease, background-color 180ms ease, color 180ms ease;
+}
+
+.skills-tabs__button:hover,
+.skills-tabs__button:focus-visible {
+  border-color: rgba(214, 138, 74, 0.5);
+  color: #f7f1e7;
+}
+
+.skills-tabs__button.is-active {
+  border-color: rgba(214, 138, 74, 0.72);
+  background: rgba(214, 138, 74, 0.12);
+  color: #f7f1e7;
+}
+
+.skills-list {
+  margin-top: 2rem;
+}
+
+.skills-list__items {
+  display: grid;
+  gap: 1.4rem;
+}
+
+.skill-row {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.skill-row__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.skill-row__name {
+  color: #f7f1e7;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.skill-row__years {
+  flex-shrink: 0;
+  color: var(--color-accent);
+  font-size: 0.95rem;
+  font-weight: 700;
   white-space: nowrap;
 }
 
-@media (min-width: $tablet) {
-  .skills-years-grid {
-    grid-template-columns: repeat(2, 1fr);
+.skill-row__bar {
+  height: 0.6rem;
+  border-radius: 999px;
+}
+
+.skill-row__bar svg {
+  overflow: visible;
+}
+
+.skill-row__bar path {
+  stroke-linecap: round;
+}
+
+@media (max-width: 699px) {
+  .skill-row__header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.3rem;
   }
 }

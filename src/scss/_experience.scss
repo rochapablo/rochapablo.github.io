@@ -1,53 +1,83 @@
-@use "variables" as *;
-
-.experience-list {
+.experience-timeline {
   display: grid;
-  gap: 0;
-  border-left: 2px solid rgba($color-accent, 0.6);
+  gap: 2.4rem;
 }
 
-.experience-card {
+.timeline-entry {
+  display: grid;
+  gap: 1rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.timeline-entry__period,
+.timeline-entry__location {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.timeline-entry__marker {
   position: relative;
-  padding: 0 0 34px 24px;
+  width: 1px;
+  min-height: 2.5rem;
+  margin-left: 0.4rem;
+  background: rgba(24, 35, 30, 0.14);
+}
 
-  &::before {
-    position: absolute;
-    top: 7px;
-    left: -8px;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: $color-accent;
-    content: "";
+.timeline-entry__marker::before {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background: var(--color-accent);
+  transform: translate(-50%, 0);
+  content: "";
+}
+
+.timeline-entry__body {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.timeline-entry__role {
+  color: var(--color-primary-strong);
+  font-size: 1.25rem;
+}
+
+.timeline-entry__company {
+  color: var(--color-primary);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.timeline-entry__focus {
+  max-width: 46rem;
+  font-size: 1rem;
+}
+
+@media (min-width: 900px) {
+  .experience-timeline {
+    gap: 0;
   }
 
-  &__role {
-    margin-bottom: 4px;
-    color: $color-inverse-text;
+  .timeline-entry {
+    grid-template-columns: minmax(10rem, 0.42fr) 2rem minmax(0, 1fr) minmax(9rem, 0.36fr);
+    align-items: start;
+    gap: 1.5rem;
+    padding: 2.5rem 0;
   }
 
-  &__company {
-    margin-bottom: 8px;
-    color: $color-accent;
-    font-size: 1rem;
-    font-weight: 800;
+  .timeline-entry__marker {
+    justify-self: center;
+    width: 2px;
+    min-height: 100%;
+    margin-left: 0;
   }
 
-  &__meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px 10px;
-    margin-bottom: 12px;
-    font-size: 0.92rem;
-  }
-
-  &__location--separated::before {
-    margin-right: 10px;
-    color: $color-accent;
-    content: "\00b7";
-  }
-
-  &__focus {
-    margin-bottom: 0;
+  .timeline-entry__location {
+    justify-self: end;
+    text-align: right;
   }
 }
