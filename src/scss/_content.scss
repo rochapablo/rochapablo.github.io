@@ -1,9 +1,9 @@
 .eyebrow,
 .section-kicker {
-  margin-bottom: 1.2rem;
+  margin-bottom: var(--space-3);
   color: var(--color-accent-strong);
-  font-size: 0.76rem;
-  font-weight: 800;
+  font-size: var(--font-size-label);
+  font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -23,8 +23,9 @@
 .hero__title {
   margin-bottom: 1.25rem;
   color: var(--color-primary);
-  font-size: clamp(1.35rem, 2.6vw, 2rem);
+  font-size: clamp(1.1rem, 1.5vw, 1.4rem);
   font-weight: 700;
+  line-height: 1.2;
 }
 
 .hero__tagline,
@@ -34,13 +35,15 @@
 
 .hero__tagline {
   margin-bottom: 1rem;
-  font-size: 1rem;
+  font-size: var(--font-size-small);
+  line-height: 1.55;
 }
 
 .hero__summary,
 .snapshot__text,
 .career-direction__text {
-  font-size: clamp(1.05rem, 1.5vw, 1.22rem);
+  font-size: var(--font-size-body);
+  line-height: 1.62;
 }
 
 .hero__actions {
@@ -57,9 +60,20 @@
   max-width: 12ch;
 }
 
+.personal-note__content h2,
+.experience__heading h2 {
+  font-size: var(--font-size-section-title-short);
+}
+
+.skills-section__intro h2,
+.career-direction__inner h2,
+.closing__intro h2 {
+  font-size: var(--font-size-section-title);
+}
+
 .snapshot__content {
   display: grid;
-  gap: 2rem;
+  gap: var(--space-6);
 }
 
 .facts-list {
@@ -76,37 +90,38 @@
 
 .fact-item__label {
   color: var(--color-text-muted);
-  font-size: 0.76rem;
-  font-weight: 800;
+  font-size: var(--font-size-label);
+  font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
 .fact-item__value {
   color: var(--color-primary-strong);
-  font-size: 1rem;
+  font-size: var(--font-size-small);
 }
 
 .section-heading {
   display: grid;
-  gap: 1rem;
-  margin-bottom: 2.5rem;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
 }
 
 .strengths__grid {
   display: grid;
-  gap: 2rem;
+  gap: var(--space-6);
   border-top: 1px solid var(--color-border);
 }
 
 .strength-group {
-  padding-top: 1.6rem;
+  padding-top: var(--space-5);
 }
 
 .strength-group__title {
   margin-bottom: 1rem;
   color: var(--color-primary-strong);
-  font-size: 1.18rem;
+  font-size: var(--font-size-subheading);
+  font-weight: 600;
 }
 
 .strength-group__list {
@@ -120,6 +135,7 @@
   position: relative;
   padding-left: 1rem;
   color: var(--color-text-muted);
+  line-height: 1.62;
 }
 
 .strength-group__item::before {
@@ -135,14 +151,27 @@
 
 .personal-note__text {
   max-width: 42rem;
-  font-size: clamp(1.05rem, 1.45vw, 1.2rem);
+  font-size: var(--font-size-body);
+  line-height: 1.65;
+}
+
+.personal-note__content {
+  display: grid;
+  align-content: start;
+  gap: var(--space-4);
 }
 
 .career-direction__inner {
   display: grid;
   justify-items: center;
-  gap: 1.2rem;
+  gap: var(--space-4);
   text-align: center;
+}
+
+.closing__intro {
+  display: grid;
+  align-content: start;
+  gap: var(--space-4);
 }
 
 .career-direction__text {

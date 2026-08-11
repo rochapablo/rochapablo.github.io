@@ -16,9 +16,37 @@
   --shadow-soft: 0 18px 45px rgba(16, 41, 34, 0.08);
   --max-width: 1180px;
   --reading-width: 760px;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
   --section-space: clamp(4.5rem, 10vw, 8rem);
   --section-space-wide: clamp(5.5rem, 12vw, 9.5rem);
   --radius: 18px;
   --desktop: 900px;
   --tablet: 700px;
+  --font-size-hero: clamp(3rem, 5vw, 5rem);
+  --font-size-section-title: clamp(1.8rem, 2.6vw, 2.8rem);
+  --font-size-section-title-short: clamp(1.7rem, 2.2vw, 2.4rem);
+  --font-size-subheading: clamp(1rem, 1.1vw, 1.15rem);
+  --font-size-body: clamp(0.95rem, 0.92rem + 0.2vw, 1.05rem);
+  --font-size-small: clamp(0.85rem, 0.82rem + 0.12vw, 1rem);
+  --font-size-label: clamp(0.68rem, 0.66rem + 0.08vw, 0.75rem);
+  --line-height-heading: 1.08;
+  --line-height-body: 1.62;
+}
+
+@media (max-width: 699px) {
+  :root {
+    --font-size-hero: clamp(2.5rem, 11vw, 3.2rem);
+    --font-size-section-title: clamp(1.7rem, 6vw, 2.1rem);
+    --font-size-section-title-short: clamp(1.6rem, 5.4vw, 2rem);
+    --font-size-subheading: clamp(1rem, 4vw, 1.1rem);
+    --font-size-body: clamp(0.95rem, 3.7vw, 1rem);
+    --font-size-small: clamp(0.85rem, 3.4vw, 0.95rem);
+    --font-size-label: clamp(0.65rem, 2.8vw, 0.75rem);
+  }
 }
