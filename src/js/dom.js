@@ -57,6 +57,14 @@ export function createElement(tagName, options = {}) {
     });
   }
 
+  if (options.style) {
+    Object.entries(options.style).forEach(([name, value]) => {
+      if (value !== undefined && value !== null) {
+        element.style.setProperty(name, value);
+      }
+    });
+  }
+
   return element;
 }
 

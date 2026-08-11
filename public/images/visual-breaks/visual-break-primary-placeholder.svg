@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Primary visual break placeholder</title>
+  <desc id="desc">Replace this file with your primary visual break photo.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#19231f"/>
+      <stop offset="50%" stop-color="#375046"/>
+      <stop offset="100%" stop-color="#d68a4a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect x="70" y="70" width="1460" height="760" rx="28" fill="none" stroke="#f6efe3" stroke-opacity=".3" stroke-width="4"/>
+  <text x="800" y="420" fill="#f6efe3" font-family="Arial, sans-serif" font-size="64" text-anchor="middle">Visual Break Primary</text>
+  <text x="800" y="500" fill="#f6efe3" font-family="Arial, sans-serif" font-size="30" text-anchor="middle">Replace in public/images/visual-breaks</text>
+</svg>

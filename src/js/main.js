@@ -8,6 +8,7 @@ import {
   renderCareerDirection,
   renderFooter,
   renderHero,
+  renderProfileImages,
   renderPersonalNote,
   renderSnapshot,
   renderStrengths
@@ -17,6 +18,7 @@ initSiteChrome(profile);
 renderHero(profile);
 renderSnapshot(profile.snapshot, profile.facts);
 renderStrengths(profile.strengthGroups);
+renderProfileImages(profile.images);
 renderSkillsByExperience(profile.skills);
 renderExperience(profile.experience);
 renderCareerDirection(profile.careerDirection);

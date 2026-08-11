@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900" role="img" aria-labelledby="title desc">
+  <title id="title">Personal life secondary placeholder</title>
+  <desc id="desc">Replace this file with your secondary personal image.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#31433c"/>
+      <stop offset="100%" stop-color="#d2a066"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="900" fill="url(#bg)"/>
+  <text x="450" y="420" fill="#f6efe3" font-family="Arial, sans-serif" font-size="44" text-anchor="middle">Personal Image B</text>
+  <text x="450" y="485" fill="#f6efe3" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">Replace in public/images/personal</text>
+</svg>

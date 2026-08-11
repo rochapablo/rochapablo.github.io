@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Closing profile placeholder</title>
+  <desc id="desc">Replace this file with your closing profile image.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#31433c"/>
+      <stop offset="100%" stop-color="#1a2420"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <circle cx="920" cy="180" r="120" fill="#d68a4a" fill-opacity=".18"/>
+  <rect x="80" y="80" width="1040" height="740" rx="32" fill="none" stroke="#f6efe3" stroke-opacity=".28" stroke-width="4"/>
+  <text x="600" y="430" fill="#f6efe3" font-family="Arial, sans-serif" font-size="60" text-anchor="middle">Closing Image</text>
+  <text x="600" y="505" fill="#f6efe3" font-family="Arial, sans-serif" font-size="30" text-anchor="middle">Replace in public/images/profile</text>
+</svg>
