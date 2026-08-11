@@ -646,6 +646,10 @@ ul:last-child {
   min-height: clamp(24rem, 55vw, 34rem);
 }
 
+.media-slot--portrait.media-slot--offset::before {
+  content: none;
+}
+
 .visual-break__inner {
   position: relative;
   isolation: isolate;
