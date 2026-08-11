@@ -3,7 +3,6 @@ import { initNavigation } from "./navigation.js";
 import { renderFacts } from "./render-facts.js";
 
 export function initSiteChrome(profile) {
-  setText("[data-hero-greeting]", "Hello, I'm");
   initNavigation();
 }
 
@@ -56,53 +55,6 @@ export function renderCareerDirection(text) {
 export function renderPersonalNote(note) {
   setText("[data-personal-note-title]", note.title);
   setText("[data-personal-note-text]", note.text);
-}
-
-function renderImageSlot(slotName, image, className) {
-  const slot = clearElement(`[data-image-slot="${slotName}"]`);
-
-  if (!slot || !image?.src) {
-    return;
-  }
-
-  const imageElement = createElement("img", {
-    className,
-    attributes: {
-      src: image.src,
-      alt: image.decorative ? "" : image.alt ?? "",
-      loading: "lazy",
-      decoding: "async"
-    },
-    style: {
-      "object-position": image.objectPosition
-    }
-  });
-
-  if (image.decorative) {
-    imageElement.setAttribute("aria-hidden", "true");
-  }
-
-  imageElement.addEventListener("error", () => {
-    slot.dataset.imageState = "missing";
-    imageElement.remove();
-  });
-
-  slot.dataset.imageState = "ready";
-  slot.append(imageElement);
-}
-
-export function renderProfileImages(images) {
-  if (!images) {
-    return;
-  }
-
-  renderImageSlot("heroPortrait", images.heroPortrait, "media-slot__image");
-  renderImageSlot("visualBreakPrimary", images.visualBreakPrimary, "visual-break__image");
-  renderImageSlot("workspaceDesk", images.workspaceDesk, "media-slot__image");
-  renderImageSlot("personalLifePrimary", images.personalLifePrimary, "media-slot__image");
-  renderImageSlot("personalLifeSecondary", images.personalLifeSecondary, "media-slot__image");
-  renderImageSlot("visualBreakSecondary", images.visualBreakSecondary, "visual-break__image");
-  renderImageSlot("closingProfile", images.closingProfile, "media-slot__image");
 }
 
 export function renderFooter(profile) {

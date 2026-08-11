@@ -1,9 +1,5 @@
 export const profileContent = {
   basics: {
-    name: "Pablo Ricardo Rocha",
-    title: "Tech Lead and Senior Full Stack Developer",
-    tagline:
-      ".NET • Angular • TypeScript • Azure • DevOps • Delivery • Releases • Production Support",
     summary:
       "Tech Lead and Senior Full Stack Developer based in Brazil, with 15+ years of experience building, maintaining, and supporting web applications, internal platforms, APIs, dashboards, and advertising technology systems. I work across .NET, C#, Angular, TypeScript, JavaScript, Node.js, SQL Server, Azure, Azure DevOps, CI/CD, observability, release support, and production troubleshooting."
   },
@@ -40,7 +36,6 @@ export const profileContent = {
     }
   ],
   personalNote: {
-    title: "Beyond the Stack",
     text:
       "I value clarity, reliability, and steady progress. I enjoy solving problems in a practical way, helping teams reduce ambiguity, and improving how work moves from idea to production. I work best with people who care about quality, ownership, and sustainable delivery."
   },

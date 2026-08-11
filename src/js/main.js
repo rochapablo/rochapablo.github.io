@@ -1,5 +1,7 @@
 import { updateMetadata } from "./metadata.js";
 import { profile } from "./profile-data.js";
+import { renderProfileImages } from "./render-images.js";
+import { renderPageHeadings } from "./render-page-headings.js";
 import { renderExperience } from "./render-experience.js";
 import { renderContacts } from "./render-links.js";
 import { renderSkillsByExperience } from "./render-skills.js";
@@ -8,13 +10,13 @@ import {
   renderCareerDirection,
   renderFooter,
   renderHero,
-  renderProfileImages,
   renderPersonalNote,
   renderSnapshot,
   renderStrengths
 } from "./render.js";
 
 initSiteChrome(profile);
+renderPageHeadings(profile.pageHeadings);
 renderHero(profile);
 renderSnapshot(profile.snapshot, profile.facts);
 renderStrengths(profile.strengthGroups);
