@@ -5,6 +5,8 @@ import { skills } from "./profile-data/skills.js";
 
 export const profile = {
   ...profileContent.basics,
+  seo: profileContent.seo,
+  location: profileContent.location,
   facts: profileContent.facts,
   snapshot: profileContent.snapshot,
   strengthGroups: profileContent.strengthGroups,

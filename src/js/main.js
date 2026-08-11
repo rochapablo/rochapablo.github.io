@@ -1,3 +1,4 @@
+import { updateMetadata } from "./metadata.js";
 import { profile } from "./profile-data.js";
 import { renderExperience } from "./render-experience.js";
 import { renderSkillsByExperience } from "./render-skills.js";
@@ -20,3 +21,4 @@ renderCareerDirection(profile.careerDirection);
 renderPersonalNote(profile.personalNote);
 renderContacts(profile.contactLinks);
 renderFooter(profile);
+updateMetadata(profile);
