@@ -1,30 +1,30 @@
 .skills-section__intro {
   display: grid;
-  gap: 1rem;
-  margin-bottom: 3rem;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
 }
 
 .skills-section__support {
   max-width: 24rem;
-  font-size: 1rem;
+  font-size: var(--font-size-body);
+  line-height: 1.6;
 }
 
 .skills-tabs {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.8rem;
-  overflow-x: auto;
-  padding-bottom: 0.35rem;
-  scrollbar-width: thin;
+  align-items: flex-start;
 }
 
 .skills-tabs__button {
-  flex: 0 0 auto;
+  flex: 0 1 auto;
   padding: 0.8rem 1rem;
   border: 1px solid rgba(247, 241, 231, 0.16);
   border-radius: 999px;
   background: transparent;
   color: var(--color-inverse-muted);
-  font-size: 0.92rem;
+  font-size: clamp(0.75rem, 0.72rem + 0.14vw, 0.9rem);
   font-weight: 700;
   white-space: nowrap;
   transition: border-color 180ms ease, background-color 180ms ease, color 180ms ease;
@@ -43,7 +43,7 @@
 }
 
 .skills-list {
-  margin-top: 2rem;
+  margin-top: var(--space-5);
 }
 
 .skills-list__items {
@@ -65,29 +65,30 @@
 
 .skill-row__name {
   color: #f7f1e7;
-  font-size: 1rem;
-  font-weight: 700;
+  font-size: var(--font-size-small);
+  font-weight: 600;
 }
 
 .skill-row__years {
   flex-shrink: 0;
   color: var(--color-accent);
-  font-size: 0.95rem;
+  font-size: clamp(0.75rem, 0.72rem + 0.12vw, 0.9rem);
   font-weight: 700;
   white-space: nowrap;
 }
 
 .skill-row__bar {
+  overflow: hidden;
   height: 0.6rem;
   border-radius: 999px;
+  background: var(--color-track);
 }
 
-.skill-row__bar svg {
-  overflow: visible;
-}
-
-.skill-row__bar path {
-  stroke-linecap: round;
+.skill-row__fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--color-accent-strong);
 }
 
 @media (max-width: 699px) {

@@ -5,7 +5,6 @@ export function renderSkillsPanel({ tabs, panel, categories, categoryNames, maxY
   const activeIndex = categoryNames.indexOf(state.activeCategory);
   const activeSkills = getVisibleSkills(categories, state.activeCategory);
 
-  state.bars.forEach((bar) => bar.destroy());
   state.bars = [];
 
   tabs.querySelectorAll("[data-category]").forEach((button, index) => {
@@ -38,9 +37,17 @@ function createSkillRow(skill, index, maxYears, state) {
   const track = createElement("div", {
     className: "skill-row__bar",
     attributes: {
-      "data-skill-ratio": String(ratio),
       "data-skill-label": `${skill.name}: ${skill.years}`,
       "aria-hidden": "true"
+    }
+  });
+  const fill = createElement("span", {
+    className: "skill-row__fill",
+    attributes: {
+      "data-skill-ratio": String(ratio)
+    },
+    style: {
+      width: `${ratio * 100}%`
     }
   });
 
@@ -49,28 +56,8 @@ function createSkillRow(skill, index, maxYears, state) {
     createElement("span", { className: "skill-row__years", text: skill.years })
   );
 
+  track.append(fill);
   row.append(header, track);
-
-  queueMicrotask(() => {
-    const ProgressBar = window.ProgressBar;
-
-    if (!ProgressBar || !track.isConnected) {
-      return;
-    }
-
-    const bar = new ProgressBar.Line(track, {
-      strokeWidth: 4,
-      trailWidth: 4,
-      duration: 0,
-      easing: "linear",
-      color: "var(--color-accent-strong)",
-      trailColor: "var(--color-track)",
-      svgStyle: { width: "100%", height: "100%" }
-    });
-
-    bar.set(ratio);
-    state.bars[index] = bar;
-  });
 
   return row;
 }
