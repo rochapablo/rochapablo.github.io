@@ -56,7 +56,8 @@ function renderImageSlot(slotName, image, className) {
       decoding: "async"
     },
     style: {
-      "object-position": image.objectPosition
+      "--image-position": image.objectPosition,
+      "--image-position-mobile": image.mobileObjectPosition ?? image.objectPosition
     }
   });
 

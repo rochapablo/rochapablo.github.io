@@ -40,6 +40,7 @@ export const profileImages = {
     src: "/public/images/1786487393228.jpg",
     alt: "Professional profile photo of Pablo Rocha for contact section",
     objectPosition: "center center",
+    mobileObjectPosition: "42% 12%",
     decorative: true
   }
 };
