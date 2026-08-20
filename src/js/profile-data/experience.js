@@ -5,7 +5,7 @@ export const experience = [
     period: "April 2019 – Present",
     location: "Brazil",
     focus:
-      "Work across technical leadership, delivery coordination, code review, production support, release routines, observability, and hands-on full stack development for internal and client-facing advertising technology systems using .NET, Angular, Node.js, JavaScript, TypeScript, SQL Server, Azure DevOps, Elastic/Kibana, Bitbucket, and Jira."
+      "I currently work across technical leadership and hands-on engineering for interconnected advertising technology systems, including .NET services, Angular applications, Azure Functions, JavaScript integrations, APIs, and production environments. My role also includes code review, delivery coordination, release support, architecture decisions, troubleshooting, and reliability."
   },
   {
     role: "Web Developer",

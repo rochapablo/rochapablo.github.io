@@ -1,7 +1,7 @@
 export const profileContent = {
   basics: {
     summary:
-      "Tech Lead and Senior Full Stack Developer based in Brazil, with 15+ years of experience building, maintaining, and supporting web applications, internal platforms, APIs, dashboards, and advertising technology systems. I work across .NET, C#, Angular, TypeScript, JavaScript, Node.js, SQL Server, Azure, Azure DevOps, CI/CD, observability, release support, and production troubleshooting."
+      "I have 15+ years of experience building and supporting web applications, internal platforms, APIs, dashboards, and advertising technology systems. Today, my work combines hands-on engineering with technical leadership, delivery, releases, and production reliability."
   },
   seo: {
     title: "Pablo Ricardo Rocha | Tech Lead, Senior Full Stack Developer, .NET & Angular",
@@ -20,7 +20,7 @@ export const profileContent = {
     { label: "Focus", value: "Delivery, reliable systems, releases, and production support" }
   ],
   snapshot:
-    "I combine hands-on full stack development with technical leadership, delivery coordination, code review, QA support, release organization, and production support. I help teams reduce ambiguity, ship safer releases, investigate production issues, and keep engineering work clear, visible, and aligned with business needs.",
+    "I combine hands-on full stack development with technical leadership, delivery coordination, code review, QA collaboration, release organization, and production support. I help teams clarify technical problems, make safer changes, investigate production issues, and keep engineering work moving from development through QA and production.",
   strengthGroups: [
     {
       title: "Leadership & Delivery",
@@ -31,16 +31,16 @@ export const profileContent = {
       items: [".NET / C#", "Angular / TypeScript", "APIs", "SQL Server"]
     },
     {
-      title: "Production & DevOps",
-      items: ["Azure", "Azure DevOps / CI/CD", "Production Troubleshooting", "Observability"]
+      title: "Production & Reliability",
+      items: ["Production Troubleshooting","Observability","CI/CD & Releases","Azure"]
     }
   ],
   personalNote: {
     text:
-      "I value clarity, reliability, and steady progress. I enjoy solving problems in a practical way, helping teams reduce ambiguity, and improving how work moves from idea to production. I work best with people who care about quality, ownership, and sustainable delivery."
+      "Outside work, I appreciate a quieter pace of life. I enjoy technology, but I also value time away from screens, being outdoors, learning things at my own pace, and keeping life simple. That balance has shaped how I work too: I prefer steady progress, clear communication, and sustainable ways of getting things done."
   },
   careerDirection:
-    "I am focused on remote opportunities where I can combine hands-on technical contribution with technical leadership, delivery ownership, release organization, production support, engineering process improvement, and team coordination.",
+    "I'm looking for a remote role where I can continue using my technical background while taking broader responsibility for teams, delivery, technical decisions, and engineering practices. I'm comfortable remaining hands-on, but over time I want more of my impact to come through leadership, coordination, and helping teams work effectively.",
   footer: {
     name: "Pablo Ricardo Rocha"
   }
