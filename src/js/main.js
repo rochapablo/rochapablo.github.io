@@ -1,10 +1,8 @@
-import { updateMetadata } from "./metadata.js";
-import { profile } from "./profile-data.js";
-import { renderProfileImages } from "./render-images.js";
-import { renderPageHeadings } from "./render-page-headings.js";
-import { renderExperience } from "./render-experience.js";
-import { renderContacts } from "./render-links.js";
-import { renderSkillsByExperience } from "./render-skills.js";
+import { profile } from "./profile-data/index.js";
+import { renderExperience } from "./render/experience.js";
+import { renderProfileImages } from "./render/images.js";
+import { renderContacts } from "./render/links.js";
+import { renderPageHeadings } from "./render/page-headings.js";
 import {
   initSiteChrome,
   renderCareerDirection,
@@ -13,7 +11,10 @@ import {
   renderPersonalNote,
   renderSnapshot,
   renderStrengths
-} from "./render.js";
+} from "./render/site.js";
+import { updateMetadata } from "./seo/metadata.js";
+import { renderSkillsByExperience } from "./skills/index.js";
+import { initVisitorIntent } from "./visitor-intent/index.js";
 
 initSiteChrome(profile);
 renderPageHeadings(profile.pageHeadings);
@@ -28,3 +29,4 @@ renderPersonalNote(profile.personalNote);
 renderContacts(profile.contactLinks);
 renderFooter(profile);
 updateMetadata(profile);
+initVisitorIntent(profile.visitorIntent);

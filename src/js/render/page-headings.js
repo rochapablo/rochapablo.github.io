@@ -1,4 +1,4 @@
-import { setText } from "./dom.js";
+import { setText } from "../core/dom.js";
 
 const pageHeadingBindings = [
   { key: "hero.greeting", selector: '[data-page-heading="hero-greeting"]' },
@@ -15,10 +15,7 @@ const pageHeadingBindings = [
   { key: "experience.title", selector: '[data-page-heading="experience-title"]' },
   { key: "personalNote.kicker", selector: '[data-page-heading="personal-note-kicker"]' },
   { key: "personalNote.title", selector: '[data-page-heading="personal-note-title"]' },
-  {
-    key: "careerDirection.kicker",
-    selector: '[data-page-heading="career-direction-kicker"]'
-  },
+  { key: "careerDirection.kicker", selector: '[data-page-heading="career-direction-kicker"]' },
   { key: "careerDirection.title", selector: '[data-page-heading="career-direction-title"]' },
   { key: "contact.kicker", selector: '[data-page-heading="contact-kicker"]' },
   { key: "contact.title", selector: '[data-page-heading="contact-title"]' }

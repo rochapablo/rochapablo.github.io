@@ -1,6 +1,6 @@
-import { appendChildren, clearElement, createElement } from "./dom.js";
-import { getMaxYears, getPanelId, getTabId, groupSkillsByCategory } from "./skills-data.js";
-import { renderSkillsPanel } from "./skills-ui.js";
+import { appendChildren, clearElement, createElement } from "../core/dom.js";
+import { getMaxYears, getPanelId, getTabId, groupSkillsByCategory } from "./data.js";
+import { renderSkillsPanel } from "./panel.js";
 
 export function renderSkillsByExperience(skills) {
   const tabs = clearElement("[data-skills-tabs]");

@@ -1,4 +1,4 @@
-import { clearElement, createElement } from "./dom.js";
+import { clearElement, createElement } from "../core/dom.js";
 
 const imageSlotContainers = {
   heroPortrait: ".hero__media",
