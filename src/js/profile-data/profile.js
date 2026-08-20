@@ -25,7 +25,20 @@ export const profileContent = {
     primaryActionsLabel: "Primary contact links",
     profileFactsLabel: "Profile facts",
     strengthsLabel: "Core strengths",
-    skillCategoriesLabel: "Skill categories"
+    skillCategoriesLabel: "Skill categories",
+    visitorIntent: {
+      title: "What brought you here?",
+      dismissLabel: "Dismiss question",
+      companyLabel: "Company (optional)",
+      companyPlaceholder: "Company name",
+      continueLabel: "Continue",
+      options: [
+        { label: "Hiring / Recruiting", value: "hiring" },
+        { label: "Networking", value: "networking" },
+        { label: "Developer / Technical", value: "technical" },
+        { label: "Just browsing", value: "browsing" }
+      ]
+    }
   },
   location: {
     city: "Maringá",

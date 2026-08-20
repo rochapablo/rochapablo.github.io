@@ -1,4 +1,4 @@
-import { appendChildren, clearElement, createElement } from "./dom.js";
+import { appendChildren, clearElement, createElement } from "../core/dom.js";
 
 export function renderFacts(facts) {
   const list = clearElement("[data-profile-facts]");

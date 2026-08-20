@@ -1,5 +1,5 @@
-import { appendChildren, createElement } from "./dom.js";
-import { getPanelId, getTabId, getVisibleSkills, parseYears } from "./skills-data.js";
+import { appendChildren, createElement } from "../core/dom.js";
+import { getPanelId, getTabId, getVisibleSkills, parseYears } from "./data.js";
 
 export function renderSkillsPanel({ tabs, panel, categories, categoryNames, maxYears, state }) {
   const activeIndex = categoryNames.indexOf(state.activeCategory);

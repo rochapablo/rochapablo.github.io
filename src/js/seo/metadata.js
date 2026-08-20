@@ -1,4 +1,4 @@
-import { buildMetadata, buildStructuredData } from "./seo.js";
+import { buildMetadata, buildStructuredData } from "./index.js";
 
 export function updateMetadata(profile) {
   const metadata = buildMetadata(profile);

@@ -1,6 +1,7 @@
-import { appendChildren, clearElement, createElement, setAttributes, setText } from "./dom.js";
-import { initNavigation } from "./navigation.js";
-import { renderFacts } from "./render-facts.js";
+import { attachTrackedLink } from "../analytics/link-tracking.js";
+import { appendChildren, clearElement, createElement, setAttributes, setText } from "../core/dom.js";
+import { initNavigation } from "../core/navigation.js";
+import { renderFacts } from "./facts.js";
 
 export function initSiteChrome(profile) {
   setText("[data-profile-name]", profile.name);
@@ -107,5 +108,7 @@ function renderNavigation(profile) {
     } else {
       resumeLink.removeAttribute("download");
     }
+
+    attachTrackedLink(resumeLink, "cv-clicked", { location: "header", language: "en" });
   }
 }

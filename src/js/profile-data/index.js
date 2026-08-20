@@ -1,9 +1,9 @@
-import { contactLinks } from "./profile-data/contact-links.js";
-import { experience } from "./profile-data/experience.js";
-import { profileImages } from "./profile-data/images.js";
-import { pageHeadings } from "./profile-data/page-headings.js";
-import { profileContent } from "./profile-data/profile.js";
-import { skills } from "./profile-data/skills.js";
+import { contactLinks } from "./contact-links.js";
+import { experience } from "./experience.js";
+import { profileImages } from "./images.js";
+import { pageHeadings } from "./page-headings.js";
+import { profileContent } from "./profile.js";
+import { skills } from "./skills.js";
 
 export const profile = {
   name: profileContent.footer.name,
@@ -12,6 +12,7 @@ export const profile = {
   summary: profileContent.basics.summary,
   seo: profileContent.seo,
   siteChrome: profileContent.siteChrome,
+  visitorIntent: profileContent.siteChrome.visitorIntent,
   location: profileContent.location,
   facts: profileContent.facts,
   snapshot: profileContent.snapshot,
