@@ -1,8 +1,9 @@
 export const pageHeadings = {
   hero: {
-    greeting: "Hello, I'm",
-    name: "Pablo Ricardo Rocha",
+    greeting: "Hello, my name is",
+    introName: "Pablo",
     title: "Tech Lead and Senior Full Stack Developer",
+    introTitle: "I currently work as a Tech Lead and Senior Full Stack Developer.",
     tagline:
       ".NET • Angular • TypeScript • Azure • DevOps • Delivery • Releases • Production Support"
   },

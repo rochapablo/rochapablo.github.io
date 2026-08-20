@@ -6,7 +6,7 @@ import { profileContent } from "./profile-data/profile.js";
 import { skills } from "./profile-data/skills.js";
 
 export const profile = {
-  name: pageHeadings.hero.name,
+  name: profileContent.footer.name,
   title: pageHeadings.hero.title,
   tagline: pageHeadings.hero.tagline,
   summary: profileContent.basics.summary,

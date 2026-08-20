@@ -12,7 +12,7 @@ const contactLinks = loadExport(path.join(profileDataDir, "contact-links.js"), "
 const skills = loadExport(path.join(profileDataDir, "skills.js"), "skills");
 
 const profile = {
-  name: pageHeadings.hero.name,
+  name: profileContent.footer.name,
   title: pageHeadings.hero.title,
   tagline: pageHeadings.hero.tagline,
   summary: profileContent.basics.summary,
@@ -32,6 +32,8 @@ const profile = {
 
 const replacements = [
   ['data-page-heading="hero-greeting"', profile.pageHeadings.hero.greeting],
+  ['data-page-heading="hero-name"', profile.pageHeadings.hero.introName],
+  ['data-page-heading="hero-title"', profile.pageHeadings.hero.introTitle],
   ["data-profile-name", profile.name],
   ["data-profile-title", profile.title],
   ["data-profile-tagline", profile.tagline],

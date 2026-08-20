@@ -2,6 +2,8 @@ import { setText } from "./dom.js";
 
 const pageHeadingBindings = [
   { key: "hero.greeting", selector: '[data-page-heading="hero-greeting"]' },
+  { key: "hero.introName", selector: '[data-page-heading="hero-name"]' },
+  { key: "hero.introTitle", selector: '[data-page-heading="hero-title"]' },
   { key: "about.kicker", selector: '[data-page-heading="about-kicker"]' },
   { key: "about.title", selector: '[data-page-heading="about-title"]' },
   { key: "strengths.kicker", selector: '[data-page-heading="strengths-kicker"]' },
