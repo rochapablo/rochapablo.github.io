@@ -11,6 +11,7 @@ export const profile = {
   tagline: pageHeadings.hero.tagline,
   summary: profileContent.basics.summary,
   seo: profileContent.seo,
+  siteChrome: profileContent.siteChrome,
   location: profileContent.location,
   facts: profileContent.facts,
   snapshot: profileContent.snapshot,

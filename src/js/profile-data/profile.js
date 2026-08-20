@@ -9,6 +9,24 @@ export const profileContent = {
       "Pablo Ricardo Rocha is a Tech Lead and Senior Full Stack Developer based in Brazil, with 15+ years of experience in .NET, Angular, TypeScript, Azure, DevOps, delivery coordination, releases, and production troubleshooting.",
     publicUrl: "https://rochapablo.github.io"
   },
+  siteChrome: {
+    brandMark: "PR",
+    brandLinkLabel: "Go to top",
+    menuLabel: "Menu",
+    navigationLabel: "Primary navigation",
+    resumeLabel: "CV",
+    navLinks: [
+      { label: "About", href: "#about" },
+      { label: "What I Do", href: "#strengths" },
+      { label: "Skills", href: "#skills" },
+      { label: "Experience", href: "#experience" },
+      { label: "Contact", href: "#contact" }
+    ],
+    primaryActionsLabel: "Primary contact links",
+    profileFactsLabel: "Profile facts",
+    strengthsLabel: "Core strengths",
+    skillCategoriesLabel: "Skill categories"
+  },
   location: {
     city: "Maringá",
     region: "Paraná",

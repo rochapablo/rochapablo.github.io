@@ -4,6 +4,18 @@ export function setText(selector, text) {
   });
 }
 
+export function setAttributes(selector, attributes) {
+  document.querySelectorAll(selector).forEach((element) => {
+    Object.entries(attributes).forEach(([name, value]) => {
+      if (value === undefined || value === null) {
+        element.removeAttribute(name);
+      } else {
+        element.setAttribute(name, value);
+      }
+    });
+  });
+}
+
 export function clearElement(selector) {
   const element = document.querySelector(selector);
 

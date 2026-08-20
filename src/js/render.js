@@ -1,8 +1,19 @@
-import { appendChildren, clearElement, createElement, setText } from "./dom.js";
+import { appendChildren, clearElement, createElement, setAttributes, setText } from "./dom.js";
 import { initNavigation } from "./navigation.js";
 import { renderFacts } from "./render-facts.js";
 
 export function initSiteChrome(profile) {
+  setText("[data-profile-name]", profile.name);
+  setText("[data-brand-mark]", profile.siteChrome.brandMark);
+  setText("[data-nav-toggle-label]", profile.siteChrome.menuLabel);
+  setAttributes("[data-nav-toggle]", { "aria-label": profile.siteChrome.menuLabel });
+  setAttributes("[data-brand-link]", { "aria-label": profile.siteChrome.brandLinkLabel });
+  setAttributes("[data-site-nav]", { "aria-label": profile.siteChrome.navigationLabel });
+  setAttributes("[data-primary-actions]", { "aria-label": profile.siteChrome.primaryActionsLabel });
+  setAttributes("[data-profile-facts]", { "aria-label": profile.siteChrome.profileFactsLabel });
+  setAttributes("#strengths-list", { "aria-label": profile.siteChrome.strengthsLabel });
+  setAttributes("[data-skills-tabs]", { "aria-label": profile.siteChrome.skillCategoriesLabel });
+  renderNavigation(profile);
   initNavigation();
 }
 
@@ -64,5 +75,37 @@ export function renderFooter(profile) {
 
   if (yearElement) {
     yearElement.textContent = new Date().getFullYear();
+  }
+}
+
+function renderNavigation(profile) {
+  const { siteChrome, contactLinks } = profile;
+  const navLinks = clearElement("[data-nav-links]");
+  const resumeLink = document.querySelector("[data-nav-resume]");
+  const resumeContact = contactLinks.find((link) => link.label === "Resume PDF");
+
+  if (navLinks) {
+    appendChildren(
+      navLinks,
+      siteChrome.navLinks.map((link) =>
+        createElement("a", {
+          href: link.href,
+          text: link.label
+        })
+      )
+    );
+  }
+
+  if (resumeLink) {
+    resumeLink.textContent = siteChrome.resumeLabel;
+    resumeLink.href = resumeContact?.href ?? "";
+    resumeLink.target = resumeContact?.target ?? "";
+    resumeLink.rel = resumeContact?.rel ?? "";
+
+    if (resumeContact?.download) {
+      resumeLink.download = typeof resumeContact.download === "string" ? resumeContact.download : "";
+    } else {
+      resumeLink.removeAttribute("download");
+    }
   }
 }
