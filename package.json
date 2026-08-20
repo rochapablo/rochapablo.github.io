@@ -8,7 +8,7 @@
     "sync:html": "node src/tools/sync-static-html.js",
     "sass": "sass --no-source-map src/scss/styles.scss dist/css/styles.css",
     "sass:watch": "sass --no-source-map --watch src/scss/styles.scss:dist/css/styles.css",
-    "build": "npm run sync:html && npm run sass",
+    "build": "npm run sass",
     "lint:size": "node src/tools/check-file-size.js",
     "lint": "npm run lint:size",
     "validate": "npm run build && npm run lint",
