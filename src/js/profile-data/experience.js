@@ -2,10 +2,10 @@ export const experience = [
   {
     role: "Technical Lead",
     company: "Premium Programmatic",
-    period: "April 2019 – Present",
+    period: "April 2019 – August 2026",
     location: "Brazil",
     focus:
-      "I currently work across technical leadership and hands-on engineering for interconnected advertising technology systems, including .NET services, Angular applications, Azure Functions, JavaScript integrations, APIs, and production environments. My role also includes code review, delivery coordination, release support, architecture decisions, troubleshooting, and reliability."
+      "Worked across technical leadership and hands-on engineering for interconnected advertising technology systems, including .NET services, Angular applications, Azure Functions, JavaScript integrations, APIs, and production environments. The role also included code review, delivery coordination, release support, technical decisions, troubleshooting, and reliability."
   },
   {
     role: "Web Developer",
