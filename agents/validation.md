@@ -8,4 +8,3 @@
 - Do not claim validation passed unless it actually ran and passed.
 - Report commands and actual results only if run.
 - Confirm no incorrect alternate name reference exists after changes.
-- Confirm `Pablo Rocha` is preserved.

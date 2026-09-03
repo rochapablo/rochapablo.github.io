@@ -10,4 +10,3 @@
 - Do not invent parallel implementations.
 - Do not touch unrelated files.
 - Keep the project static and GitHub Pages friendly.
-- Do not change `Pablo Rocha` to another name.

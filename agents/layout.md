@@ -12,7 +12,6 @@
 - Preserve the resume/timeline-style experience section.
 - Preserve the intentional career direction / "What I am looking for" panel.
 - Preserve the visible contact section with consistent link/button styling.
-- Preserve the footer with `Pablo Rocha` and current year behavior.
 - Avoid reverting to a plain or generic resume layout.
 - New sections should follow the existing rhythm, spacing, contrast, and card/panel language.
 - Keep the layout static and GitHub Pages friendly.
