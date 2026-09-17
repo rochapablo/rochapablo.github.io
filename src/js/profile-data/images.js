@@ -18,12 +18,12 @@ export const profileImages = {
   //   objectPosition: "center center",
   //   decorative: true
   // },
-  // workspaceDesk: {
-  //   src: "/public/images/workspace/workspace-desk-placeholder.svg",
-  //   alt: "Workspace placeholder for the personal note section",
-  //   objectPosition: "center center",
-  //   decorative: true
-  // },
+  workspaceDesk: {
+    src: "/public/images/1789653844603.jpg",
+    alt: "Workspace placeholder for the personal note section",
+    objectPosition: "center center",
+    decorative: true
+  },
   // personalLifePrimary: {
   //   src: "/public/images/personal/personal-life-primary-placeholder.svg",
   //   alt: "Personal life placeholder image",
