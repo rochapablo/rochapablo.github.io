@@ -41,13 +41,20 @@ export const skills = [
 
   // Leadership & Delivery
 
-  { name: "Technical Leadership", years: "7+ years", category: "Leadership & Delivery" },
-  { name: "Code Review", years: "7+ years", category: "Leadership & Delivery" },
+  { name: "Code Review", years: "5+ years", category: "Leadership & Delivery" },
   { name: "Delivery Coordination", years: "7+ years", category: "Leadership & Delivery" },
-  { name: "QA Collaboration", years: "7+ years", category: "Leadership & Delivery" },
-  { name: "Release Organization", years: "7+ years", category: "Leadership & Delivery" },
-  { name: "Technical Documentation", years: "7+ years", category: "Leadership & Delivery" },
+  { name: "Delivery Ownership", years: "3+ years", category: "Leadership & Delivery" },
+  { name: "Engineering Leadership", years: "3+ years", category: "Leadership & Delivery" },
   { name: "Engineering Practices", years: "7+ years", category: "Leadership & Delivery" },
+  { name: "Process Improvement", years: "5+ years", category: "Leadership & Delivery" },
+  { name: "QA Collaboration", years: "5+ years", category: "Leadership & Delivery" },
+  { name: "Release Organization", years: "5+ years", category: "Leadership & Delivery" },
+  { name: "Stakeholder Collaboration", years: "5+ years", category: "Leadership & Delivery" },
+  { name: "Task Breakdown", years: "5+ years", category: "Leadership & Delivery" },
+  { name: "Team Coordination", years: "3+ years", category: "Leadership & Delivery" },
+  { name: "Technical Documentation", years: "7+ years", category: "Leadership & Delivery" },
+  { name: "Technical Leadership", years: "3+ years", category: "Leadership & Delivery" },
+  { name: "Technical Planning", years: "5+ years", category: "Leadership & Delivery" },
 
   // Production & Reliability
 
@@ -57,7 +64,7 @@ export const skills = [
   { name: "Elastic / Kibana", years: "5+ years", category: "Production & Reliability" },
   { name: "Observability", years: "5+ years", category: "Production & Reliability" },
   { name: "Log Analysis", years: "5+ years", category: "Production & Reliability" },
-  { name: "Application Behavior Investigation", years: "7+ years", category: "Production & Reliability" },
+  { name: "Application Behavior Investigation", years: "5+ years", category: "Production & Reliability" },
   { name: "Performance Investigation", years: "5+ years", category: "Production & Reliability" },
 
   // AdTech
@@ -65,7 +72,7 @@ export const skills = [
   { name: "AdTech Systems", years: "7+ years", category: "AdTech" },
   { name: "JavaScript Ad Tags", years: "7+ years", category: "AdTech" },
   { name: "Publisher Integrations", years: "7+ years", category: "AdTech" },
-  { name: "Third-Party Website Scripts", years: "7+ years", category: "AdTech" },
+  { name: "Third-Party Website Scripts", years: "5+ years", category: "AdTech" },
   { name: "Google Publisher Tag", years: "5+ years", category: "AdTech" },
   { name: "Prebid.js", years: "3+ years", category: "AdTech" },
   { name: "Amazon Publisher Services", years: "2+ years", category: "AdTech" },
