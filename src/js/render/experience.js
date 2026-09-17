@@ -19,6 +19,18 @@ export function renderExperience(experience) {
 
       body.appendChild(heading);
 
+      if (entry.referenceUrl) {
+        body.appendChild(
+          createElement("a", {
+            className: "timeline-entry__reference",
+            text: "Professional reference ↗",
+            href: entry.referenceUrl,
+            target: "_blank",
+            rel: "noopener noreferrer"
+          })
+        );
+      }
+
       if (entry.company) {
         body.appendChild(createElement("p", { className: "timeline-entry__company", text: entry.company }));
       }
