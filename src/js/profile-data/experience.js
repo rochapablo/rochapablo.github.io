@@ -1,11 +1,12 @@
 export const experience = [
   {
-    role: "Technical Lead",
+    role: "Technical Lead / Head of Development",
     company: "Premium Programmatic",
-    period: "April 2019 – August 2026",
-    location: "Brazil",
+    referenceUrl: "./public/premiumads.pdf",
+    period: "November 2019 – August 2026",
+    location: "Remote, Brazil",
     focus:
-      "Worked across technical leadership and hands-on engineering for interconnected advertising technology systems, including .NET services, Angular applications, Azure Functions, JavaScript integrations, APIs, and production environments. The role also included code review, delivery coordination, release support, technical decisions, troubleshooting, and reliability."
+      "Led technical direction and day-to-day engineering delivery across web applications, APIs, integrations, and production systems. Coordinated developers, QA, DevOps, releases, technical priorities, and production troubleshooting. Defined technical approaches, reviewed code, supported architecture decisions, and improved engineering processes and delivery reliability. Worked hands-on with .NET, C#, SQL Server, Angular, JavaScript/TypeScript, Azure, Azure Functions, CI/CD, and observability, while collaborating with leadership on system evolution, infrastructure, reliability, and technical decision-making."
   },
   {
     role: "Web Developer",
