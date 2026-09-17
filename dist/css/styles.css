@@ -621,16 +621,6 @@ ul:last-child {
   object-position: var(--image-position, center center);
 }
 
-.media-slot::after {
-  position: absolute;
-  inset: 1rem;
-  border: 1px solid rgba(214, 138, 74, 0.16);
-  border-radius: calc(var(--radius) - 0.35rem);
-  content: "";
-  pointer-events: none;
-  z-index: 1;
-}
-
 .media-slot--offset::before {
   position: absolute;
   right: -1.2rem;
