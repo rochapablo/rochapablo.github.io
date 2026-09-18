@@ -1,4 +1,6 @@
 import { profile } from "./profile-data/index.js";
+import { trackInitialPageView } from "./analytics/index.js";
+import { initEngagementTracking } from "./analytics/engagement.js";
 import { renderExperience } from "./render/experience.js";
 import { renderProfileImages } from "./render/images.js";
 import { renderContacts } from "./render/links.js";
@@ -30,3 +32,5 @@ renderContacts(profile.contactLinks);
 renderFooter(profile);
 updateMetadata(profile);
 initVisitorIntent(profile.visitorIntent);
+initEngagementTracking();
+trackInitialPageView();
