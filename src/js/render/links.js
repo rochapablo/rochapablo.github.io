@@ -10,7 +10,7 @@ export function renderContacts(contacts) {
     appendChildren(
       contactLinks,
       contacts.map((link, index) =>
-        createLink(link, index === 0 ? "contact-links__item contact-links__item--primary" : "contact-links__item")
+        createLink(link, index === 0 ? "contact-links__item contact-links__item--primary" : "contact-links__item", "contact")
       )
     );
   }
@@ -20,12 +20,12 @@ export function renderContacts(contacts) {
       primaryActions,
       contacts
         .filter((link) => primaryActionLabels.has(link.label))
-        .map((link, index) => createLink(link, index === 0 ? "button button-primary" : "button"))
+        .map((link, index) => createLink(link, index === 0 ? "button button-primary" : "button", "hero"))
     );
   }
 }
 
-function createLink(link, className) {
+function createLink(link, className, location) {
   const element = createElement("a", {
     className,
     href: link.href,
@@ -35,7 +35,7 @@ function createLink(link, className) {
     download: link.download
   });
 
-  const tracking = getTrackingDetails(link);
+  const tracking = getTrackingDetails(link, location);
 
   if (tracking) {
     attachTrackedLink(element, tracking.eventName, tracking.properties);
@@ -44,16 +44,18 @@ function createLink(link, className) {
   return element;
 }
 
-function getTrackingDetails(link) {
+function getTrackingDetails(link, location) {
   switch (link.label) {
     case "LinkedIn":
-      return { eventName: "linkedin-clicked" };
+      return { eventName: "outbound-click", properties: { destination: "linkedin" } };
     case "GitHub":
-      return { eventName: "github-clicked" };
+      return { eventName: "outbound-click", properties: { destination: "github" } };
     case "Email":
-      return { eventName: "contact-clicked", properties: { method: "email" } };
+      return { eventName: "outbound-click", properties: { destination: "email" } };
     case "Resume PDF":
-      return { eventName: "cv-clicked", properties: { location: "contact", language: "en" } };
+      return { eventName: "resume-click", properties: { location } };
+    case "Official EF SET Certificate":
+      return { eventName: "outbound-click", properties: { destination: "certificate" } };
     default:
       return null;
   }

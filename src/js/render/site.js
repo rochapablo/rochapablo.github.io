@@ -107,6 +107,6 @@ function renderNavigation(profile) {
       resumeLink.removeAttribute("download");
     }
 
-    attachTrackedLink(resumeLink, "cv-clicked", { location: "header", language: "en" });
+    attachTrackedLink(resumeLink, "resume-click", { location: "header" });
   }
 }
