@@ -8,6 +8,16 @@ export function initEngagementTracking() {
   initSectionTracking();
   initScrollDepthTracking();
   initEngagedVisitTracking();
+  initMinimalScrollTracking();
+}
+
+function initMinimalScrollTracking() {
+  const handleScroll = () => {
+    if (window.scrollY < 100) return;
+    trackEventOnce("minimal-scroll");
+    window.removeEventListener("scroll", handleScroll);
+  };
+  window.addEventListener("scroll", handleScroll, { passive: true });
 }
 
 function initSectionTracking() {

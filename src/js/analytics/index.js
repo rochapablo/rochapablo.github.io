@@ -1,5 +1,6 @@
 const EVENT_PROPERTIES = {
   "engaged-visit": new Set(["threshold_seconds", "depth"]),
+  "minimal-scroll": new Set(),
   "scroll-depth": new Set(["depth"]),
   "section-viewed": new Set(["section"]),
   "resume-click": new Set(["location"]),

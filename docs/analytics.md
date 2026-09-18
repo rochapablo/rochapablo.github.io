@@ -9,6 +9,7 @@ Local development and preview hosts are excluded by `data-domains`. To exclude y
 | Event | Properties | When it fires |
 | --- | --- | --- |
 | `engaged-visit` | `threshold_seconds: 15`, `depth` (0/25/50/75/90) | Once per tab session after 15 seconds of visible time accompanied by recent pointer, keyboard, touch, wheel, or scroll activity. Hidden tabs and periods over 30 seconds without activity do not count. |
+| `minimal-scroll` | None | Once per tab session when vertical scroll reaches 100px. The passive listener removes itself after the threshold is reached. |
 | `scroll-depth` | `depth` (25/50/75/90) | The first time a visitor reaches each page-depth milestone. Each milestone fires at most once per tab session. |
 | `section-viewed` | `section` (`about`, `strengths`, `skills`, `experience`, `contact`) | Once when at least 35% of the section is visible. The observer stops watching that section after the first event. |
 | `resume-click` | `location` (`header`, `hero`, `contact`) | A click on a resume link. This records a click, not a confirmed open or download. |
