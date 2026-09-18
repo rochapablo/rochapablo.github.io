@@ -2,6 +2,8 @@
 export const profileImages = {
   heroPortrait: {
     src: "/public/images/1786486622247.jpg",
+    width: 514,
+    height: 544,
     alt: "Portrait of Pablo Rocha, Tech Lead and Senior Full Stack Developer",
     objectPosition: "center 22%",
     decorative: true
@@ -20,6 +22,8 @@ export const profileImages = {
   // },
   workspaceDesk: {
     src: "/public/images/1789653844603.jpg",
+    width: 629,
+    height: 350,
     alt: "Workspace placeholder for the personal note section",
     objectPosition: "center center",
     decorative: true
@@ -38,6 +42,8 @@ export const profileImages = {
   // },
   closingProfile: {
     src: "/public/images/1786487393228.jpg",
+    width: 302,
+    height: 302,
     alt: "Professional profile photo of Pablo Rocha for contact section",
     objectPosition: "center center",
     mobileObjectPosition: "42% 12%",
