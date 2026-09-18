@@ -31,6 +31,8 @@ npm run build
 npm run validate
 ```
 
+See [docs/analytics.md](docs/analytics.md) for the Umami configuration, event taxonomy, privacy behavior, and deployment validation steps.
+
 ## Project Structure
 
 ```text

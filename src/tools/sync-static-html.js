@@ -1,41 +1,19 @@
-const fs = require("node:fs");
-const path = require("node:path");
-const vm = require("node:vm");
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { profile } from "../js/profile-data/index.js";
+import { buildMetadata, buildStructuredData } from "../js/seo/index.js";
 
-const rootDir = path.resolve(__dirname, "../..");
-const profileDataDir = path.join(rootDir, "src/js/profile-data");
+const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const indexPath = path.join(rootDir, "index.html");
-
-const pageHeadings = loadExport(path.join(profileDataDir, "page-headings.js"), "pageHeadings");
-const profileContent = loadExport(path.join(profileDataDir, "profile.js"), "profileContent");
-const contactLinks = loadExport(path.join(profileDataDir, "contact-links.js"), "contactLinks");
-const skills = loadExport(path.join(profileDataDir, "skills.js"), "skills");
-
-const profile = {
-  name: profileContent.footer.name,
-  title: pageHeadings.hero.title,
-  tagline: pageHeadings.hero.tagline,
-  summary: profileContent.basics.summary,
-  seo: profileContent.seo,
-  location: profileContent.location,
-  snapshot: profileContent.snapshot,
-  careerDirection: profileContent.careerDirection,
-  personalNote: {
-    title: pageHeadings.personalNote.title,
-    text: profileContent.personalNote.text
-  },
-  pageHeadings,
-  contactLinks,
-  skills,
-  footerName: profileContent.footer.name
-};
 
 const replacements = [
   ['data-page-heading="hero-greeting"', profile.pageHeadings.hero.greeting],
   ['data-page-heading="hero-name"', profile.pageHeadings.hero.introName],
   ['data-page-heading="hero-title"', profile.pageHeadings.hero.introTitle],
   ["data-profile-name", profile.name],
-  ["data-profile-title", profile.title],
+  ["data-brand-mark", profile.siteChrome.brandMark],
+  ["data-nav-toggle-label", profile.siteChrome.menuLabel],
   ["data-profile-tagline", profile.tagline],
   ["data-profile-summary", profile.summary],
   ['data-page-heading="about-kicker"', profile.pageHeadings.about.kicker],
@@ -78,105 +56,132 @@ html = replaceElementRawText(
   'id="profile-structured-data"',
   escapeScriptText(JSON.stringify(buildStructuredData(profile), null, 2))
 );
+html = replaceElementContents(html, "data-nav-links", renderNavigation(profile.siteChrome.navLinks));
+html = replaceElementContents(html, "data-profile-facts", renderFacts(profile.facts));
+html = replaceElementContents(html, "strengths-list", renderStrengths(profile.strengthGroups));
+html = replaceElementContents(html, "data-skills-panel", renderSkills(profile.skills));
+html = replaceElementContents(html, "experience-list", renderExperience(profile.experience));
+html = replaceElementContents(html, "contact-links", renderContactLinks(profile.contactLinks));
+html = replaceElementContents(
+  html,
+  "data-primary-actions",
+  renderContactLinks(profile.contactLinks.filter((link) => link.label === "Email" || link.label === "Resume PDF"), true)
+);
+Object.entries(profile.images).forEach(([slot, image]) => {
+  html = replaceElementContents(html, `data-image-slot="${slot}"`, renderImage(slot, image));
+});
+html = replaceElementContents(
+  html,
+  "data-nav-resume",
+  escapeHtml(profile.siteChrome.resumeLabel)
+);
+const resumeLink = profile.contactLinks.find((link) => link.label === "Resume PDF");
+html = setAttributeByMarker(html, "data-nav-resume", "href", resumeLink.href);
+html = setAttributeByMarker(html, "data-nav-resume", "target", resumeLink.target);
+html = setAttributeByMarker(html, "data-nav-resume", "rel", resumeLink.rel);
+if (resumeLink.download) html = setAttributeByMarker(html, "data-nav-resume", "download", "");
+html = setAttributeByMarker(html, "data-site-nav", "aria-label", profile.siteChrome.navigationLabel);
+html = setAttributeByMarker(html, "data-brand-link", "aria-label", profile.siteChrome.brandLinkLabel);
+html = setAttributeByMarker(html, "data-nav-toggle", "aria-label", profile.siteChrome.menuLabel);
+html = setAttributeByMarker(html, "data-primary-actions", "aria-label", profile.siteChrome.primaryActionsLabel);
+html = setAttributeByMarker(html, "data-profile-facts", "aria-label", profile.siteChrome.profileFactsLabel);
+html = setAttributeByMarker(html, "strengths-list", "aria-label", profile.siteChrome.strengthsLabel);
+html = setAttributeByMarker(html, "data-skills-tabs", "aria-label", profile.siteChrome.skillCategoriesLabel);
 
 fs.writeFileSync(indexPath, html);
 
-function loadExport(filePath, exportName) {
-  const source = fs.readFileSync(filePath, "utf8");
-  const exportMarker = `export const ${exportName} =`;
-  const markerIndex = source.indexOf(exportMarker);
-
-  if (markerIndex === -1) {
-    throw new Error(`Could not find export "${exportName}" in ${filePath}`);
-  }
-
-  const literalStart = source.slice(markerIndex + exportMarker.length).search(/[\[{]/);
-
-  if (literalStart === -1) {
-    throw new Error(`Could not find literal for export "${exportName}" in ${filePath}`);
-  }
-
-  const literal = extractLiteral(source, markerIndex + exportMarker.length + literalStart);
-  return vm.runInNewContext(`(${literal})`);
+function renderNavigation(links) {
+  return links.map((link) => `<a href="${escapeAttribute(link.href)}">${escapeHtml(link.label)}</a>`).join("");
 }
 
-function extractLiteral(source, startIndex) {
-  let depth = 0;
-  let quote = null;
-  let escaped = false;
+function renderFacts(facts) {
+  return facts.map((fact) => `<div class="fact-item"><span class="fact-item__label">${escapeHtml(fact.label)}</span><strong class="fact-item__value">${escapeHtml(fact.value)}</strong></div>`).join("");
+}
 
-  for (let index = startIndex; index < source.length; index += 1) {
-    const character = source[index];
+function renderStrengths(groups) {
+  return groups.map((group) => `<article class="strength-group"><h3 class="strength-group__title">${escapeHtml(group.title)}</h3><ul class="strength-group__list">${group.items.map((item) => `<li class="strength-group__item">${escapeHtml(item)}</li>`).join("")}</ul></article>`).join("");
+}
 
-    if (quote) {
-      if (escaped) {
-        escaped = false;
-      } else if (character === "\\") {
-        escaped = true;
-      } else if (character === quote) {
-        quote = null;
-      }
+function renderSkills(skillList) {
+  const categories = new Map();
+  skillList.forEach((skill) => {
+    const category = skill.category || "Skills";
+    const items = categories.get(category) || [];
+    if (items.length < 6) items.push(skill);
+    categories.set(category, items);
+  });
 
-      continue;
-    }
+  const items = categories.values().next().value || [];
+  const maxYears = Math.max(...items.map((skill) => Number(skill.years.match(/\d+/)?.[0] || 0)), 1);
+  return `<div class="skills-list__items">${items.map((skill) => {
+    const years = Number(skill.years.match(/\d+/)?.[0] || 0);
+    return `<article class="skill-row"><div class="skill-row__header"><h3 class="skill-row__name">${escapeHtml(skill.name)}</h3><span class="skill-row__years">${escapeHtml(skill.years)}</span></div><div class="skill-row__bar" aria-hidden="true"><span class="skill-row__fill" style="width: ${years / maxYears * 100}%;"></span></div></article>`;
+  }).join("")}</div>`;
+}
 
-    if (character === '"' || character === "'" || character === "`") {
-      quote = character;
-      continue;
-    }
+function renderExperience(entries) {
+  return entries.map((entry) => `<article class="timeline-entry"><p class="timeline-entry__period">${escapeHtml(entry.period)}</p><div class="timeline-entry__marker" aria-hidden="true"></div><div class="timeline-entry__body"><h3 class="timeline-entry__role">${escapeHtml(entry.role)}</h3>${entry.referenceUrl ? `<a class="timeline-entry__reference" href="${escapeAttribute(entry.referenceUrl)}" target="_blank" rel="noopener noreferrer">Professional reference ↗</a>` : ""}${entry.company ? `<p class="timeline-entry__company">${escapeHtml(entry.company)}</p>` : ""}${entry.focus ? `<p class="timeline-entry__focus">${escapeHtml(entry.focus)}</p>` : ""}</div><p class="timeline-entry__location">${escapeHtml(entry.location)}</p></article>`).join("");
+}
 
-    if (character === "{" || character === "[") {
-      depth += 1;
-    } else if (character === "}" || character === "]") {
-      depth -= 1;
+function renderContactLinks(links, primary = false) {
+  return links.map((link, index) => renderContactLink(link, primary ? index === 0 ? "button button-primary" : "button" : index === 0 ? "contact-links__item contact-links__item--primary" : "contact-links__item")).join("");
+}
 
-      if (depth === 0) {
-        return source.slice(startIndex, index + 1);
-      }
+function renderImage(slot, image) {
+  const className = slot.startsWith("visualBreak") ? "visual-break__image" : "media-slot__image";
+  const alt = image.decorative ? "" : image.alt || "";
+  const loading = slot === "heroPortrait" ? "eager" : "lazy";
+  const priority = slot === "heroPortrait" ? " fetchpriority=\"high\"" : "";
+  const hidden = image.decorative ? " aria-hidden=\"true\"" : "";
+  const mobilePosition = image.mobileObjectPosition || image.objectPosition || "center center";
+  return `<img class="${className}" src="${escapeAttribute(image.src)}" alt="${escapeAttribute(alt)}" width="${image.width}" height="${image.height}" loading="${loading}" decoding="async"${priority}${hidden} style="--image-position: ${escapeAttribute(image.objectPosition || "center center")}; --image-position-mobile: ${escapeAttribute(mobilePosition)};">`;
+}
+
+function renderContactLink(link, className, label = link?.label) {
+  if (!link) return "";
+  const target = link.target ? ` target="${escapeAttribute(link.target)}"` : "";
+  const rel = link.rel ? ` rel="${escapeAttribute(link.rel)}"` : "";
+  const download = link.download ? " download" : "";
+  return `<a class="${escapeAttribute(className)}" href="${escapeAttribute(link.href)}"${target}${rel}${download}>${escapeHtml(label)}</a>`;
+}
+
+function replaceElementContents(htmlContent, marker, contents) {
+  const startPattern = new RegExp(`<([a-z][a-z0-9]*)\\b[^>]*\\b${escapeRegExp(marker)}(?:=["'][^"']*["'])?[^>]*>`, "i");
+  const start = htmlContent.match(startPattern);
+  if (!start) return htmlContent;
+
+  const tagName = start[1];
+  const contentStart = start.index + start[0].length;
+  const tokens = new RegExp(`<\\/?${tagName}\\b[^>]*>`, "gi");
+  tokens.lastIndex = contentStart;
+  let depth = 1;
+  let token;
+
+  while ((token = tokens.exec(htmlContent))) {
+    if (token[0].startsWith(`</`)) depth -= 1;
+    else if (!token[0].endsWith("/>")) depth += 1;
+    if (depth === 0) {
+      return htmlContent.slice(0, contentStart) + contents + htmlContent.slice(token.index);
     }
   }
 
-  throw new Error("Unterminated exported literal.");
+  return htmlContent;
 }
 
-function buildMetadata(profileData) {
-  return {
-    title: profileData.seo.title,
-    description: profileData.seo.description,
-    ogTitle: profileData.seo.title,
-    ogDescription: profileData.seo.description,
-    ogType: "profile",
-    ogUrl: profileData.seo.publicUrl,
-    canonicalUrl: profileData.seo.publicUrl
-  };
-}
+function setAttributeByMarker(htmlContent, marker, attribute, value) {
+  const markerPattern = new RegExp(`<[^>]*\\b${escapeRegExp(marker)}(?:=["'][^"']*["'])?[^>]*>`, "i");
+  const match = htmlContent.match(markerPattern);
+  if (!match) return htmlContent;
 
-function buildStructuredData(profileData) {
-  const socialLinks = profileData.contactLinks
-    .filter((link) => link.label === "LinkedIn" || link.label === "GitHub")
-    .map((link) => link.href);
+  const attributePattern = new RegExp(`\\s${escapeRegExp(attribute)}=(['"])(.*?)\\1`, "i");
+  let updatedTag = match[0];
+  if (attributePattern.test(updatedTag)) {
+    updatedTag = updatedTag.replace(attributePattern, ` ${attribute}="${escapeAttribute(value)}"`);
+  } else {
+    updatedTag = updatedTag.replace(/>$/, ` ${attribute}="${escapeAttribute(value)}">`);
+  }
 
-  return {
-    "@context": "https://schema.org",
-    "@type": "ProfilePage",
-    url: profileData.seo.publicUrl,
-    name: profileData.seo.title,
-    description: profileData.seo.description,
-    mainEntity: {
-      "@type": "Person",
-      name: profileData.name,
-      jobTitle: profileData.title,
-      url: profileData.seo.publicUrl,
-      sameAs: socialLinks,
-      knowsAbout: profileData.skills.map((skill) => skill.name),
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: profileData.location.city,
-        addressRegion: profileData.location.region,
-        addressCountry: profileData.location.country
-      }
-    }
-  };
+  return htmlContent.replace(match[0], updatedTag);
 }
 
 function replaceElementText(htmlContent, attribute, text) {

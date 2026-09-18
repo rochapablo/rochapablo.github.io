@@ -1,4 +1,4 @@
-import { clearElement, createElement } from "../core/dom.js";
+import { createElement } from "../core/dom.js";
 
 const imageSlotContainers = {
   heroPortrait: ".hero__media",
@@ -40,38 +40,41 @@ function syncPersonalNoteMediaVisibility(images) {
 }
 
 function renderImageSlot(slotName, image, className) {
-  const slot = clearElement(`[data-image-slot="${slotName}"]`);
+  const slot = document.querySelector(`[data-image-slot="${slotName}"]`);
 
   if (!slot || !image?.src) {
+    slot?.replaceChildren();
     setImageVisibility(slotName, false);
     return;
   }
 
-  const imageElement = createElement("img", {
-    className,
-    attributes: {
-      src: image.src,
-      alt: image.decorative ? "" : image.alt ?? "",
-      loading: "lazy",
-      decoding: "async"
-    },
-    style: {
-      "--image-position": image.objectPosition,
-      "--image-position-mobile": image.mobileObjectPosition ?? image.objectPosition
-    }
-  });
+  const imageElement = slot.querySelector("img") ?? createElement("img");
+  imageElement.className = className;
+  imageElement.alt = image.decorative ? "" : image.alt ?? "";
+  imageElement.width = image.width;
+  imageElement.height = image.height;
+  imageElement.loading = slotName === "heroPortrait" ? "eager" : "lazy";
+  imageElement.decoding = "async";
+  if (slotName === "heroPortrait") imageElement.setAttribute("fetchpriority", "high");
+  else imageElement.removeAttribute("fetchpriority");
+  if (imageElement.getAttribute("src") !== image.src) imageElement.src = image.src;
+  imageElement.style.setProperty("--image-position", image.objectPosition ?? "center center");
+  imageElement.style.setProperty("--image-position-mobile", image.mobileObjectPosition ?? image.objectPosition ?? "center center");
 
   if (image.decorative) {
     imageElement.setAttribute("aria-hidden", "true");
+  } else imageElement.removeAttribute("aria-hidden");
+
+  if (imageElement.dataset.errorBound !== "true") {
+    imageElement.dataset.errorBound = "true";
+    imageElement.addEventListener("error", () => {
+      setImageVisibility(slotName, false);
+      imageElement.remove();
+    });
   }
 
-  imageElement.addEventListener("error", () => {
-    setImageVisibility(slotName, false);
-    imageElement.remove();
-  });
-
   setImageVisibility(slotName, true);
-  slot.append(imageElement);
+  slot.replaceChildren(imageElement);
 }
 
 export function renderProfileImages(images) {

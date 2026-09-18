@@ -1,4 +1,4 @@
-import { sanitizeCompanyName, trackEvent } from "../analytics/index.js";
+import { trackEvent } from "../analytics/index.js";
 import { buildVisitorIntentCard } from "./card.js";
 
 const STORAGE_KEY = "visitor-intent-state";
@@ -11,33 +11,20 @@ export function initVisitorIntent(config) {
   }
 
   let shown = false;
-  let selectedIntent = "";
+  let previousFocus = null;
   const card = buildVisitorIntentCard(config, {
     onDismiss: dismissCard,
     onSelect(intent) {
-      selectedIntent = intent;
-
-      if (intent !== "hiring") {
-        submitIntent(intent);
-        return;
-      }
-
-      card.dataset.mode = "hiring";
-      card.querySelector("[data-visitor-intent-company]")?.focus();
-    },
-    onContinue() {
-      submitIntent("hiring", getCompanyValue(card));
+      submitIntent(intent);
     }
   });
   const timeoutId = window.setTimeout(showCard, SHOW_DELAY_MS);
 
   window.addEventListener("scroll", handleScrollTrigger, { passive: true });
-  card.addEventListener("keydown", handleCardKeydown);
 
-  function submitIntent(intent, company = "") {
-    const properties = company ? { intent, company } : { intent };
+  function submitIntent(intent) {
     rememberState("answered");
-    trackEvent("visitor-intent", properties);
+    trackEvent("visitor-intent", { intent });
     teardown();
   }
 
@@ -47,11 +34,11 @@ export function initVisitorIntent(config) {
     }
 
     shown = true;
+    previousFocus = document.activeElement;
     document.body.appendChild(card);
     window.setTimeout(() => {
       card.dataset.visible = "true";
     }, 24);
-    trackEvent("visitor-intent-shown");
     removeTriggers();
   }
 
@@ -63,30 +50,18 @@ export function initVisitorIntent(config) {
     }
   }
 
-  function handleCardKeydown(event) {
-    if (event.key === "Escape") {
-      event.preventDefault();
-      dismissCard();
-      return;
-    }
-
-    if (event.key === "Enter" && selectedIntent === "hiring" && event.target instanceof HTMLInputElement) {
-      event.preventDefault();
-      submitIntent("hiring", getCompanyValue(card));
-    }
-  }
-
   function dismissCard() {
-    trackEvent("visitor-intent-dismissed");
     rememberState("dismissed");
     teardown();
   }
 
   function teardown() {
     removeTriggers();
-    card.removeEventListener("keydown", handleCardKeydown);
     card.remove();
-    selectedIntent = "";
+    if (previousFocus instanceof HTMLElement && previousFocus.isConnected) {
+      previousFocus.focus();
+    }
+    previousFocus = null;
   }
 
   function removeTriggers() {
@@ -113,9 +88,4 @@ function rememberState(value) {
   } catch {
     // Ignore storage failures so the site behavior stays intact.
   }
-}
-
-function getCompanyValue(card) {
-  const input = card.querySelector("[data-visitor-intent-company]");
-  return sanitizeCompanyName(input?.value ?? "");
 }
