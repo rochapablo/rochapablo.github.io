@@ -34,10 +34,6 @@ export const profileContent = {
     visitorIntent: {
       title: "What brought you here?",
       dismissLabel: "Dismiss question",
-      companyLabel: "Company (optional)",
-      companyPlaceholder: "Company name",
-      continueLabel: "Continue",
-
       options: [
         { label: "Hiring / Recruiting", value: "hiring" },
         { label: "Networking", value: "networking" },

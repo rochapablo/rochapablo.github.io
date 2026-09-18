@@ -16,28 +16,6 @@ export function buildVisitorIntentCard(config, handlers) {
     attributes: { "aria-hidden": "true" }
   });
   const optionList = createElement("div", { className: "visitor-intent__options" });
-  const hiringFields = createElement("div", { className: "visitor-intent__follow-up" });
-  const companyLabel = createElement("label", {
-    className: "visitor-intent__label",
-    text: config.companyLabel,
-    attributes: { for: "visitor-intent-company" }
-  });
-  const companyInput = createElement("input", {
-    className: "visitor-intent__input",
-    id: "visitor-intent-company",
-    type: "text",
-    attributes: {
-      autocomplete: "organization",
-      maxlength: "80",
-      placeholder: config.companyPlaceholder,
-      "data-visitor-intent-company": "true"
-    }
-  });
-  const continueButton = createElement("button", {
-    className: "visitor-intent__continue",
-    type: "button",
-    text: config.continueLabel
-  });
   const card = createElement("aside", {
     className: "visitor-intent",
     attributes: {
@@ -51,7 +29,6 @@ export function buildVisitorIntentCard(config, handlers) {
 
   dismiss.appendChild(dismissIcon);
   dismiss.addEventListener("click", handlers.onDismiss);
-  continueButton.addEventListener("click", handlers.onContinue);
 
   appendChildren(
     optionList,
@@ -67,8 +44,7 @@ export function buildVisitorIntentCard(config, handlers) {
     })
   );
 
-  hiringFields.append(companyLabel, companyInput, continueButton);
   header.append(title, dismiss);
-  card.append(header, optionList, hiringFields);
+  card.append(header, optionList);
   return card;
 }
