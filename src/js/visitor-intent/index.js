@@ -12,6 +12,7 @@ export function initVisitorIntent(config) {
 
   let shown = false;
   let selectedIntent = "";
+  let previousFocus = null;
   const card = buildVisitorIntentCard(config, {
     onDismiss: dismissCard,
     onSelect(intent) {
@@ -47,6 +48,7 @@ export function initVisitorIntent(config) {
     }
 
     shown = true;
+    previousFocus = document.activeElement;
     document.body.appendChild(card);
     window.setTimeout(() => {
       card.dataset.visible = "true";
@@ -86,6 +88,10 @@ export function initVisitorIntent(config) {
     removeTriggers();
     card.removeEventListener("keydown", handleCardKeydown);
     card.remove();
+    if (previousFocus instanceof HTMLElement && previousFocus.isConnected) {
+      previousFocus.focus();
+    }
+    previousFocus = null;
     selectedIntent = "";
   }
 

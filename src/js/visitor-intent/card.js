@@ -1,7 +1,11 @@
 import { appendChildren, createElement } from "../core/dom.js";
 
 export function buildVisitorIntentCard(config, handlers) {
-  const title = createElement("p", { className: "visitor-intent__title", text: config.title });
+  const title = createElement("h2", {
+    className: "visitor-intent__title",
+    text: config.title,
+    id: "visitor-intent-title"
+  });
   const dismiss = createElement("button", {
     className: "visitor-intent__dismiss",
     type: "button",
@@ -36,7 +40,12 @@ export function buildVisitorIntentCard(config, handlers) {
   });
   const card = createElement("aside", {
     className: "visitor-intent",
-    attributes: { "aria-label": config.title }
+    attributes: {
+      "aria-label": config.title,
+      "aria-labelledby": "visitor-intent-title",
+      "aria-live": "polite",
+      role: "region"
+    }
   });
   const header = createElement("div", { className: "visitor-intent__header" });
 

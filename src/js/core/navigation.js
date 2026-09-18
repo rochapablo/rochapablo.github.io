@@ -11,6 +11,13 @@ export function initNavigation() {
     siteNav.dataset.open = "false";
   };
 
+  siteNav.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && navToggle.getAttribute("aria-expanded") === "true") {
+      closeNav();
+      navToggle.focus();
+    }
+  });
+
   navToggle.addEventListener("click", () => {
     const isOpen = navToggle.getAttribute("aria-expanded") === "true";
     navToggle.setAttribute("aria-expanded", String(!isOpen));
