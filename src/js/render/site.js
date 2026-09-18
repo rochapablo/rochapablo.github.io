@@ -19,8 +19,6 @@ export function initSiteChrome(profile) {
 }
 
 export function renderHero(profile) {
-  setText("[data-profile-name]", profile.name);
-  setText("[data-profile-title]", profile.title);
   setText("[data-profile-tagline]", profile.tagline);
   setText("[data-profile-summary]", profile.summary);
 }

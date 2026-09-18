@@ -1,7 +1,8 @@
-const fs = require("node:fs");
-const path = require("node:path");
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-const rootDir = path.resolve(__dirname, "../..");
+const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const rules = [
   { label: "JavaScript", dir: "src/js", extension: ".js", maxLines: 150 },
   { label: "SCSS", dir: "src/scss", extension: ".scss", maxLines: 200 },

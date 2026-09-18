@@ -1,7 +1,9 @@
 # Profile Data
 
-- Treat `src/js/profile-data.js` as the source of truth for visible profile content.
-- Do not modify `src/js/profile-data.js` unless the user explicitly requests a content update.
+- **Profile data / static HTML synchronization is mandatory.** `C:\www\rochapablo\src\js\profile-data` is the canonical source for public profile and content information. Any addition, edit, removal, rename, or restructuring under that directory that affects content rendered on the public website must also update or regenerate the corresponding crawlable/static content in `C:\www\rochapablo\index.html` in the same task, using the existing `npm run sync:html` mechanism (or `npm run build`, which runs it). The task is incomplete until the JavaScript-rendered content and `index.html` are verified to represent the same current information. Never leave profile data changed while the static HTML is stale, missing, or inconsistent.
+- Use the existing synchronization mechanism; do not create a parallel content-to-HTML implementation. If a new or restructured profile field or section is not represented in static HTML, update `src/tools/sync-static-html.js` as part of that task.
+- Ensure generated static HTML includes all SEO-relevant public profile content that should be available without JavaScript. Build success alone does not prove synchronization: inspect the resulting `index.html` and verify that JavaScript-rendered and crawlable/static content represent the same current information before considering the task complete.
+- Do not modify files in `src/js/profile-data/` unless the user explicitly requests a content update.
 - Layout, rendering, and style changes must preserve existing profile values exactly.
 - Do not rename, rewrite, translate, simplify, normalize, or "improve" profile text without explicit instruction.
 - Do not replace real companies, roles, periods, locations, focus descriptions, links, strengths, career direction, or contact values with placeholders.
