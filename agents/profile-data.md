@@ -1,12 +1,11 @@
 # Profile Data
 
-## Resume and Website Profile Synchronization
+## Website Profile Synchronization
 
-- Treat `C:\www\rochapablo\resume.pdf` as the canonical source for professional facts. The modules under `src/js/profile-data/` are the canonical source for how selected profile content is presented on the website; they must not contradict the resume.
-- Before changing professional or contact information, read the current resume and inspect **all relevant files** under `src/js/profile-data/`, not only the file being edited. Compare the site against the resume, identify outdated, missing, conflicting, and repeated facts, then update only what is appropriate and validate consistency.
-- Run this comparison whenever `resume.pdf` is replaced or updated; assume any relevant profile-data module may need synchronization. Do not make changes if the site is already factually consistent.
-- Check titles, summary, years of experience, current/latest role, employers, role names, dates, responsibilities, technologies and skills, leadership experience, education, certifications, location, email, phone, LinkedIn, and website/GitHub URLs where applicable. Also look for website claims removed or materially changed in the resume.
-- Do not copy the resume wholesale. Shorter, marketing- or SEO-oriented wording, selected highlights, reordered or grouped facts, and presentation-only content are fine when the underlying facts remain accurate. Do not delete a website-only item just because it is absent from the resume: decide whether it is presentation content or stale professional information first.
+- Treat the modules under `src/js/profile-data/` as the canonical source for the professional facts presented on the website. Keep profile copy, structured experience, skills, and contact destinations consistent across their source modules and the generated static HTML.
+- Before changing professional or contact information, inspect **all relevant files** under `src/js/profile-data/`, not only the file being edited. Identify outdated, missing, conflicting, and repeated facts, then update only what is appropriate and validate consistency.
+- Check titles, summary, years of experience, current/latest role, employers, role names, dates, responsibilities, technologies and skills, leadership experience, education, certifications, location, email, phone, LinkedIn, and website/GitHub URLs where applicable.
+- Do not copy an external profile document wholesale. Shorter, marketing- or SEO-oriented wording, selected highlights, reordered or grouped facts, and presentation-only content are fine when the underlying facts remain accurate.
 - Prefer a single reusable definition for repeated facts such as identity, contact details, titles, employers and dates, skills, education, and profile URLs when safe and simple. Keep ordinary profile copy together, contact destinations separate, and structured experience/skills in their existing focused modules. Avoid broad refactors solely to centralize data.
 
 ## Static HTML Synchronization

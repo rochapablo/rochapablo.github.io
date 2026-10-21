@@ -15,8 +15,6 @@ export const profileContent = {
     brandLinkLabel: "Go to top",
     menuLabel: "Menu",
     navigationLabel: "Primary navigation",
-    resumeLabel: "CV",
-
     navLinks: [
       { label: "About", href: "#about" },
       { label: "What I Do", href: "#strengths" },

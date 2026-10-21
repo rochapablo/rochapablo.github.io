@@ -65,21 +65,11 @@ html = replaceElementContents(html, "contact-links", renderContactLinks(profile.
 html = replaceElementContents(
   html,
   "data-primary-actions",
-  renderContactLinks(profile.contactLinks.filter((link) => link.label === "Email" || link.label === "Resume PDF"), true)
+  renderContactLinks(profile.contactLinks.filter((link) => link.label === "Email"), true)
 );
 Object.entries(profile.images).forEach(([slot, image]) => {
   html = replaceElementContents(html, `data-image-slot="${slot}"`, renderImage(slot, image));
 });
-html = replaceElementContents(
-  html,
-  "data-nav-resume",
-  escapeHtml(profile.siteChrome.resumeLabel)
-);
-const resumeLink = profile.contactLinks.find((link) => link.label === "Resume PDF");
-html = setAttributeByMarker(html, "data-nav-resume", "href", resumeLink.href);
-html = setAttributeByMarker(html, "data-nav-resume", "target", resumeLink.target);
-html = setAttributeByMarker(html, "data-nav-resume", "rel", resumeLink.rel);
-if (resumeLink.download) html = setAttributeByMarker(html, "data-nav-resume", "download", "");
 html = setAttributeByMarker(html, "data-site-nav", "aria-label", profile.siteChrome.navigationLabel);
 html = setAttributeByMarker(html, "data-brand-link", "aria-label", profile.siteChrome.brandLinkLabel);
 html = setAttributeByMarker(html, "data-nav-toggle", "aria-label", profile.siteChrome.menuLabel);

@@ -209,10 +209,6 @@ ul:last-child {
   gap: 0.75rem;
 }
 
-.site-nav__resume {
-  justify-self: start;
-}
-
 .hero {
   padding-top: calc(var(--section-space) + 1rem);
 }
@@ -356,7 +352,6 @@ ul:last-child {
 }
 
 .nav-toggle,
-.site-nav__resume,
 .button {
   display: inline-flex;
   align-items: center;
@@ -373,7 +368,6 @@ ul:last-child {
 }
 
 .nav-toggle:hover,
-.site-nav__resume:hover,
 .button:hover {
   background: rgba(255, 255, 255, 0.5);
   border-color: rgba(219, 124, 56, 0.5);
