@@ -3,14 +3,12 @@ const EVENT_PROPERTIES = {
   "minimal-scroll": new Set(),
   "scroll-depth": new Set(["depth"]),
   "section-viewed": new Set(["section"]),
-  "resume-click": new Set(["location"]),
   "outbound-click": new Set(["destination"]),
   "visitor-intent": new Set(["intent"])
 };
 const ALLOWED_VALUES = {
   depth: new Set([0, 25, 50, 75, 90]),
   section: new Set(["about", "strengths", "skills", "experience", "contact"]),
-  location: new Set(["header", "hero", "contact"]),
   destination: new Set(["linkedin", "github", "email", "certificate"]),
   intent: new Set(["hiring", "networking", "technical", "browsing"]),
   threshold_seconds: new Set([15])

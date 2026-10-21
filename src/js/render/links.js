@@ -4,7 +4,7 @@ import { appendChildren, clearElement, createElement } from "../core/dom.js";
 export function renderContacts(contacts) {
   const contactLinks = clearElement("#contact-links");
   const primaryActions = clearElement("[data-primary-actions]");
-  const primaryActionLabels = new Set(["Email", "Resume PDF"]);
+  const primaryActionLabels = new Set(["Email"]);
 
   if (contactLinks) {
     appendChildren(
@@ -52,8 +52,6 @@ function getTrackingDetails(link, location) {
       return { eventName: "outbound-click", properties: { destination: "github" } };
     case "Email":
       return { eventName: "outbound-click", properties: { destination: "email" } };
-    case "Resume PDF":
-      return { eventName: "resume-click", properties: { location } };
     case "Official EF SET Certificate":
       return { eventName: "outbound-click", properties: { destination: "certificate" } };
     default:

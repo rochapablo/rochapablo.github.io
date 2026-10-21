@@ -1,4 +1,3 @@
-import { attachTrackedLink } from "../analytics/link-tracking.js";
 import { appendChildren, clearElement, createElement, setAttributes, setText } from "../core/dom.js";
 import { initNavigation } from "../core/navigation.js";
 import { renderFacts } from "./facts.js";
@@ -78,10 +77,8 @@ export function renderFooter(profile) {
 }
 
 function renderNavigation(profile) {
-  const { siteChrome, contactLinks } = profile;
+  const { siteChrome } = profile;
   const navLinks = clearElement("[data-nav-links]");
-  const resumeLink = document.querySelector("[data-nav-resume]");
-  const resumeContact = contactLinks.find((link) => link.label === "Resume PDF");
 
   if (navLinks) {
     appendChildren(
@@ -95,18 +92,4 @@ function renderNavigation(profile) {
     );
   }
 
-  if (resumeLink) {
-    resumeLink.textContent = siteChrome.resumeLabel;
-    resumeLink.href = resumeContact?.href ?? "";
-    resumeLink.target = resumeContact?.target ?? "";
-    resumeLink.rel = resumeContact?.rel ?? "";
-
-    if (resumeContact?.download) {
-      resumeLink.download = typeof resumeContact.download === "string" ? resumeContact.download : "";
-    } else {
-      resumeLink.removeAttribute("download");
-    }
-
-    attachTrackedLink(resumeLink, "resume-click", { location: "header" });
-  }
 }
