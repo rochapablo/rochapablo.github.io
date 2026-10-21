@@ -2,8 +2,8 @@ export const pageHeadings = {
   hero: {
     greeting: "Hello, my name is",
     introName: "Pablo",
-    title: "Technical Lead / Head of Development",
-    introTitle: "I'm a Technical Lead / Head of Development with 15+ years of experience in software engineering.",
+    title: "Technical Lead | Engineering Leadership & Delivery | Senior Full Stack Developer",
+    introTitle: "I'm a Technical Lead and Senior Full Stack Developer with 15+ years of experience in software engineering.",
     tagline: ".NET • Angular • TypeScript • Azure • Engineering Leadership • Delivery • Reliability"
   },
 
@@ -34,8 +34,8 @@ export const pageHeadings = {
   },
 
   careerDirection: {
-    kicker: "Career Direction",
-    title: "What I'm looking for"
+    kicker: "Open to Remote Opportunities",
+    title: "Technical leadership, delivery, and senior engineering"
   },
 
   contact: {
