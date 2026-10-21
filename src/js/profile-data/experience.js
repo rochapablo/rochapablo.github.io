@@ -1,8 +1,16 @@
 export const experience = [
   {
-    role: "Technical Lead / Head of Development",
+    role: "Software Engineering & Technical Delivery",
+    company: "Independent Software Projects",
+    period: "September 2026 – Present",
+    location: "Remote",
+    focus:
+      "Working independently on software engineering initiatives involving application development, technical architecture, and delivery planning. Applying software engineering practices including automated testing, CI/CD, code review, documentation, and maintainable software design. Exploring AI-assisted engineering workflows to improve technical investigation, implementation planning, and development productivity."
+  },
+  {
+    role: "Technical Lead / Senior Full Stack Developer",
     company: "Premium Programmatic",
-    referenceUrl: "./public/premiumads.pdf",
+    // referenceUrl: "./public/premiumads.pdf",
     period: "April 2019 – August 2026",
     location: "Remote, Brazil",
     focus:

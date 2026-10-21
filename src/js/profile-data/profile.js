@@ -1,13 +1,12 @@
 export const profileContent = {
   basics: {
-    summary: "I have 15+ years of experience in software engineering, combining hands-on development with technical leadership, team coordination, delivery ownership, releases, production support, and process improvement. My background includes web applications, internal platforms, APIs, dashboards, integrations, and advertising technology systems."
+    summary: "Technical Lead and Senior Full Stack Developer with 15+ years of experience in software engineering, technical leadership, delivery coordination, production support, and process improvement."
   },
 
   seo: {
-    title:
-      "Pablo Ricardo Rocha | Technical Lead, Head of Development, .NET & Angular",
+    title: "Pablo Ricardo Rocha | Technical Lead & Senior Full Stack Developer",
     description:
-      "Pablo Ricardo Rocha is a Technical Lead and Head of Development based in Brazil, with 15+ years of experience in software engineering, .NET, Angular, TypeScript, Azure, engineering leadership, delivery coordination, and production reliability.",
+      "Technical Lead and Senior Full Stack Developer with 15+ years of experience in software engineering, technical leadership, delivery coordination, and production systems. Open to remote opportunities.",
     publicUrl: "https://rochapablo.github.io"
   },
 
@@ -56,16 +55,16 @@ export const profileContent = {
     },
     {
       label: "Profile",
-      value: "Technical Lead / Head of Development"
+      value: "Technical Lead | Engineering Leadership & Delivery | Senior Full Stack Developer"
     },
     {
       label: "Focus",
       value:
-        "Engineering leadership, team coordination, delivery ownership, technical strategy, and reliable systems"
+        "Engineering leadership, team coordination, delivery management, technical strategy, and reliable systems"
     }
   ],
 
-  snapshot: "I combine strong hands-on engineering experience with technical leadership, team coordination, delivery ownership, code review, QA collaboration, release organization, and production support. I help teams clarify technical problems, structure execution, make safer changes, investigate production issues, and keep engineering work aligned with business priorities.",
+  snapshot: "Most recently, I led technical delivery for a small engineering team, coordinating development, QA, DevOps, code reviews, releases, technical decisions, and production troubleshooting. I'm currently working independently on software engineering projects, continuing to develop my technical and leadership capabilities while exploring new professional opportunities.",
 
   strengthGroups: [
     {
@@ -103,7 +102,7 @@ export const profileContent = {
   },
 
   careerDirection:
-    "I'm looking for a remote role where I can use my technical background while taking broader responsibility for engineering teams, delivery, technical decisions, and engineering practices. I'm comfortable remaining hands-on, while increasingly focusing my impact on leadership, coordination, delivery ownership, technical strategy, and process improvement.",
+    "I'm open to remote opportunities in Technical Lead, Engineering Lead, Engineering Manager, Delivery Manager, and related positions, as well as Senior Full Stack roles aligned with my experience. My career direction is focused on engineering leadership, team coordination, technical strategy, delivery management, and improving how engineering teams work.",
 
   footer: {
     name: "Pablo Ricardo Rocha"
