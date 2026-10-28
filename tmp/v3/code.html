@@ -1,0 +1,432 @@
+<!DOCTYPE html><html class="dark" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="web_standard" name="shell-type">
+<title>Pablo Ricardo Rocha — Interactive Dossier Deck</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+    @layer base {
+      html, body {
+        margin: 0;
+        padding: 0;
+        min-height: 100%;
+        background-color: #0c1413;
+      }
+      body {
+        overscroll-behavior: none;
+      }
+    }
+
+    /* The document owns vertical scrolling; the deck only supplies its visual stage. */
+    .deck-viewport {
+      height: 620px !important;
+      max-height: none !important;
+      min-width: 0;
+    }
+    .deck-card {
+      overflow: visible !important;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+    @media (max-width: 767px) {
+      main {
+        min-width: 0;
+      }
+      header > div > div:last-child > div {
+        display: none;
+      }
+      header > div > div:last-child > button > span:first-child {
+        display: none;
+      }
+      .deck-viewport {
+        height: 580px !important;
+      }
+    }
+
+    /* Tactile Deck Layering and Spatial Depth */
+    .deck-viewport {
+      perspective: 1400px;
+    }
+    .deck-card {
+      position: absolute;
+      inset: 0;
+      transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.25, 1), opacity 0.35s ease, box-shadow 0.4s ease, filter 0.4s ease, border-color 0.3s ease;
+      will-change: transform, opacity;
+      transform-origin: center bottom;
+      cursor: pointer;
+    }
+    .deck-card.is-active {
+      z-index: 30;
+      transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+      opacity: 1;
+      pointer-events: auto;
+      box-shadow: 0 28px 50px -15px rgba(0, 0, 0, 0.75), 0 0 35px -10px rgba(226, 135, 35, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      border-color: #324741;
+    }
+    .deck-card.is-next-1 {
+      z-index: 20;
+      transform: translate3d(24px, 12px, -45px) scale(0.96) rotate(1.8deg);
+      opacity: 0.85;
+      pointer-events: auto;
+      filter: contrast(0.92) brightness(0.75);
+      border-color: #21322e;
+      box-shadow: 0 18px 36px -12px rgba(0, 0, 0, 0.8);
+    }
+    .deck-card.is-next-2 {
+      z-index: 10;
+      transform: translate3d(46px, 24px, -90px) scale(0.92) rotate(3.6deg);
+      opacity: 0.65;
+      pointer-events: auto;
+      filter: contrast(0.88) brightness(0.55);
+      border-color: #172421;
+      box-shadow: 0 12px 28px -10px rgba(0, 0, 0, 0.85);
+    }
+    .deck-card.is-next-3 {
+      z-index: 5;
+      transform: translate3d(66px, 36px, -135px) scale(0.88) rotate(5.2deg);
+      opacity: 0.35;
+      pointer-events: auto;
+      filter: contrast(0.85) brightness(0.4);
+      border-color: #111a18;
+    }
+    .deck-card.is-prev {
+      z-index: 25;
+      transform: translate3d(-34px, 8px, -50px) scale(0.95) rotate(-2deg);
+      opacity: 0;
+      pointer-events: none;
+    }
+    .deck-card.is-hidden {
+      z-index: 0;
+      transform: translate3d(75px, 48px, -170px) scale(0.84) rotate(6deg);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Tactile Press Physics */
+    .tactile-btn:active {
+      transform: translateY(2px) scale(0.97);
+    }
+
+    /* Ambient Archival Subtle Pattern */
+    .desk-pattern {
+      background-image: radial-gradient(rgba(45, 212, 191, 0.05) 1px, transparent 1px),
+                        radial-gradient(rgba(226, 135, 35, 0.03) 1px, transparent 1px);
+      background-size: 28px 28px, 56px 56px;
+      background-position: 0 0, 14px 14px;
+    }
+</style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "surface": "#0e1515",
+          "surface-container-highest": "#2a3734",
+          "surface-container-high": "#1e2926",
+          "surface-container": "#15201e",
+          "surface-container-low": "#111a18",
+          "surface-container-lowest": "#0a1110",
+          "primary": "#ffb877",
+          "primary-container": "#e28723",
+          "on-primary-container": "#2e1600",
+          "on-primary": "#4b2700",
+          "secondary": "#4edea3",
+          "secondary-container": "#005236",
+          "on-secondary-container": "#6ffbbe",
+          "on-secondary": "#003824",
+          "tertiary": "#ffb95f",
+          "outline": "#3d524d",
+          "outline-variant": "#263531",
+          "on-surface": "#f1f5f4",
+          "on-surface-variant": "#9fb3ae",
+          "background": "#0a1110",
+          "on-background": "#f1f5f4"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        "fontFamily": {
+          "label-md": ["JetBrains Mono", "monospace"],
+          "label-sm": ["JetBrains Mono", "monospace"],
+          "label-lg": ["JetBrains Mono", "monospace"],
+          "headline-xl": ["Space Grotesk", "sans-serif"],
+          "headline-lg": ["Space Grotesk", "sans-serif"],
+          "headline-md": ["Space Grotesk", "sans-serif"],
+          "headline-sm": ["Space Grotesk", "sans-serif"],
+          "body-lg": ["Space Grotesk", "sans-serif"],
+          "body-md": ["Space Grotesk", "sans-serif"],
+          "body-sm": ["Space Grotesk", "sans-serif"]
+        }
+      }
+    }
+  };
+</script>
+</head>
+<body class="bg-[#0a1110] font-body-md text-[#f1f5f4] antialiased selection:bg-[#e28723] selection:text-black min-h-screen flex flex-col justify-between relative">
+<!-- Subtle Atmospheric Glows -->
+<div class="fixed top-0 left-1/4 w-[500px] h-[300px] bg-[#4edea3]/5 blur-[120px] pointer-events-none rounded-full"></div>
+<div class="fixed bottom-0 right-1/4 w-[600px] h-[320px] bg-[#e28723]/6 blur-[130px] pointer-events-none rounded-full"></div>
+<!-- TOP HEADER / COMPACT DECK INDEX CHROME -->
+<header class="w-full shrink-0 z-50 bg-[#0e1716]/90 backdrop-blur-md border-b border-[#21322e] shadow-[0_4px_24px_rgba(0,0,0,0.4)]">
+<div class="h-16 max-w-[1240px] mx-auto px-4 md:px-8 flex items-center justify-between gap-4">
+<!-- Brand & Status Tag -->
+<div class="flex items-center gap-3"><button class="flex items-center gap-2 group text-left" onclick="goToCard(0)"><div class="w-8 h-8 rounded-lg bg-[#14201d] border border-[#2e423d] shadow-sm flex items-center justify-center font-label-md text-xs text-[#f1f5f4] group-hover:border-[#e28723] group-hover:bg-[#e28723] group-hover:text-black transition-all"><span class="tracking-tight font-bold">PR</span></div><div class="flex flex-col"><span class="font-headline-sm text-sm font-bold text-[#f1f5f4] leading-tight group-hover:text-[#ffb877] transition-colors">Pablo R. Rocha</span><span class="font-label-sm text-[10px] text-[#869c97] uppercase tracking-wider">Software Developer • Tech Lead</span></div></button><span class="hidden md:inline-block text-[#263733]">/</span><div class="hidden md:flex items-center gap-2 px-2.5 py-1 rounded-md bg-[#10241f] border border-[#1d4036] text-[#4edea3] font-label-sm text-[10px] font-bold tracking-wider"><span class="w-1.5 h-1.5 rounded-full bg-[#4edea3] shadow-[0_0_8px_#4edea3] animate-pulse"></span>Open to projects and collaborations</div></div>
+<!-- Quick Deck Tab Index (Cards 01 to 05) -->
+
+<!-- Quick Action CTA -->
+<div class="flex items-center gap-2">
+<button class="h-9 px-4 rounded-lg bg-[#e28723] hover:bg-[#ffb877] text-black font-label-md text-[11px] uppercase tracking-wider font-bold flex items-center gap-1.5 shadow-[0_2px_0_#914b00] active:translate-y-[2px] active:shadow-none transition-all" onclick="goToCard(4)"><span class="material-symbols-outlined text-[15px]">mail</span><span class="">Let's talk</span></button>
+<div class="w-8 h-8 rounded-full bg-[#15211f] border border-[#2b3e39] flex items-center justify-center shrink-0 text-[#ffb877] font-label-sm text-[10px] font-bold shadow-inner">
+  15y
+</div>
+</div>
+</div>
+</header>
+<!-- MAIN VIEWPORT: FOCAL TACTILE CARD DECK VIEWER -->
+<main class="flex-1 w-full max-w-[1140px] mx-auto px-4 md:px-6 py-3 md:py-4 flex flex-col justify-center items-center desk-pattern">
+<!-- Tactile Card Deck Container -->
+<div class="deck-viewport relative w-full max-w-[960px] h-[580px] sm:h-[600px] md:h-[620px] max-h-[82vh]">
+<!-- ======================================================== -->
+<!-- CARD 1: IDENTITY & DOSSIER (SSR Collectible Spec Card) -->
+<!-- ======================================================== -->
+<article class="deck-card rounded-2xl bg-[#131d1b] border-2 border-[#2b3c38] p-5 md:p-7 flex flex-col justify-between overflow-hidden is-prev" id="card-0" onclick="cardClicked(0)"><div class="absolute -top-3 left-12 w-6 h-6 rounded-full bg-[#182422] border border-[#364b46] shadow-inner flex items-center justify-center pointer-events-none"><div class="w-2.5 h-2.5 rounded-full bg-[#0a1110]"></div></div><div class="flex items-center justify-between pb-3 border-b border-[#21302c]"><div class="flex items-center gap-2.5"><span class="px-2 py-0.5 rounded bg-[#e28723] text-black font-label-sm text-[10px] tracking-wider uppercase font-bold">About</span><span class="font-label-sm text-[11px] uppercase tracking-wider text-[#8fa7a2] font-semibold">Software Developer</span></div><div class="flex items-center gap-2 font-label-sm text-[11px] text-[#8fa7a2]"><span class="w-2 h-2 rounded-full bg-[#4edea3] shadow-[0_0_6px_#4edea3] animate-pulse"></span><span class="">CARD 01 / 05 • ABOUT</span></div></div><div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center my-auto py-2"><div class="md:col-span-5 flex justify-center"><div class="relative w-full max-w-[270px] aspect-[4/5] rounded-xl overflow-hidden bg-[#182522] border border-[#314640] shadow-xl group"><img class="w-full h-full object-cover filter brightness-95 contrast-105 group-hover:scale-105 transition-all duration-500" data-alt="Editorial portrait photograph of Pablo Ricardo Rocha, a male senior software engineer with dark hair and glasses looking thoughtfully into the camera, warm cinematic natural lighting, soft earth-toned cream backdrop, sharp studio lens detail." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7yi5RUlqSHhBO97k4C3j8M3k_FUnCMWCh0IhXWoaQMSyBBsMFvK2_HcL8n1L31G2I_11nsbwaAy9x6BU2Io2QtVzJxOomoxVXW0gIqrza6v-eSXFRQ3h4xfm1dJ_xgQnD2uPdliuTKn3uAMF38XDM5hdb5AwF4bkhJH9BmH0VJy6_m-TiOI_aIFy8214BVPVeSgiBJ81X8KmH-i-QWuSiQ5x650BwCWOOYvWiuUfm"><div class="absolute inset-0 bg-gradient-to-t from-[#0a1110] via-transparent to-transparent opacity-90"></div><div class="absolute bottom-3 left-3 right-3 flex items-end justify-between"><div><div class="font-headline-sm text-lg font-bold text-white leading-none">Pablo Rocha</div><div class="font-label-sm text-[10px] uppercase tracking-widest text-[#ffb877] mt-1">Software Developer</div></div><span class="px-2 py-0.5 rounded bg-[#1f2e2a]/90 border border-[#354c45] font-label-sm text-[10px] font-bold text-[#4edea3]">Brazil</span></div></div></div><div class="md:col-span-7 flex flex-col justify-center"><div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-[#20302b] border border-[#334b44] text-[#ffb877] font-label-sm text-[10px] uppercase tracking-widest w-fit mb-2.5"><span class="material-symbols-outlined text-[13px] text-[#4edea3]">verified_user</span><span class="">Open to projects and collaborations</span></div><h1 class="font-headline-lg text-2xl md:text-3xl text-[#f1f5f4] tracking-tight mb-2.5 leading-snug">Hi, I'm Pablo. I build software.</h1><p class="font-body-md text-sm md:text-base text-[#9fb3ae] leading-relaxed mb-4">I'm a software developer from Brazil. I've worked with web applications, different technologies, and teams over the years. I enjoy solving problems, building useful things, and learning something new along the way.</p><div class="grid grid-cols-3 gap-2.5 mb-4"><div class="p-2.5 rounded-lg bg-[#0e1615] border border-[#21302c]"><span class="font-label-sm text-[9px] uppercase tracking-wider text-[#79908a] block">Experience</span><span class="font-headline-sm text-xl font-bold text-[#ffb877] block">15+ Years</span><span class="font-body-sm text-[11px] text-[#9fb3ae] block">Working with software</span></div><div class="p-2.5 rounded-lg bg-[#0e1615] border border-[#21302c]"><span class="font-label-sm text-[9px] uppercase tracking-wider text-[#79908a] block">Focus</span><span class="font-headline-sm text-xl font-bold text-[#4edea3] block">Development</span><span class="font-body-sm text-[11px] text-[#9fb3ae] block">Web apps &amp; systems</span></div><div class="p-2.5 rounded-lg bg-[#0e1615] border border-[#21302c]"><span class="font-label-sm text-[9px] uppercase tracking-wider text-[#79908a] block">Approach</span><span class="font-headline-sm text-xl font-bold text-[#38bdf8] block">Practical</span><span class="font-body-sm text-[11px] text-[#9fb3ae] block">Simple solutions</span></div></div><div class="flex flex-wrap items-center gap-2"><span class="px-2 py-1 rounded bg-[#172320] border border-[#263733] font-label-sm text-[11px] text-[#dde6e4]">C# / .NET</span><span class="px-2 py-1 rounded bg-[#172320] border border-[#263733] font-label-sm text-[11px] text-[#dde6e4]">TypeScript / Angular</span><span class="px-2 py-1 rounded bg-[#172320] border border-[#263733] font-label-sm text-[11px] text-[#dde6e4]">SQL Server</span><span class="px-2 py-1 rounded bg-[#172320] border border-[#263733] font-label-sm text-[11px] text-[#dde6e4]">Azure</span></div></div></div><div class="pt-3 border-t border-[#21302c] flex items-center justify-between text-[#809792] font-label-sm text-[10px]"><span class="tracking-widest">Maringá, Brazil</span><div class="flex items-center gap-1.5 font-bold text-[#ffb877] group-hover:text-white"><span class="">PRESS SPACE OR CLICK NEXT</span><span class="material-symbols-outlined text-[14px]">arrow_forward</span></div></div></article>
+<!-- ======================================================== -->
+<!-- CARD 2: CORE PILLARS (Impact Trifecta Deck) -->
+<!-- ======================================================== -->
+<article class="deck-card rounded-2xl bg-[#131d1b] border-2 border-[#2b3c38] p-5 md:p-7 flex flex-col justify-between overflow-hidden is-active" id="card-1" onclick="cardClicked(1)"><div class="absolute -top-3 left-12 w-6 h-6 rounded-full bg-[#182422] border border-[#364b46] shadow-inner flex items-center justify-center pointer-events-none"><div class="w-2.5 h-2.5 rounded-full bg-[#0a1110]"></div></div><div class="flex items-center justify-between pb-3 border-b border-[#21302c]"><div class="flex items-center gap-2.5"><span class="px-2 py-0.5 rounded bg-[#1d3830] text-[#4edea3] border border-[#2a4d43] font-label-sm text-[10px] tracking-wider uppercase font-bold">What I do</span><span class="font-label-sm text-[11px] uppercase tracking-wider text-[#8fa7a2] font-semibold">Overview</span></div><span class="font-label-sm text-[11px] text-[#8fa7a2] font-semibold">CARD 02 / 05 • WHAT I DO</span></div><div class="my-auto py-3"><div class="text-center md:text-left mb-4"><h2 class="font-headline-lg text-2xl md:text-3xl text-[#f1f5f4]">A little about me and what I do</h2><p class="font-body-md text-sm text-[#9fb3ae] mt-1">I've been working with software for over 15 years. During that time, I've had the opportunity to work on different projects, contribute to teams, and take on technical leadership responsibilities. I like understanding problems, finding practical ways to solve them, and keeping things as simple as possible.</p></div><div class="grid grid-cols-1 md:grid-cols-3 gap-3.5"><div class="rounded-xl p-4 bg-[#1b2520] border border-[#3a4f46] text-[#f1f5f4] flex flex-col justify-between relative overflow-hidden group hover:border-[#e28723]/60 transition-colors"><div class="absolute -right-4 -bottom-4 w-20 h-20 rounded-full bg-[#e28723]/5 pointer-events-none"></div><div><div class="flex items-center justify-between mb-3"><span class="font-label-sm text-[10px] uppercase tracking-widest bg-[#2b3c36] text-[#ffb877] px-2 py-0.5 rounded border border-[#3b514a]">01 // Lead</span><span class="material-symbols-outlined text-[22px] text-[#ffb877]">groups</span></div><h3 class="font-headline-sm text-lg font-bold mb-1.5 leading-snug text-white">Engineering &amp; Leadership</h3><p class="font-body-sm text-[13px] text-[#9fb3ae] mb-3">Collaborating with teams, mentoring, code reviews, and helping projects move forward smoothly without unnecessary drama.</p></div><ul class="font-label-sm text-[11px] space-y-1.5 bg-[#121a18] p-2.5 rounded-lg border border-[#243530] text-[#c0d1cd]"><li class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[14px] text-[#4edea3]">check</span> Team Mentorship &amp; Support</li><li class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[14px] text-[#4edea3]">check</span> Code Reviews &amp; Standards</li><li class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[14px] text-[#4edea3]">check</span> Clear Communication</li></ul></div><div class="rounded-xl p-4 bg-[#1b2520] border border-[#3a4f46] text-[#f1f5f4] flex flex-col justify-between relative overflow-hidden group hover:border-[#4edea3]/60 transition-colors"><div class="absolute -right-4 -bottom-4 w-20 h-20 rounded-full bg-[#4edea3]/5 pointer-events-none"></div><div><div class="flex items-center justify-between mb-3"><span class="font-label-sm text-[10px] uppercase tracking-widest bg-[#1a3830] text-[#4edea3] px-2 py-0.5 rounded border border-[#275347]">02 // Stack</span><span class="material-symbols-outlined text-[22px] text-[#4edea3]">developer_mode_tv</span></div><h3 class="font-headline-sm text-lg font-bold mb-1.5 leading-snug text-white">Full Stack Development</h3><p class="font-body-sm text-[13px] text-[#9fb3ae] mb-3">Building web applications, APIs, and interfaces using .NET, TypeScript, Angular, and relational databases.</p></div><ul class="font-label-sm text-[11px] space-y-1.5 bg-[#121a18] p-2.5 rounded-lg border border-[#243530] text-[#c0d1cd]"><li class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[14px] text-[#4edea3]">check</span> .NET &amp; C# Web APIs</li><li class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[14px] text-[#4edea3]">check</span> TypeScript &amp; Angular</li><li class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[14px] text-[#4edea3]">check</span> Relational Databases</li></ul></div><div class="rounded-xl p-4 bg-[#1b2520] border border-[#3a4f46] text-[#f1f5f4] flex flex-col justify-between relative overflow-hidden group hover:border-[#38bdf8]/60 transition-colors"><div class="absolute -right-4 -bottom-4 w-20 h-20 rounded-full bg-[#38bdf8]/5 pointer-events-none"></div><div><div class="flex items-center justify-between mb-3"><span class="font-label-sm text-[10px] uppercase tracking-widest bg-[#152e39] text-[#38bdf8] px-2 py-0.5 rounded border border-[#204453]">03 // Systems</span><span class="material-symbols-outlined text-[22px] text-[#38bdf8]">query_stats</span></div><h3 class="font-headline-sm text-lg font-bold mb-1.5 leading-snug text-white">Reliable Systems</h3><p class="font-body-sm text-[13px] text-[#9fb3ae] mb-3">Taking care of deployments, troubleshooting production issues, and keeping applications running steadily.</p></div><ul class="font-label-sm text-[11px] space-y-1.5 bg-[#121a18] p-2.5 rounded-lg border border-[#243530] text-[#c0d1cd]"><li class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[14px] text-[#4edea3]">check</span> Production Troubleshooting</li><li class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[14px] text-[#4edea3]">check</span> Observability &amp; Logs</li><li class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[14px] text-[#4edea3]">check</span> Deployment Pipelines</li></ul></div></div></div><div class="pt-3 border-t border-[#21302c] flex items-center justify-between text-[#809792] font-label-sm text-[10px]"><span class="">PRAGMATIC PROBLEM SOLVING • SIMPLE SOLUTIONS</span><span class="text-[#4edea3] font-bold">CLICK CARD OR CONTROLS TO FLIP</span></div></article>
+<!-- ======================================================== -->
+<!-- CARD 3: KEY STACK & INVENTORY (Streamlined Dense Matrix) -->
+<!-- ======================================================== -->
+<article class="deck-card rounded-2xl bg-[#131d1b] border-2 border-[#2b3c38] p-5 md:p-7 flex flex-col justify-between overflow-hidden is-next-1" id="card-2" onclick="cardClicked(2)"><div class="absolute -top-3 left-12 w-6 h-6 rounded-full bg-[#182422] border border-[#364b46] shadow-inner flex items-center justify-center pointer-events-none"><div class="w-2.5 h-2.5 rounded-full bg-[#0a1110]"></div></div><div class="flex items-center justify-between pb-3 border-b border-[#21302c]"><div class="flex items-center gap-2.5"><span class="px-2 py-0.5 rounded bg-[#1e2f2a] border border-[#2f4841] text-[#ffb877] font-label-sm text-[10px] tracking-wider uppercase font-bold">TECHNOLOGIES</span><span class="font-label-sm text-[11px] uppercase tracking-wider text-[#8fa7a2] font-semibold">STACK &amp; TOOLS</span></div><span class="font-label-sm text-[11px] text-[#8fa7a2] font-semibold">CARD 03 / 05 • TECHNOLOGIES</span></div><div class="my-auto py-2 flex flex-col justify-between"><div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3"><div><h2 class="font-headline-lg text-xl md:text-2xl text-[#f1f5f4] leading-tight">What I work with</h2><p class="font-body-sm text-[12px] text-[#8fa7a2]">Some of the technologies and tools I've used throughout my career.</p></div><div class="flex items-center gap-1 bg-[#0b1312] p-1 rounded-lg border border-[#22332f] font-label-sm text-[10px]" onclick="event.stopPropagation()"><button class="filter-btn px-2.5 py-1 rounded transition-all bg-[#e28723] text-black font-bold" data-category="all" onclick="filterSkills('all', this)">All</button><button class="filter-btn px-2.5 py-1 rounded text-[#8fa7a2] hover:text-[#f1f5f4] hover:bg-[#182421] transition-all" data-category="frontend" onclick="filterSkills('frontend', this)">Frontend</button><button class="filter-btn px-2.5 py-1 rounded hover:text-[#f1f5f4] hover:bg-[#182421] transition-all text-[#8fa7a2]" data-category="backend" onclick="filterSkills('backend', this)">Backend</button><button class="filter-btn px-2.5 py-1 rounded hover:text-[#f1f5f4] hover:bg-[#182421] transition-all text-[#8fa7a2]" data-category="cloud" onclick="filterSkills('cloud', this)">Cloud</button><button class="filter-btn px-2.5 py-1 rounded text-[#8fa7a2] hover:text-[#f1f5f4] hover:bg-[#182421] transition-all" data-category="lead" onclick="filterSkills('lead', this)">Tools</button></div></div><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3" id="skillsGrid"><div class="skill-group p-3 rounded-xl bg-[#0e1615] border border-[#233531] flex flex-col justify-between" data-group="frontend" style="display: flex; opacity: 1;"><div><div class="flex items-center justify-between pb-2 mb-2 border-b border-[#1b2b27]"><div class="flex items-center gap-1.5 text-[#38bdf8] font-label-sm text-[11px] font-bold"><span class="material-symbols-outlined text-[15px]">code_blocks</span><span class="">Frontend</span></div><span class="font-label-sm text-[9px] text-[#708882]">Client UI</span></div><div class="space-y-1.5"><div class="flex items-center justify-between px-2 py-1 rounded bg-[#15211e] border border-[#233430] text-xs"><span class="font-body-sm text-[#f1f5f4] font-medium">TypeScript</span><span class="font-label-sm text-[9px] text-[#38bdf8]">UI</span></div><div class="flex items-center justify-between px-2 py-1 rounded bg-[#15211e] border border-[#233430] text-xs"><span class="font-body-sm text-[#f1f5f4] font-medium">JavaScript (ES6+)</span><span class="font-label-sm text-[9px] text-[#8fa7a2]">Core</span></div><div class="flex items-center justify-between px-2 py-1 rounded bg-[#15211e] border border-[#233430] text-xs"><span class="font-body-sm text-[#f1f5f4] font-medium">Angular</span><span class="font-label-sm text-[9px] text-[#38bdf8]">Framework</span></div><div class="flex items-center justify-between px-2 py-1 rounded bg-[#15211e] border border-[#233430] text-xs"><span class="font-body-sm text-[#f1f5f4] font-medium">HTML / CSS</span><span class="font-label-sm text-[9px] text-[#8fa7a2]">Styling</span></div><div class="flex items-center justify-between px-2 py-1 rounded bg-[#15211e] border border-[#233430] text-xs"><span class="font-body-sm text-[#f1f5f4] font-medium">React Native</span><span class="font-label-sm text-[9px] text-[#8fa7a2]">Mobile</span></div></div></div></div><div class="skill-group p-3 rounded-xl bg-[#0e1615] border border-[#233531] flex flex-col justify-between" data-group="backend" style="display: flex; opacity: 1;"><div><div class="flex items-center justify-between pb-2 mb-2 border-b border-[#1b2b27]"><div class="flex items-center gap-1.5 text-[#4edea3] font-label-sm text-[11px] font-bold"><span class="material-symbols-outlined text-[15px]">database</span><span class="">Backend &amp; Data</span></div><span class="font-label-sm text-[9px] text-[#708882]">Server</span></div><div class="space-y-1.5"><div class="flex items-center justify-between px-2 py-1 rounded bg-[#15211e] border border-[#233430] text-xs"><span class="font-body-sm text-[#f1f5f4] font-medium">.NET / C#</span><span class="font-label-sm text-[9px] text-[#4edea3]">Backend</span></div><div class="flex items-center justify-between px-2 py-1 rounded bg-[#15211e] border border-[#233430] text-xs"><span class="font-body-sm text-[#f1f5f4] font-medium">ASP.NET Core</span><span class="font-label-sm text-[9px] text-[#4edea3]">APIs</span></div><div class="flex items-center justify-between px-2 py-1 rounded bg-[#15211e] border border-[#233430] text-xs"><span class="font-body-sm text-[#f1f5f4] font-medium">REST APIs</span><span class="font-label-sm text-[9px] text-[#8fa7a2]">Services</span></div><div class="flex items-center justify-between px-2 py-1 rounded bg-[#15211e] border border-[#233430] text-xs"><span class="font-body-sm text-[#f1f5f4] font-medium">SQL Server</span><span class="font-label-sm text-[9px] text-[#4edea3]">Database</span></div><div class="flex items-center justify-between px-2 py-1 rounded bg-[#15211e] border border-[#233430] text-xs"><span class="font-body-sm text-[#f1f5f4] font-medium">Query Optimization</span><span class="font-label-sm text-[9px] text-[#8fa7a2]">Perf</span></div></div></div></div><div class="skill-group p-3 rounded-xl bg-[#0e1615] border border-[#233531] flex flex-col justify-between" data-group="cloud" style="display: flex; opacity: 1;"><div><div class="flex items-center justify-between pb-2 mb-2 border-b border-[#1b2b27]"><div class="flex items-center gap-1.5 text-[#ffb877] font-label-sm text-[11px] font-bold"><span class="material-symbols-outlined text-[15px]">cloud</span><span class="">Cloud &amp; Infra</span></div><span class="font-label-sm text-[9px] text-[#708882]">Platform</span></div><div class="space-y-1.5"><div class="flex items-center justify-between px-2 py-1 rounded bg-[#15211e] border border-[#233430] text-xs"><span class="font-body-sm text-[#f1f5f4] font-medium">Azure</span><span class="font-label-sm text-[9px] text-[#ffb877]">Cloud</span></div><div class="flex items-center justify-between px-2 py-1 rounded bg-[#15211e] border border-[#233430] text-xs"><span class="font-body-sm text-[#f1f5f4] font-medium">Azure DevOps</span><span class="font-label-sm text-[9px] text-[#8fa7a2]">Pipelines</span></div><div class="flex items-center justify-between px-2 py-1 rounded bg-[#15211e] border border-[#233430] text-xs"><span class="font-body-sm text-[#f1f5f4] font-medium">CI / CD</span><span class="font-label-sm text-[9px] text-[#ffb877]">Automation</span></div><div class="flex items-center justify-between px-2 py-1 rounded bg-[#15211e] border border-[#233430] text-xs"><span class="font-body-sm text-[#f1f5f4] font-medium">Docker</span><span class="font-label-sm text-[9px] text-[#8fa7a2]">Containers</span></div></div></div></div><div class="skill-group p-3 rounded-xl bg-[#0e1615] border border-[#233531] flex flex-col justify-between" data-group="lead" style="display: flex; opacity: 1;"><div><div class="flex items-center justify-between pb-2 mb-2 border-b border-[#1b2b27]"><div class="flex items-center gap-1.5 text-[#fb7185] font-label-sm text-[11px] font-bold"><span class="material-symbols-outlined text-[15px]">construction</span><span class="">Tools &amp; Practices</span></div><span class="font-label-sm text-[9px] text-[#708882]">Workflow</span></div><div class="space-y-1.5"><div class="flex items-center justify-between px-2 py-1 rounded bg-[#15211e] border border-[#233430] text-xs"><span class="font-body-sm text-[#f1f5f4] font-medium">Git &amp; GitHub</span><span class="font-label-sm text-[9px] text-[#fb7185]">VCS</span></div><div class="flex items-center justify-between px-2 py-1 rounded bg-[#15211e] border border-[#233430] text-xs"><span class="font-body-sm text-[#f1f5f4] font-medium">Jira &amp; Kanban</span><span class="font-label-sm text-[9px] text-[#8fa7a2]">Agile</span></div><div class="flex items-center justify-between px-2 py-1 rounded bg-[#15211e] border border-[#233430] text-xs"><span class="font-body-sm text-[#f1f5f4] font-medium">Scrum Practices</span><span class="font-label-sm text-[9px] text-[#8fa7a2]">Process</span></div><div class="flex items-center justify-between px-2 py-1 rounded bg-[#15211e] border border-[#233430] text-xs"><span class="font-body-sm text-[#f1f5f4] font-medium">Code Review</span><span class="font-label-sm text-[9px] text-[#fb7185]">Quality</span></div></div></div></div></div></div><div class="pt-3 border-t border-[#21302c] flex items-center justify-between text-[#809792] font-label-sm text-[10px]"><span class="">PRACTICAL TOOLS AND PROVEN WORKFLOWS</span><span class="text-[#ffb877] font-bold">NEXT CARD FOR WORK EXPERIENCE</span></div></article>
+<!-- ======================================================== -->
+<!-- CARD 4: CAREER MILESTONES (Concise Archival Record) -->
+<!-- ======================================================== -->
+<article class="deck-card rounded-2xl bg-[#131d1b] border-2 border-[#2b3c38] p-5 md:p-7 flex flex-col justify-between overflow-hidden is-next-2" id="card-3" onclick="cardClicked(3)"><div class="absolute -top-3 left-12 w-6 h-6 rounded-full bg-[#182422] border border-[#364b46] shadow-inner flex items-center justify-center pointer-events-none"><div class="w-2.5 h-2.5 rounded-full bg-[#0a1110]"></div></div><div class="flex items-center justify-between pb-3 border-b border-[#21302c]"><div class="flex items-center gap-2.5"><span class="px-2 py-0.5 rounded bg-[#1e2f2a] border border-[#2f4841] text-[#ffb877] font-label-sm text-[10px] tracking-wider uppercase font-bold">EXPERIENCE</span><span class="font-label-sm text-[11px] uppercase tracking-wider text-[#8fa7a2] font-semibold">CAREER HISTORY</span></div><span class="font-label-sm text-[11px] text-[#8fa7a2] font-semibold">CARD 04 / 05 • EXPERIENCE</span></div><div class="my-auto py-2 space-y-2.5"><div class="p-3 rounded-xl bg-[#0e1615] border-l-4 border-[#4edea3] border-t border-r border-b border-[#233430] flex flex-col sm:flex-row sm:items-center justify-between gap-2"><div><div class="flex items-center gap-2"><span class="font-headline-sm text-sm md:text-base font-bold text-white">Independent Software Projects</span><span class="px-1.5 py-0.5 rounded bg-[#10241f] border border-[#1d4036] text-[#4edea3] font-label-sm text-[9px] font-bold">PRESENT</span></div><p class="font-body-sm text-[12px] text-[#9fb3ae] mt-1">Working on software initiatives involving application development, technical architecture, and automation. Helping teams with development practices and code quality.</p></div><span class="font-label-sm text-[10px] text-[#708882] shrink-0 bg-[#15211e] px-2 py-1 rounded">Sept 2024 — Present</span></div><div class="p-3 rounded-xl bg-[#0e1615] border-l-4 border-[#e28723] border-t border-r border-b border-[#233430] flex flex-col sm:flex-row sm:items-center justify-between gap-2"><div><div class="flex items-center gap-2"><span class="font-headline-sm text-sm md:text-base font-bold text-white">Premium Programmatic</span><span class="px-1.5 py-0.5 rounded bg-[#291e10] border border-[#523315] text-[#ffb877] font-label-sm text-[9px] font-bold">5 YEARS</span></div><div class="font-label-sm text-[11px] text-[#ffb877] uppercase mt-0.5">Technical Lead / Senior Developer</div><p class="font-body-sm text-[12px] text-[#9fb3ae] mt-1">Helped lead day-to-day development across web applications, APIs, and cloud services. Worked with .NET, SQL Server, Angular, and Azure. Supported the team with code reviews and technical decisions.</p></div><span class="font-label-sm text-[10px] text-[#708882] shrink-0 bg-[#15211e] px-2 py-1 rounded">Apr 2019 — Aug 2024</span></div><div class="p-2.5 rounded-xl bg-[#0e1615] border-l-4 border-[#38bdf8] border-t border-r border-b border-[#233430] flex flex-col sm:flex-row sm:items-center justify-between gap-2"><div><span class="font-headline-sm text-sm font-bold text-white">XL Solutions</span><p class="font-body-sm text-[12px] text-[#9fb3ae] mt-0.5">Web Developer. Developed and maintained web and mobile applications using React Native, Node.js, and TypeScript.</p></div><span class="font-label-sm text-[10px] text-[#708882] shrink-0 bg-[#15211e] px-2 py-1 rounded">May 2017 — Apr 2019</span></div><div class="p-2.5 rounded-xl bg-[#0e1615] border-l-4 border-[#64748b] border-t border-r border-b border-[#233430] flex flex-col sm:flex-row sm:items-center justify-between gap-2"><div><span class="font-headline-sm text-sm font-bold text-white">UOL BoaCompra &amp; Earlier Experience</span><p class="font-body-sm text-[12px] text-[#9fb3ae] mt-0.5">Analyst Developer &amp; Web Developer. Worked on payment flows, internal systems, websites, and web applications.</p></div><span class="font-label-sm text-[10px] text-[#708882] shrink-0 bg-[#15211e] px-2 py-1 rounded">2008 — 2016</span></div></div><div class="pt-3 border-t border-[#21302c] flex items-center justify-between text-[#809792] font-label-sm text-[10px]"><span class="">15 CONSECUTIVE YEARS WORKING WITH SOFTWARE</span><span class="text-[#ffb877] font-bold">1 CARD REMAINING</span></div></article>
+<!-- ======================================================== -->
+<!-- CARD 5: BEYOND THE STACK & CONNECT (Final Direct Action) -->
+<!-- ======================================================== -->
+<article class="deck-card rounded-2xl bg-[#131d1b] border-2 border-[#2b3c38] p-5 md:p-7 flex flex-col justify-between overflow-hidden is-next-3" id="card-4" onclick="cardClicked(4)"><div class="absolute -top-3 left-12 w-6 h-6 rounded-full bg-[#182422] border border-[#364b46] shadow-inner flex items-center justify-center pointer-events-none"><div class="w-2.5 h-2.5 rounded-full bg-[#0a1110]"></div></div><div class="flex items-center justify-between pb-3 border-b border-[#21302c]"><div class="flex items-center gap-2.5"><span class="px-2 py-0.5 rounded bg-[#10241f] border border-[#1d4036] text-[#4edea3] font-label-sm text-[10px] tracking-wider uppercase font-bold">CONNECT</span><span class="font-label-sm text-[11px] uppercase tracking-wider text-[#8fa7a2] font-semibold">DIRECT CONTACT</span></div><span class="font-label-sm text-[11px] text-[#8fa7a2] font-semibold">CARD 05 / 05 • OUTSIDE WORK &amp; CONTACT</span></div><div class="grid grid-cols-1 md:grid-cols-12 gap-5 items-center my-auto py-2"><div class="md:col-span-7 flex flex-col justify-center"><div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-[#1e2f2a] border border-[#2f4841] text-[#4edea3] font-label-sm text-[10px] uppercase tracking-widest w-fit mb-2"><span class="material-symbols-outlined text-[13px]">handshake</span><span class="">Get in touch</span></div><h2 class="font-headline-lg text-2xl md:text-3xl text-white tracking-tight mb-2">Let's talk</h2><p class="font-body-md text-xs md:text-sm text-[#9fb3ae] mb-4 leading-relaxed">Have a project in mind, something you're working on, or just want to connect? Feel free to reach out.</p><div class="grid grid-cols-2 gap-2.5"><a class="p-2.5 rounded-lg bg-[#0e1615] hover:bg-[#e28723] hover:text-black text-[#f1f5f4] border border-[#233531] flex items-center gap-2.5 transition-all group" href="mailto:contact@pablorochadev.com"><span class="material-symbols-outlined text-[#ffb877] group-hover:text-black text-[20px]">mail</span><div class="text-left"><span class="block font-label-sm text-[9px] uppercase text-[#708882] group-hover:text-black/70">Email</span><span class="font-headline-sm text-xs font-bold block">Send a message</span></div></a><a class="p-2.5 rounded-lg bg-[#0e1615] hover:bg-[#e28723] hover:text-black text-[#f1f5f4] border border-[#233531] flex items-center gap-2.5 transition-all group" href="https://linkedin.com" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[#ffb877] group-hover:text-black text-[20px]">link</span><div class="text-left"><span class="block font-label-sm text-[9px] uppercase text-[#708882] group-hover:text-black/70">LinkedIn</span><span class="font-headline-sm text-xs font-bold block">LinkedIn Profile</span></div></a><a class="p-2.5 rounded-lg bg-[#0e1615] hover:bg-[#e28723] hover:text-black text-[#f1f5f4] border border-[#233531] flex items-center gap-2.5 transition-all group" href="https://github.com" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[#ffb877] group-hover:text-black text-[20px]">code</span><div class="text-left"><span class="block font-label-sm text-[9px] uppercase text-[#708882] group-hover:text-black/70">GitHub</span><span class="font-headline-sm text-xs font-bold block">GitHub Repos</span></div></a><div class="p-2.5 rounded-lg bg-[#0e1615] border border-[#233531] flex items-center gap-2.5"><span class="material-symbols-outlined text-[#4edea3] text-[20px]">verified</span><div class="text-left"><span class="block font-label-sm text-[9px] uppercase text-[#708882]">English Certificate</span><span class="font-headline-sm text-xs font-bold text-[#4edea3] block">EF SET Proficient (C2)</span></div></div></div></div><div class="md:col-span-5 flex justify-center"><div class="w-full max-w-[240px] bg-[#162320] p-3 rounded-xl border border-[#2e423d] shadow-2xl rotate-1 hover:rotate-0 transition-transform"><div class="rounded-lg overflow-hidden bg-[#0c1412] mb-2 aspect-[4/4]"><img class="w-full h-full object-cover filter brightness-95" data-alt="Outdoor lifestyle snapshot of software engineer Pablo Rocha walking cheerfully on a sunny afternoon in Brazil with his dog, dressed in a casual blue sports tee, leafy trees and blue sky background, authentic relaxed candid moment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_dKO0MOsykXoV0zv5Ik4_Pm3OoqhHlFee3dpUMtFzcL4mPwV29mf3uAfkNk0_0wBc5r2E3d8ZUQKGdpVU8Nsl1JV8b4vr2m8rM3hmWoF19wPCMBXgkuITyU7lK3jdxaWkfYoBNK3gQwK32jp7KLna17qd9UiHxKCW4YuGkkzt-UlFqbhhBn8aEtvgPUe3otq3wBEzO3fCuhQvg6dKWyS4rtj-Brulf2om6uLBF3SH"></div><div class="text-center"><span class="font-headline-sm text-xs font-bold text-white block">Outside of work</span><p class="font-body-sm text-[11px] text-[#8fa7a2] mt-1 leading-snug">When I'm not working on software, I enjoy spending time with my family, getting some exercise, and enjoying the simpler parts of life.</p></div></div></div></div><div class="pt-3 border-t border-[#21302c] flex items-center justify-between text-[#809792] font-label-sm text-[10px]"><span class="">MARINGÁ, BRAZIL • UTC-3</span><button class="text-[#ffb877] font-bold hover:underline flex items-center gap-1" onclick="goToCard(0)"><span class="material-symbols-outlined text-[13px]">replay</span><span class="">RESTART DECK</span></button></div></article>
+</div>
+<!-- TACTILE DECK CONTROLS & STATUS DOCK -->
+<div class="w-full max-w-[960px] mt-4 flex items-center justify-between px-2 shrink-0">
+<!-- Previous Button -->
+<button class="tactile-btn h-10 px-4 rounded-lg bg-[#14201d] hover:bg-[#1c2c28] border border-[#283c37] text-[#dde6e4] font-label-sm text-xs uppercase tracking-wider flex items-center gap-2 shadow-[0_2px_0_#060c0a] active:shadow-none transition-all disabled:opacity-30 disabled:pointer-events-none" id="prevBtn" onclick="prevCard()">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+<span class="hidden sm:inline">Prev</span>
+</button>
+<!-- Center Indicators & Badge -->
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-1.5" id="cardDots">
+<button aria-label="Card 1" class="w-2 h-2 rounded-full bg-[#1e2e2a] hover:bg-[#344d47] transition-all" data-dot="0" onclick="goToCard(0)"></button>
+<button aria-label="Card 2" class="w-2.5 h-2.5 rounded-full bg-[#e28723] transition-all scale-125 shadow-[0_0_6px_#e28723]" data-dot="1" onclick="goToCard(1)"></button>
+<button aria-label="Card 3" class="w-2 h-2 rounded-full bg-[#1e2e2a] hover:bg-[#344d47] transition-all" data-dot="2" onclick="goToCard(2)"></button>
+<button aria-label="Card 4" class="w-2 h-2 rounded-full bg-[#1e2e2a] hover:bg-[#344d47] transition-all" data-dot="3" onclick="goToCard(3)"></button>
+<button aria-label="Card 5" class="w-2 h-2 rounded-full bg-[#1e2e2a] hover:bg-[#344d47] transition-all" data-dot="4" onclick="goToCard(4)"></button>
+</div>
+<div class="px-2.5 py-1 rounded-md bg-[#121c1a] font-label-sm text-[11px] text-[#8fa7a2] border border-[#21312d]">
+<span class="font-bold text-[#f1f5f4]" id="deckCounter">02 / 05</span>
+<span class="hidden md:inline text-[#324540]"> • </span>
+<span class="hidden md:inline text-[10px] uppercase tracking-wider">Use [← / →] Keys</span>
+</div>
+</div>
+<!-- Next Button -->
+<button class="tactile-btn h-10 px-4 rounded-lg bg-[#e28723] hover:bg-[#ffb877] text-black font-label-sm text-xs uppercase tracking-wider font-bold flex items-center gap-2 shadow-[0_2px_0_#914b00] active:shadow-none transition-all" id="nextBtn" onclick="nextCard()"><span class="hidden sm:inline">Next Card</span><span class="material-symbols-outlined text-[16px]">arrow_forward</span></button>
+</div>
+</main>
+<!-- COMPACT BOTTOM ARCHIVE FOOTER -->
+<footer class="w-full shrink-0 bg-[#0c1412] border-t border-[#1a2825] py-2.5 px-4 z-40">
+<div class="max-w-[1240px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 font-label-sm text-[11px] text-[#708882]"><div class="flex items-center gap-2"><div class="w-4 h-4 rounded bg-[#e28723] text-black flex items-center justify-center font-bold text-[9px]">PR</div><span class="text-[#8fa7a2]">Pablo Ricardo Rocha • Software Developer • Maringá, Brazil</span></div><div class="flex items-center gap-4"><span class="">© 2024</span><span class="text-[#2b3c37]">•</span><span class="uppercase tracking-wider text-[#ffb877]">Tactile Deck</span></div></div>
+</footer>
+<!-- DECK INTERACTION CONTROLLER SCRIPT -->
+<script>
+    let activeIndex = 0;
+    const totalCards = 5;
+    const cards = [
+      document.getElementById('card-0'),
+      document.getElementById('card-1'),
+      document.getElementById('card-2'),
+      document.getElementById('card-3'),
+      document.getElementById('card-4')
+    ];
+    const tabs = document.querySelectorAll('.nav-tab');
+    const dots = document.querySelectorAll('#cardDots button');
+    const deckCounter = document.getElementById('deckCounter');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    function updateDeck() {
+      cards.forEach((card, i) => {
+        // Reset state classes
+        card.classList.remove('is-active', 'is-next-1', 'is-next-2', 'is-next-3', 'is-prev', 'is-hidden');
+
+        if (i === activeIndex) {
+          card.classList.add('is-active');
+        } else if (i === (activeIndex + 1) % totalCards) {
+          card.classList.add('is-next-1');
+        } else if (i === (activeIndex + 2) % totalCards) {
+          card.classList.add('is-next-2');
+        } else if (i === (activeIndex + 3) % totalCards) {
+          card.classList.add('is-next-3');
+        } else if (i < activeIndex) {
+          card.classList.add('is-prev');
+        } else {
+          card.classList.add('is-hidden');
+        }
+      });
+
+      // Update Nav Tabs
+      tabs.forEach((tab, idx) => {
+        if (idx === activeIndex) {
+          tab.classList.remove('text-[#869c97]', 'hover:bg-[#1a2724]');
+          tab.classList.add('bg-[#e28723]', 'text-black', 'font-bold', 'shadow-sm');
+        } else {
+          tab.classList.remove('bg-[#e28723]', 'text-black', 'font-bold', 'shadow-sm');
+          tab.classList.add('text-[#869c97]', 'hover:text-[#f1f5f4]', 'hover:bg-[#1a2724]');
+        }
+      });
+
+      // Update Dots
+      dots.forEach((dot, idx) => {
+        if (idx === activeIndex) {
+          dot.className = 'w-2.5 h-2.5 rounded-full bg-[#e28723] transition-all scale-125 shadow-[0_0_6px_#e28723]';
+        } else {
+          dot.className = 'w-2 h-2 rounded-full bg-[#1e2e2a] hover:bg-[#344d47] transition-all';
+        }
+      });
+
+      // Update Counter
+      if (deckCounter) {
+        deckCounter.textContent = `0${activeIndex + 1} / 0${totalCards}`;
+      }
+
+      // Update Prev Button State
+      if (prevBtn) {
+        prevBtn.disabled = (activeIndex === 0);
+      }
+
+      // Update Next Button Text
+      if (nextBtn) {
+        if (activeIndex === totalCards - 1) {
+          nextBtn.innerHTML = `<span class="hidden sm:inline">First Card</span><span class="material-symbols-outlined text-[16px]">replay</span>`;
+        } else {
+          nextBtn.innerHTML = `<span class="hidden sm:inline">Next Card</span><span class="material-symbols-outlined text-[16px]">arrow_forward</span>`;
+        }
+      }
+
+      requestAnimationFrame(syncDeckHeight);
+    }
+
+    function goToCard(index) {
+      if (index >= 0 && index < totalCards) {
+        activeIndex = index;
+        updateDeck();
+      }
+    }
+
+    function nextCard() {
+      if (activeIndex < totalCards - 1) {
+        activeIndex++;
+      } else {
+        activeIndex = 0;
+      }
+      updateDeck();
+    }
+
+    function prevCard() {
+      if (activeIndex > 0) {
+        activeIndex--;
+        updateDeck();
+      }
+    }
+
+    function cardClicked(index) {
+      if (index !== activeIndex) {
+        goToCard(index);
+      }
+    }
+
+    // Filter functionality for Card 03 (Simplified Technical Inventory)
+    function filterSkills(category, btnElement) {
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      filterBtns.forEach(btn => {
+        btn.classList.remove('bg-[#e28723]', 'text-black', 'font-bold');
+        btn.classList.add('text-[#8fa7a2]');
+      });
+      btnElement.classList.add('bg-[#e28723]', 'text-black', 'font-bold');
+      btnElement.classList.remove('text-[#8fa7a2]');
+
+      const groups = document.querySelectorAll('.skill-group');
+      groups.forEach(group => {
+        if (category === 'all' || group.getAttribute('data-group') === category) {
+          group.style.display = 'flex';
+          group.style.opacity = '1';
+        } else {
+          group.style.display = 'none';
+        }
+      });
+    }
+
+    // Keyboard Navigation: Left & Right arrows, Spacebar
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') {
+        e.preventDefault();
+        nextCard();
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        prevCard();
+      } else if (e.key >= '1' && e.key <= '5') {
+        goToCard(parseInt(e.key) - 1);
+      }
+    });
+
+    // Touch Swipe Support for Mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    const deckElement = document.querySelector('.deck-viewport');
+    function syncDeckHeight() {
+      if (!deckElement || !cards[activeIndex]) return;
+
+      const minimumHeight = window.matchMedia('(max-width: 767px)').matches ? 580 : 620;
+      deckElement.style.height = `${Math.max(minimumHeight, cards[activeIndex].scrollHeight)}px`;
+    }
+
+    if (deckElement) {
+      deckElement.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      deckElement.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+      }, { passive: true });
+    }
+
+    window.addEventListener('resize', syncDeckHeight);
+
+    function handleSwipe() {
+      const threshold = 40;
+      if (touchEndX < touchStartX - threshold) {
+        nextCard();
+      } else if (touchEndX > touchStartX + threshold) {
+        prevCard();
+      }
+    }
+
+    // Initialize State
+    document.addEventListener('DOMContentLoaded', () => {
+      updateDeck();
+      syncDeckHeight();
+    });
+</script>
+
+
+</body></html>
