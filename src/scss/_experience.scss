@@ -22,7 +22,7 @@
   width: 1px;
   min-height: 2.5rem;
   margin-left: 0.4rem;
-  background: rgba(24, 35, 30, 0.14);
+  background: var(--color-detail-094);
 }
 
 .timeline-entry__marker::before {

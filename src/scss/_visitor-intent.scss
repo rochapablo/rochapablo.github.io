@@ -8,7 +8,7 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.92)),
+    linear-gradient(180deg, var(--color-detail-106), var(--color-detail-108)),
     var(--color-surface);
   box-shadow: var(--shadow-soft);
   opacity: 0;
@@ -38,7 +38,7 @@
 
 .visitor-intent__dismiss,
 .visitor-intent__option {
-  border: 1px solid rgba(24, 35, 30, 0.14);
+  border: 1px solid var(--color-detail-094);
   transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
 }
 
@@ -50,7 +50,7 @@
   height: 2rem;
   padding: 0;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.36);
+  background: var(--color-detail-101);
   color: var(--color-text-muted);
   line-height: 0;
   appearance: none;
@@ -92,7 +92,7 @@
   min-height: 2.9rem;
   padding: 0.75rem 0.9rem;
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.46);
+  background: var(--color-detail-104);
   color: var(--color-primary-strong);
   font-weight: 600;
   text-align: left;
@@ -100,8 +100,8 @@
 
 .visitor-intent__dismiss:hover,
 .visitor-intent__option:hover {
-  background: rgba(255, 255, 255, 0.8);
-  border-color: rgba(219, 124, 56, 0.5);
+  background: var(--color-detail-107);
+  border-color: var(--color-detail-085);
   transform: translateY(-1px);
 }
 

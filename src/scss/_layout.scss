@@ -13,7 +13,7 @@
 
 .section-inverse {
   background: var(--color-inverse);
-  color: #f7f1e7;
+  color: var(--color-detail-062);
 }
 
 .site-header {
@@ -21,8 +21,8 @@
   top: 0;
   z-index: 30;
   backdrop-filter: blur(14px);
-  background: color-mix(in srgb, var(--color-bg) 88%, white 12%);
-  border-bottom: 1px solid rgba(24, 35, 30, 0.08);
+  background: color-mix(in srgb, var(--color-bg) 88%, var(--color-highlight) 12%);
+  border-bottom: 1px solid var(--color-detail-093);
 }
 
 .site-header__inner {

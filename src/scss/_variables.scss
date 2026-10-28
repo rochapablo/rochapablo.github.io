@@ -1,19 +1,97 @@
-:root {
-  --color-bg: #f4efe6;
-  --color-surface: #fbf6ee;
-  --color-surface-strong: #efe5d7;
-  --color-text: #18231e;
-  --color-text-muted: #536057;
-  --color-primary: #213c34;
-  --color-primary-strong: #102922;
-  --color-inverse: #17332c;
-  --color-inverse-muted: #d2ddd6;
-  --color-accent: #d68a4a;
-  --color-accent-strong: #db7c38;
-  --color-border: rgba(24, 35, 30, 0.14);
-  --color-track: rgba(244, 239, 230, 0.18);
-  --color-focus: #d97931;
-  --shadow-soft: 0 18px 45px rgba(16, 41, 34, 0.08);
+:root,
+[data-theme="default"] {
+  --color-bg: var(--color-canvas);
+  --color-surface: var(--color-surface-card);
+  --color-surface-strong: var(--color-surface-raised);
+  --color-text: var(--color-text-primary);
+  --color-primary: var(--color-accent);
+  --color-primary-strong: var(--color-canvas);
+  --color-inverse: var(--color-surface-deep);
+  --color-inverse-muted: var(--color-text-inverse-muted);
+  --color-track: var(--color-detail-001);
+  --color-focus: var(--color-success);
+  --shadow-soft: 0 18px 45px var(--color-detail-002);
+
+  --color-transparent: transparent;
+  /* Canonical application color roles. Override these in a root [data-theme] scope for future themes. */
+  --color-canvas: #0a1110;
+  --color-surface-card: #131d1b;
+  --color-surface-deep: #0e1615;
+  --color-surface-raised: #1b2520;
+  --color-surface-panel: #101a18;
+  --color-surface-control: #14201d;
+  --color-surface-media: #162320;
+  --color-surface-tag: #172320;
+  --color-border: #21322e;
+  --color-border-subtle: #233531;
+  --color-border-strong: #2b3c38;
+  --color-text-primary: #f1f5f4;
+  --color-text-on-dark: #f1f5f4;
+  --color-text-muted: #9fb3ae;
+  --color-text-secondary: #869c97;
+  --color-text-tertiary: #708882;
+  --color-text-inverse-muted: #b6c5c0;
+  --color-text-inverse: #dde6e4;
+  --color-highlight: #fff;
+  --color-accent: #ffb877;
+  --color-accent-strong: #e28723;
+  --color-success: #4edea3;
+  --color-info: #38bdf8;
+  --color-tertiary: #fb7185;
+  --color-on-accent: #080f0f;
+  --color-accent-shadow: #914b00;
+  --color-detail-001: #000; --color-detail-002: #060c0a; --color-detail-003: #0a1211; --color-detail-004: #0c1412;
+  --color-detail-005: #0d1715; --color-detail-006: #0e1515; --color-detail-007: #0e1c19; --color-detail-008: #0f1715;
+  --color-detail-009: #101b18; --color-detail-010: #10241f; --color-detail-011: #111a18; --color-detail-012: #11211d;
+  --color-detail-013: #121a18; --color-detail-014: #121c1a; --color-detail-015: #141d1a; --color-detail-016: #14251f;
+  --color-detail-017: #15211e; --color-detail-018: #15211f; --color-detail-019: #152e39; --color-detail-020: #162a25;
+  --color-detail-021: #1a2825; --color-detail-022: #1a3830; --color-detail-023: #1b2520; --color-detail-024: #1b2b27;
+  --color-detail-025: #1b332c; --color-detail-026: #1d3830; --color-detail-027: #1d4036; --color-detail-028: #1e2926;
+  --color-detail-029: #1e2e2a; --color-detail-030: #1e2f2a; --color-detail-031: #20302b; --color-detail-032: #203a32;
+  --color-detail-033: #21302c; --color-detail-034: #21312d; --color-detail-035: #233430; --color-detail-036: #243530;
+  --color-detail-037: #263733; --color-detail-038: #283c37; --color-detail-039: #29423a; --color-detail-040: #2a4d43;
+  --color-detail-041: #2b3c36; --color-detail-042: #2b3e39; --color-detail-043: #2e423d; --color-detail-044: #2f4841;
+  --color-detail-045: #304d44; --color-detail-046: #314c43; --color-detail-047: #334b44; --color-detail-048: #344d47;
+  --color-detail-049: #354c45; --color-detail-050: #3a4f46; --color-detail-051: #3a5a4f; --color-detail-052: #3b514a;
+  --color-detail-053: #3b594f; --color-detail-054: #45675a; --color-detail-055: #526a61; --color-detail-056: #64748b;
+  --color-detail-057: #79908a; --color-detail-058: #809792; --color-detail-059: #8fa7a2; --color-detail-060: #e6edea;
+  --color-detail-061: #f6efe3; --color-detail-062: #f7f1e7; --color-detail-063: rgba(0,0,0,.35); --color-detail-064: rgba(0,0,0,.4);
+  --color-detail-065: rgba(0,0,0,.75); --color-detail-066: rgba(0,0,0,.82); --color-detail-067: rgba(0,0,0,.86); --color-detail-068: rgba(0,0,0,.9);
+  --color-detail-069: rgba(10,17,16,.95); --color-detail-070: rgba(114,196,167,.06); --color-detail-071: rgba(114,196,167,.08); --color-detail-072: rgba(114,196,167,.1);
+  --color-detail-073: rgba(119,141,128,.28); --color-detail-074: rgba(14,23,22,.92); --color-detail-075: rgba(185,238,216,.08); --color-detail-076: rgba(185,238,216,.12);
+  --color-detail-077: rgba(185,238,216,.16); --color-detail-078: rgba(204,195,177,.34); --color-detail-079: rgba(214, 138, 74, 0.06); --color-detail-080: rgba(214, 138, 74, 0.12);
+  --color-detail-081: rgba(214, 138, 74, 0.14); --color-detail-082: rgba(214, 138, 74, 0.18); --color-detail-083: rgba(214, 138, 74, 0.5); --color-detail-084: rgba(214, 138, 74, 0.72);
+  --color-detail-085: rgba(219, 124, 56, 0.5); --color-detail-086: rgba(226,135,35,.03); --color-detail-087: rgba(226,135,35,.13); --color-detail-088: rgba(226,135,35,.15);
+  --color-detail-089: rgba(226,135,35,.45); --color-detail-090: rgba(24, 35, 30, 0.02); --color-detail-091: rgba(24, 35, 30, 0.04); --color-detail-092: rgba(24, 35, 30, 0.05);
+  --color-detail-093: rgba(24, 35, 30, 0.08); --color-detail-094: rgba(24, 35, 30, 0.14); --color-detail-095: rgba(247, 241, 231, 0.16); --color-detail-096: rgba(255, 251, 244, 0.7);
+  --color-detail-097: rgba(255, 251, 244, 0.72); --color-detail-098: rgba(255, 255, 255, 0.01); --color-detail-099: rgba(255, 255, 255, 0.03); --color-detail-100: rgba(255, 255, 255, 0.07);
+  --color-detail-101: rgba(255, 255, 255, 0.36); --color-detail-102: rgba(255, 255, 255, 0.4); --color-detail-103: rgba(255, 255, 255, 0.45); --color-detail-104: rgba(255, 255, 255, 0.46);
+  --color-detail-105: rgba(255, 255, 255, 0.5); --color-detail-106: rgba(255, 255, 255, 0.7); --color-detail-107: rgba(255, 255, 255, 0.8); --color-detail-108: rgba(255, 255, 255, 0.92);
+  --color-detail-109: rgba(255,255,255,.04); --color-detail-110: rgba(255,255,255,.08); --color-detail-111: rgba(255,255,255,.1); --color-detail-112: rgba(255,255,255,.12);
+  --color-detail-113: rgba(255,255,255,.15); --color-detail-114: rgba(29,42,37,.3); --color-detail-115: rgba(31,46,42,.9); --color-detail-116: rgba(45,212,191,.05);
+  --color-detail-117: rgba(78,101,90,.23); --color-detail-118: rgba(78,222,163,.07); --color-detail-119: rgba(78,222,163,.08); --color-detail-120: rgba(78,222,163,.65);
+  --color-detail-121: rgba(78,222,163,.75); --color-detail-122: rgba(78,222,163,.95);
+  --type-headline-lg-mobile-line: 2.125rem;
+  --type-headline-lg-mobile-track: -0.01em;
+  --type-headline-md-size: 1.5rem;
+  --type-headline-md-weight: 600;
+  --type-headline-md-line: 2rem;
+  --type-headline-md-track: -0.01em;
+  --type-headline-sm-size: 1.25rem;
+  --type-headline-sm-weight: 500;
+  --type-headline-sm-line: 1.75rem;
+  --type-body-md-size: 0.9375rem;
+  --type-body-md-line: 1.5rem;
+  --type-body-sm-size: 0.8125rem;
+  --type-body-sm-line: 1.25rem;
+  --type-label-md-size: 0.75rem;
+  --type-label-md-weight: 500;
+  --type-label-md-line: 1rem;
+  --type-label-md-track: 0.06em;
+  --type-label-sm-size: 0.625rem;
+  --type-label-sm-weight: 500;
+  --type-label-sm-line: 0.875rem;
+  --type-label-sm-track: 0.08em;
   --max-width: 1180px;
   --reading-width: 760px;
   --space-2: 0.5rem;
@@ -37,6 +115,33 @@
   --font-size-label: clamp(0.68rem, 0.66rem + 0.08vw, 0.75rem);
   --line-height-heading: 1.08;
   --line-height-body: 1.62;
+}
+
+
+
+/* Christmas palette sourced from tmp/christmas/code.html's festive palette and inline effects. */
+[data-theme="christmas"] {
+  --color-canvas: #081d13; --color-surface-card: #faf7ee; --color-surface-deep: #0b1a13; --color-surface-raised: #efe8dc;
+  --color-surface-panel: #0d2b1a; --color-surface-control: #1a241e; --color-surface-media: #1a241e; --color-surface-tag: #164228;
+  --color-border: #e9dcc9; --color-border-subtle: #e9dcc9; --color-border-strong: #e9dcc9;
+  --color-text-primary: #1a241e; --color-text-on-dark: #faf7ee; --color-text-muted: #455a4f; --color-text-secondary: #4e6659; --color-text-tertiary: #4e6659;
+  --color-text-inverse-muted: #e9dcc9; --color-text-inverse: #faf7ee; --color-highlight: #f5f2eb;
+  --color-accent: #d4af37; --color-accent-strong: #d92b38; --color-success: #4e9f3d; --color-info: #2d6a4f; --color-tertiary: #4e9f3d;
+  --color-on-accent: #faf7ee; --color-accent-shadow: #8b0000;
+  --color-detail-002: rgba(0, 0, 0, 0.55); --color-detail-063: rgba(0, 0, 0, 0.55); --color-detail-064: rgba(0, 0, 0, 0.55);
+  --color-detail-065: rgba(0, 0, 0, 0.7); --color-detail-066: rgba(0, 0, 0, 0.75); --color-detail-067: rgba(0, 0, 0, 0.75); --color-detail-068: rgba(0, 0, 0, 0.75); --color-detail-069: rgba(0, 0, 0, 0.7);
+  --color-detail-032: #faf7ee; --color-detail-054: #e9dcc9; --color-detail-053: #e9dcc9; --color-detail-016: #efe8dc; --color-detail-009: #e9dcc9;
+  --color-detail-025: #faf7ee; --color-detail-051: #d92b38; --color-detail-046: #d92b38; --color-detail-012: #efe8dc; --color-detail-005: #e9dcc9;
+  --color-detail-020: #faf7ee; --color-detail-045: #164228; --color-detail-039: #164228; --color-detail-007: #efe8dc; --color-detail-003: #e9dcc9;
+  --color-detail-013: #faf7ee; --color-detail-017: #efe8dc; --color-detail-019: #2d6a4f; --color-detail-022: #faf7ee; --color-detail-024: #e9dcc9;
+  --color-detail-035: #e9dcc9; --color-detail-036: #e9dcc9; --color-detail-041: #164228; --color-detail-042: #2d6a4f; --color-detail-050: rgba(22, 66, 40, 0.4); --color-detail-052: #164228; --color-detail-056: #8b0000;
+  --color-detail-074: rgba(9, 28, 19, 0.92); --color-detail-079: rgba(212, 175, 55, 0.22); --color-detail-080: rgba(186, 24, 27, 0.18); --color-detail-081: rgba(45, 106, 79, 0.25);
+  --color-detail-085: rgba(217, 43, 56, 0.2); --color-detail-087: rgba(217, 43, 56, 0.15); --color-detail-088: rgba(212, 175, 55, 0.2); --color-detail-089: rgba(217, 43, 56, 0.45);
+  --color-detail-090: rgba(9, 28, 19, 0.92); --color-detail-091: rgba(186, 24, 27, 0.18); --color-detail-092: rgba(45, 106, 79, 0.25); --color-detail-093: rgba(45, 106, 79, 0.6); --color-detail-094: rgba(45, 106, 79, 0.6);
+  --color-detail-055: #4e6659; --color-detail-057: #4e6659; --color-detail-058: #4e6659; --color-detail-059: #455a4f;
+  --color-detail-109: rgba(245, 242, 235, 0.04); --color-detail-110: rgba(245, 242, 235, 0.08); --color-detail-111: rgba(245, 242, 235, 0.1); --color-detail-112: rgba(245, 242, 235, 0.12); --color-detail-113: rgba(245, 242, 235, 0.15);
+  --color-detail-114: rgba(13, 31, 24, 0.85); --color-detail-115: rgba(9, 28, 19, 0.92); --color-detail-116: rgba(45, 106, 79, 0.25); --color-detail-117: rgba(45, 106, 79, 0.3); --color-detail-118: rgba(45, 106, 79, 0.25);
+  --color-detail-105: rgba(212, 175, 55, 0.15); --color-detail-119: rgba(78, 159, 61, 0.28); --color-detail-120: rgba(78, 159, 61, 0.65); --color-detail-121: rgba(78, 159, 61, 0.75); --color-detail-122: rgba(78, 159, 61, 0.95);
 }
 
 @media (max-width: 699px) {

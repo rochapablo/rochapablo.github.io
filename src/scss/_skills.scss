@@ -20,9 +20,9 @@
 .skills-tabs__button {
   flex: 0 1 auto;
   padding: 0.8rem 1rem;
-  border: 1px solid rgba(247, 241, 231, 0.16);
+  border: 1px solid var(--color-detail-095);
   border-radius: 999px;
-  background: transparent;
+  background: var(--color-transparent);
   color: var(--color-inverse-muted);
   font-size: clamp(0.75rem, 0.72rem + 0.14vw, 0.9rem);
   font-weight: 700;
@@ -32,14 +32,14 @@
 
 .skills-tabs__button:hover,
 .skills-tabs__button:focus-visible {
-  border-color: rgba(214, 138, 74, 0.5);
-  color: #f7f1e7;
+  border-color: var(--color-detail-083);
+  color: var(--color-detail-062);
 }
 
 .skills-tabs__button.is-active {
-  border-color: rgba(214, 138, 74, 0.72);
-  background: rgba(214, 138, 74, 0.12);
-  color: #f7f1e7;
+  border-color: var(--color-detail-084);
+  background: var(--color-detail-080);
+  color: var(--color-detail-062);
 }
 
 .skills-list {
@@ -64,7 +64,7 @@
 }
 
 .skill-row__name {
-  color: #f7f1e7;
+  color: var(--color-detail-062);
   font-size: var(--font-size-small);
   font-weight: 600;
 }
