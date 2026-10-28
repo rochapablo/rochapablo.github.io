@@ -2,6 +2,7 @@ import { profile } from "./profile-data/index.js";
 import { trackInitialPageView } from "./analytics/index.js";
 import { initEngagementTracking } from "./analytics/engagement.js";
 import { renderExperience } from "./render/experience.js";
+import { renderDeckIntro } from "./render/deck.js";
 import { renderProfileImages } from "./render/images.js";
 import { renderContacts } from "./render/links.js";
 import { renderPageHeadings } from "./render/page-headings.js";
@@ -17,8 +18,11 @@ import {
 import { updateMetadata } from "./seo/metadata.js";
 import { renderSkillsByExperience } from "./skills/index.js";
 import { initVisitorIntent } from "./visitor-intent/index.js";
+import { initDeck } from "./core/deck.js";
 
 initSiteChrome(profile);
+initDeck();
+renderDeckIntro(profile);
 renderPageHeadings(profile.pageHeadings);
 renderHero(profile);
 renderSnapshot(profile.snapshot, profile.facts);
