@@ -3,6 +3,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { profile } from "../js/profile-data/index.js";
 import { buildMetadata, buildStructuredData } from "../js/seo/index.js";
+import { getDeckIntro } from "../js/render/deck.js";
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const indexPath = path.join(rootDir, "index.html");
@@ -16,6 +17,14 @@ const replacements = [
   ["data-nav-toggle-label", profile.siteChrome.menuLabel],
   ["data-profile-tagline", profile.tagline],
   ["data-profile-summary", profile.summary],
+  ["data-deck-intro-title", getDeckIntro(profile).title],
+  ["data-deck-intro-description", getDeckIntro(profile).description],
+  ["data-portrait-name", getDeckIntro(profile).name],
+  ["data-portrait-role", getDeckIntro(profile).role],
+  ["data-portrait-location", getDeckIntro(profile).location],
+  ['data-deck-summary="experience"', getDeckIntro(profile).summaries.experience],
+  ['data-deck-summary="focus"', getDeckIntro(profile).summaries.focus],
+  ['data-deck-summary="approach"', getDeckIntro(profile).summaries.approach],
   ['data-page-heading="about-kicker"', profile.pageHeadings.about.kicker],
   ['data-page-heading="about-title"', profile.pageHeadings.about.title],
   ["data-profile-snapshot", profile.snapshot],
@@ -38,6 +47,7 @@ const replacements = [
 ];
 
 const metadata = buildMetadata(profile);
+const deckIntro = getDeckIntro(profile);
 let html = fs.readFileSync(indexPath, "utf8");
 
 replacements.forEach(([attribute, text]) => {
@@ -58,15 +68,16 @@ html = replaceElementRawText(
 );
 html = replaceElementContents(html, "data-nav-links", renderNavigation(profile.siteChrome.navLinks));
 html = replaceElementContents(html, "data-profile-facts", renderFacts(profile.facts));
-html = replaceElementContents(html, "strengths-list", renderStrengths(profile.strengthGroups));
+html = replaceElementContents(html, "strengths-list", renderStrengthsReference(profile.strengthGroups));
 html = replaceElementContents(html, "data-skills-panel", renderSkills(profile.skills));
 html = replaceElementContents(html, "experience-list", renderExperience(profile.experience));
-html = replaceElementContents(html, "contact-links", renderContactLinks(profile.contactLinks));
+html = replaceElementContents(html, "contact-links", renderContactLinksReference(profile.contactLinks));
 html = replaceElementContents(
   html,
   "data-primary-actions",
   renderContactLinks(profile.contactLinks.filter((link) => link.label === "Email"), true)
 );
+html = replaceElementContents(html, "data-deck-tags", deckIntro.technologies.map((technology) => `<span>${escapeHtml(technology)}</span>`).join(""));
 Object.entries(profile.images).forEach(([slot, image]) => {
   html = replaceElementContents(html, `data-image-slot="${slot}"`, renderImage(slot, image));
 });
@@ -89,7 +100,21 @@ function renderFacts(facts) {
 }
 
 function renderStrengths(groups) {
-  return groups.map((group) => `<article class="strength-group"><h3 class="strength-group__title">${escapeHtml(group.title)}</h3><ul class="strength-group__list">${group.items.map((item) => `<li class="strength-group__item">${escapeHtml(item)}</li>`).join("")}</ul></article>`).join("");
+  return groups.map((group, index) => `<article class="strength-group" data-index="${String(index + 1).padStart(2, "0")}"><span class="strength-group__icon">${["✦", "⌘", "◈"][index] || "•"}</span><h3 class="strength-group__title">${escapeHtml(group.title)}</h3><p class="strength-group__description">${escapeHtml(group.items.join(" • "))}</p><ul class="strength-group__list">${group.items.map((item) => `<li class="strength-group__item">${escapeHtml(item)}</li>`).join("")}</ul></article>`).join("");
+}
+
+function renderStrengthsReference(groups) {
+  const titles = ["Engineering & Leadership", "Full Stack Development", "Reliable Systems"];
+  const icons = ["groups", "developer_mode_tv", "query_stats"];
+  const descriptions = [
+    "Leading technical delivery through clear communication, reviews, and practical engineering habits.",
+    "Building web applications, APIs, and interfaces with .NET, TypeScript, Angular, and databases.",
+    "Supporting deployments, troubleshooting production issues, and keeping applications reliable."
+  ];
+  return groups.map((group, index) => {
+    const items = group.items.slice(0, 3).map((item) => "<li class=\"strength-group__item\"><span class=\"material-symbols-outlined\">check</span>" + escapeHtml(item) + "</li>").join("");
+    return "<article class=\"strength-group\" data-index=\"" + String(index + 1).padStart(2, "0") + "\"><div class=\"strength-group__header\"><h3 class=\"strength-group__title\">" + escapeHtml(titles[index] || group.title) + "</h3><span class=\"strength-group__icon material-symbols-outlined\">" + (icons[index] || "check") + "</span></div><p class=\"strength-group__description\">" + escapeHtml(descriptions[index] || group.items.join(" • ")) + "</p><ul class=\"strength-group__list\">" + items + "</ul></article>";
+  }).join("");
 }
 
 function renderSkills(skillList) {
@@ -110,11 +135,35 @@ function renderSkills(skillList) {
 }
 
 function renderExperience(entries) {
-  return entries.map((entry) => `<article class="timeline-entry"><p class="timeline-entry__period">${escapeHtml(entry.period)}</p><div class="timeline-entry__marker" aria-hidden="true"></div><div class="timeline-entry__body"><h3 class="timeline-entry__role">${escapeHtml(entry.role)}</h3>${entry.referenceUrl ? `<a class="timeline-entry__reference" href="${escapeAttribute(entry.referenceUrl)}" target="_blank" rel="noopener noreferrer">Professional reference ↗</a>` : ""}${entry.company ? `<p class="timeline-entry__company">${escapeHtml(entry.company)}</p>` : ""}${entry.focus ? `<p class="timeline-entry__focus">${escapeHtml(entry.focus)}</p>` : ""}</div><p class="timeline-entry__location">${escapeHtml(entry.location)}</p></article>`).join("");
+  const visibleEntries = entries.length > 4 ? [...entries.slice(0, 3), mergeEarlierExperience(entries.slice(3))] : entries;
+  return visibleEntries.map((entry) => `<article class="timeline-entry"><p class="timeline-entry__period">${escapeHtml(entry.period)}</p><div class="timeline-entry__marker" aria-hidden="true"></div><div class="timeline-entry__body"><h3 class="timeline-entry__role">${escapeHtml(entry.role)}</h3>${entry.referenceUrl ? `<a class="timeline-entry__reference" href="${escapeAttribute(entry.referenceUrl)}" target="_blank" rel="noopener noreferrer">Professional reference ↗</a>` : ""}${entry.company ? `<p class="timeline-entry__company">${escapeHtml(entry.company)}</p>` : ""}${entry.focus ? `<p class="timeline-entry__focus">${escapeHtml(entry.focus)}</p>` : ""}</div><p class="timeline-entry__location">${escapeHtml(entry.location)}</p></article>`).join("");
+}
+
+function mergeEarlierExperience(entries) {
+  const first = entries[0];
+  const last = entries.at(-1);
+  return {
+    role: "Web Developer / PHP Programmer",
+    company: entries.map((entry) => entry.company).join(" & "),
+    period: `${last.period.split(" ").at(0)} – ${first.period.split(" ").at(-1)}`,
+    location: "Maringá, Brazil",
+    focus: entries.map((entry) => entry.focus).join(" ")
+  };
 }
 
 function renderContactLinks(links, primary = false) {
   return links.map((link, index) => renderContactLink(link, primary ? index === 0 ? "button button-primary" : "button" : index === 0 ? "contact-links__item contact-links__item--primary" : "contact-links__item")).join("");
+}
+
+function renderContactLinksReference(links) {
+  return links.map((link, index) => {
+    const icon = link.label === "Email" ? "mail" : link.label === "GitHub" ? "code" : link.label.includes("Certificate") ? "verified" : "link";
+    const label = link.label === "Official EF SET Certificate" ? "English Certificate" : link.label;
+    const value = link.label === "Email" ? "Send a message" : link.label === "GitHub" ? "GitHub Repos" : link.label === "LinkedIn" ? "LinkedIn Profile" : "EF SET Proficient (C2)";
+    const target = link.target ? " target=\"" + escapeAttribute(link.target) + "\"" : "";
+    const rel = link.rel ? " rel=\"" + escapeAttribute(link.rel) + "\"" : "";
+    return "<a class=\"contact-links__item" + (index === 0 ? " contact-links__item--primary" : "") + "\" href=\"" + escapeAttribute(link.href) + "\"" + target + rel + "><span class=\"material-symbols-outlined contact-links__icon\">" + icon + "</span><span class=\"contact-links__copy\"><small class=\"contact-links__label\">" + escapeHtml(label) + "</small><strong class=\"contact-links__value\">" + escapeHtml(value) + "</strong></span></a>";
+  }).join("");
 }
 
 function renderImage(slot, image) {

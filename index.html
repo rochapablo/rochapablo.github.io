@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
   <meta name="description" content="Technical Lead and Senior Full Stack Developer with 15+ years of experience in software engineering, technical leadership, delivery coordination, and production systems. Open to remote opportunities.">
   <meta property="og:title" content="Pablo Ricardo Rocha | Technical Lead &amp; Senior Full Stack Developer">
   <meta property="og:description" content="Technical Lead and Senior Full Stack Developer with 15+ years of experience in software engineering, technical leadership, delivery coordination, and production systems. Open to remote opportunities.">
@@ -101,8 +105,9 @@
     <div class="container site-header__inner">
       <a class="brand" href="#top" aria-label="Go to top" data-brand-link>
         <span class="brand__mark" aria-hidden="true" data-brand-mark>PR</span>
-        <span class="brand__name" data-profile-name>Pablo Ricardo Rocha</span>
+        <span class="brand__copy"><span class="brand__name" data-brand-short-name>Pablo R. Rocha</span><span class="brand__role">Software Developer • Tech Lead</span></span>
       </a>
+      <span class="status-chip__separator" aria-hidden="true">/</span><span class="status-chip"><span class="status-chip__dot" aria-hidden="true"></span>Open to projects and collaborations</span>
       <button
         class="nav-toggle"
         type="button"
@@ -115,27 +120,30 @@
       <nav id="site-nav" class="site-nav" aria-label="Primary navigation" data-site-nav>
         <div class="site-nav__links" data-nav-links><a href="#about">About</a><a href="#strengths">What I Do</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#contact">Contact</a></div>
       </nav>
+      <div class="header-actions"><a class="header-cta" href="#contact">✉ <span>Let's talk</span></a><span class="header-years">15y</span></div>
     </div>
   </header>
-
   <main id="top">
-    <section class="hero section">
+    <div class="deck-viewport" data-deck-viewport tabindex="0" aria-label="Profile dossier deck">
+      <div class="deck-tabs" role="tablist" aria-label="Dossier sections"><button type="button" role="tab" aria-selected="true" data-deck-tab="0">01 / Intro</button><button type="button" role="tab" aria-selected="false" data-deck-tab="1">02 / Profile</button><button type="button" role="tab" aria-selected="false" data-deck-tab="2">03 / Skills</button><button type="button" role="tab" aria-selected="false" data-deck-tab="3">04 / Career</button><button type="button" role="tab" aria-selected="false" data-deck-tab="4">05 / Connect</button></div>
+      <div class="deck-stage">
+    <article class="deck-card is-active" data-deck-card="0" aria-hidden="false"><div class="card-chrome card-chrome--top"><span class="card-chrome__tag card-chrome__tag--amber">ABOUT</span><span>SOFTWARE DEVELOPER</span><span class="card-chrome__index">CARD 01 / 05 • ABOUT</span></div>
+    <section class="hero section" data-card-section="0">
       <div class="container hero__grid">
         <div class="hero__content">
-          <p class="eyebrow" data-page-heading="hero-greeting">Hello, my name is</p>
-          <h1 data-page-heading="hero-name">Pablo</h1>
-          <p class="hero__title" data-page-heading="hero-title">I'm a Technical Lead and Senior Full Stack Developer with 15+ years of experience in software engineering.</p>
+          <div class="intro-availability"><span aria-hidden="true">✓</span><span>Open to projects and collaborations</span></div>
+          <h1 data-deck-intro-title>Hi, I'm Pablo. I build software.</h1>
           <p class="hero__tagline" data-profile-tagline>.NET • Angular • TypeScript • Azure • Engineering Leadership • Delivery • Reliability</p>
-          <p class="hero__summary" data-profile-summary>Technical Lead and Senior Full Stack Developer with 15+ years of experience in software engineering, technical leadership, delivery coordination, production support, and process improvement.</p>
-          <div class="hero__actions" aria-label="Primary contact links" data-primary-actions><a class="button button-primary" href="mailto:rocha.pabloricardo@gmail.com">Email</a></div>
+          <p class="hero__summary" data-deck-intro-description>Technical Lead and Senior Full Stack Developer with 15+ years of experience in software engineering, technical leadership, delivery coordination, production support, and process improvement.</p>
+          <div class="intro-summary-grid" aria-label="Professional summary"><article class="intro-summary-card"><span>Experience</span><strong data-deck-summary="experience">15+ Years</strong><small>Working with software</small></article><article class="intro-summary-card"><span>Focus</span><strong data-deck-summary="focus">Development</strong><small>Web apps &amp; systems</small></article><article class="intro-summary-card"><span>Approach</span><strong data-deck-summary="approach">Practical</strong><small>Simple solutions</small></article></div>
+          <div class="intro-tags" aria-label="Core technologies" data-deck-tags><span>C# / .NET</span><span>TypeScript / Angular</span><span>SQL Server</span><span>Azure</span></div>
         </div>
         <div class="hero__media">
-          <div class="media-slot media-slot--portrait media-slot--offset" aria-hidden="true" data-image-slot="heroPortrait"><img class="media-slot__image" src="/public/images/1786486622247.jpg" alt="" width="514" height="544" loading="eager" decoding="async" fetchpriority="high" aria-hidden="true" style="--image-position: center 22%; --image-position-mobile: center 22%;"></div>
+          <div class="portrait-card"><div class="media-slot media-slot--portrait" aria-hidden="true" data-image-slot="heroPortrait"><img class="media-slot__image" src="/public/images/1786486622247.jpg" alt="" width="514" height="544" loading="eager" decoding="async" fetchpriority="high" aria-hidden="true" style="--image-position: center 22%; --image-position-mobile: center 22%;"></div><div class="portrait-card__overlay"><div><strong data-portrait-name>Pablo Ricardo Rocha</strong><span data-portrait-role>Technical Lead</span></div><span class="portrait-card__location" data-portrait-location>Brazil</span></div></div>
         </div>
       </div>
-    </section>
-
-    <section id="about" class="section section-surface">
+    </section><div class="card-chrome card-chrome--bottom"><span>MARINGÁ, BRAZIL</span><span class="card-chrome__action">PRESS SPACE OR CLICK NEXT →</span></div></article><article class="deck-card" data-deck-card="1" aria-hidden="true"><div class="card-chrome card-chrome--top"><span class="card-chrome__tag card-chrome__tag--mint">WHAT I DO</span><span>OVERVIEW</span><span class="card-chrome__index">CARD 02 / 05 • WHAT I DO</span></div>
+    <section id="about" class="section section-surface" data-card-section="1">
       <div class="container snapshot">
         <div class="snapshot__headline">
           <p class="section-kicker" data-page-heading="about-kicker">Profile</p>
@@ -147,32 +155,30 @@
         </div>
       </div>
     </section>
-
-    <section id="strengths" class="section">
+    <section id="strengths" class="section" data-card-section="1">
       <div class="container strengths">
         <div class="section-heading">
-          <p class="section-kicker" data-page-heading="strengths-kicker">Strengths</p>
-          <h2 data-page-heading="strengths-title">Where I create the most impact</h2>
+          <p class="section-kicker" data-page-heading="strengths-kicker">What I do</p>
+          <h2 data-page-heading="strengths-title">A little about me and what I do</h2>
+          <p class="strengths__intro">I've been working with software for over 15 years. During that time, I've had the opportunity to work on different projects, contribute to teams, and take on technical leadership responsibilities. I like understanding problems, finding practical ways to solve them, and keeping things as simple as possible.</p>
         </div>
-        <div id="strengths-list" class="strengths__grid" aria-label="Core strengths"><article class="strength-group"><h3 class="strength-group__title">Engineering Leadership &amp; Delivery</h3><ul class="strength-group__list"><li class="strength-group__item">Technical Leadership</li><li class="strength-group__item">Team Coordination</li><li class="strength-group__item">Delivery Ownership</li><li class="strength-group__item">Engineering Practices</li></ul></article><article class="strength-group"><h3 class="strength-group__title">Full Stack Engineering</h3><ul class="strength-group__list"><li class="strength-group__item">.NET / C#</li><li class="strength-group__item">Angular / TypeScript</li><li class="strength-group__item">APIs</li><li class="strength-group__item">SQL Server</li></ul></article><article class="strength-group"><h3 class="strength-group__title">Production &amp; Reliability</h3><ul class="strength-group__list"><li class="strength-group__item">Production Troubleshooting</li><li class="strength-group__item">Observability</li><li class="strength-group__item">CI/CD &amp; Releases</li><li class="strength-group__item">Azure</li></ul></article></div>
+        <div id="strengths-list" class="strengths__grid" aria-label="Core strengths"><article class="strength-group" data-index="01"><div class="strength-group__header"><h3 class="strength-group__title">Engineering &amp; Leadership</h3><span class="strength-group__icon material-symbols-outlined">groups</span></div><p class="strength-group__description">Leading technical delivery through clear communication, reviews, and practical engineering habits.</p><ul class="strength-group__list"><li class="strength-group__item"><span class="material-symbols-outlined">check</span>Technical Leadership</li><li class="strength-group__item"><span class="material-symbols-outlined">check</span>Team Coordination</li><li class="strength-group__item"><span class="material-symbols-outlined">check</span>Delivery Ownership</li></ul></article><article class="strength-group" data-index="02"><div class="strength-group__header"><h3 class="strength-group__title">Full Stack Development</h3><span class="strength-group__icon material-symbols-outlined">developer_mode_tv</span></div><p class="strength-group__description">Building web applications, APIs, and interfaces with .NET, TypeScript, Angular, and databases.</p><ul class="strength-group__list"><li class="strength-group__item"><span class="material-symbols-outlined">check</span>.NET / C#</li><li class="strength-group__item"><span class="material-symbols-outlined">check</span>Angular / TypeScript</li><li class="strength-group__item"><span class="material-symbols-outlined">check</span>APIs</li></ul></article><article class="strength-group" data-index="03"><div class="strength-group__header"><h3 class="strength-group__title">Reliable Systems</h3><span class="strength-group__icon material-symbols-outlined">query_stats</span></div><p class="strength-group__description">Supporting deployments, troubleshooting production issues, and keeping applications reliable.</p><ul class="strength-group__list"><li class="strength-group__item"><span class="material-symbols-outlined">check</span>Production Troubleshooting</li><li class="strength-group__item"><span class="material-symbols-outlined">check</span>Observability</li><li class="strength-group__item"><span class="material-symbols-outlined">check</span>CI/CD &amp; Releases</li></ul></article></div>
       </div>
-    </section>
-
-    <section class="visual-break" aria-hidden="true">
+    </section><div class="card-chrome card-chrome--bottom"><span>PRAGMATIC PROBLEM SOLVING • SIMPLE SOLUTIONS</span><span class="card-chrome__action">CLICK CARD OR CONTROLS TO FLIP</span></div></article><section class="visual-break" aria-hidden="true">
       <div class="visual-break__frame">
         <div class="visual-break__inner" data-image-slot="visualBreakPrimary"></div>
       </div>
     </section>
-
-    <section id="skills" class="section section-inverse">
+    <article class="deck-card" data-deck-card="2" aria-hidden="true"><div class="card-chrome card-chrome--top"><span class="card-chrome__tag">TECHNOLOGIES</span><span>STACK &amp; TOOLS</span><span class="card-chrome__index">CARD 03 / 05 • TECHNOLOGIES</span></div>
+    <section id="skills" class="section section-inverse" data-card-section="2">
       <div class="container skills-section">
         <div class="skills-section__intro">
-          <p class="section-kicker" data-page-heading="skills-kicker">Skills &amp; Technologies</p>
-          <h2 data-page-heading="skills-title">Skills built through real-world experience</h2>
+          <p class="section-kicker" data-page-heading="skills-kicker">Technologies</p>
+          <h2 data-page-heading="skills-title">What I work with</h2>
         </div>
         <div class="skills-section__panel">
           <div class="skills-section__sidebar">
-            <p class="skills-section__support" data-page-heading="skills-support">Years of hands-on experience</p>
+            <p class="skills-section__support" data-page-heading="skills-support">Some of the technologies and tools I've used throughout my career.</p>
           </div>
           <div class="skills-section__content">
             <div class="skills-tabs" role="tablist" aria-label="Skill categories" data-skills-tabs></div>
@@ -180,25 +186,21 @@
           </div>
         </div>
       </div>
-    </section>
-
-    <section id="experience" class="section">
+    </section><div class="card-chrome card-chrome--bottom"><span>PRACTICAL TOOLS AND PROVEN WORKFLOWS</span><span class="card-chrome__action">NEXT CARD FOR WORK EXPERIENCE</span></div></article><article class="deck-card" data-deck-card="3" aria-hidden="true"><div class="card-chrome card-chrome--top"><span class="card-chrome__tag">EXPERIENCE</span><span>CAREER HISTORY</span><span class="card-chrome__index">CARD 04 / 05 • EXPERIENCE</span></div>
+    <section id="experience" class="section" data-card-section="3">
       <div class="container experience-section">
         <div class="section-heading">
           <p class="section-kicker" data-page-heading="experience-kicker">Experience</p>
           <h2 data-page-heading="experience-title">Professional experience</h2>
         </div>
-        <div id="experience-list" class="experience-timeline"><article class="timeline-entry"><p class="timeline-entry__period">September 2026 – Present</p><div class="timeline-entry__marker" aria-hidden="true"></div><div class="timeline-entry__body"><h3 class="timeline-entry__role">Software Engineering &amp; Technical Delivery</h3><p class="timeline-entry__company">Independent Software Projects</p><p class="timeline-entry__focus">Working independently on software engineering initiatives involving application development, technical architecture, and delivery planning. Applying software engineering practices including automated testing, CI/CD, code review, documentation, and maintainable software design. Exploring AI-assisted engineering workflows to improve technical investigation, implementation planning, and development productivity.</p></div><p class="timeline-entry__location">Remote</p></article><article class="timeline-entry"><p class="timeline-entry__period">April 2019 – August 2026</p><div class="timeline-entry__marker" aria-hidden="true"></div><div class="timeline-entry__body"><h3 class="timeline-entry__role">Technical Lead / Senior Full Stack Developer</h3><p class="timeline-entry__company">Premium Programmatic</p><p class="timeline-entry__focus">Led technical direction and day-to-day engineering delivery across web applications, APIs, integrations, and production systems. Coordinated developers, QA, DevOps, releases, technical priorities, and production troubleshooting. Defined technical approaches, reviewed code, supported architecture decisions, and improved engineering processes and delivery reliability. Worked hands-on with .NET, C#, SQL Server, Angular, JavaScript/TypeScript, Azure, Azure Functions, CI/CD, and observability, while collaborating with leadership on system evolution, infrastructure, reliability, and technical decision-making.</p></div><p class="timeline-entry__location">Remote, Brazil</p></article><article class="timeline-entry"><p class="timeline-entry__period">May 2017 – April 2019</p><div class="timeline-entry__marker" aria-hidden="true"></div><div class="timeline-entry__body"><h3 class="timeline-entry__role">Web Developer</h3><p class="timeline-entry__company">XL Solutions</p><p class="timeline-entry__focus">Developed and maintained web and mobile applications for third-party clients using React Native, Node.js, AngularJS, and TypeScript.</p></div><p class="timeline-entry__location">Maringá, Brazil</p></article><article class="timeline-entry"><p class="timeline-entry__period">October 2015 – December 2016</p><div class="timeline-entry__marker" aria-hidden="true"></div><div class="timeline-entry__body"><h3 class="timeline-entry__role">Web Developer</h3><p class="timeline-entry__company">USES SaaS</p><p class="timeline-entry__focus">Developed websites and web application interfaces for small and mid-sized clients using AngularJS, Angular Material, Laravel, JavaScript, HTML, and CSS.</p></div><p class="timeline-entry__location">Maringá, Brazil</p></article><article class="timeline-entry"><p class="timeline-entry__period">November 2013 – October 2015</p><div class="timeline-entry__marker" aria-hidden="true"></div><div class="timeline-entry__body"><h3 class="timeline-entry__role">Analyst PHP Programmer</h3><p class="timeline-entry__company">UOL BoaCompra</p><p class="timeline-entry__focus">Worked on web application features related to financial systems and internal operations in a larger engineering environment using Scrum/Kanban, Jira, Jenkins, Confluence, TDD, QUnit, and pair programming.</p></div><p class="timeline-entry__location">Maringá, Brazil</p></article><article class="timeline-entry"><p class="timeline-entry__period">2008 – 2013</p><div class="timeline-entry__marker" aria-hidden="true"></div><div class="timeline-entry__body"><h3 class="timeline-entry__role">Web Developer / Junior Web Developer</h3><p class="timeline-entry__company">Earlier Experience</p><p class="timeline-entry__focus">Built and maintained websites, ecommerce projects, classifieds platforms, admin systems, client web applications, and internal systems for companies including FTI Tecnologia da Informação, O Diário, Vivaweb Internet, RedFeet, aiqfome.com, and Itecnetwork, using PHP, C#, ASP.NET, Magento, Zend Framework, JavaScript, jQuery, HTML, and CSS.</p></div><p class="timeline-entry__location">Brazil</p></article></div>
+        <div id="experience-list" class="experience-timeline"><article class="timeline-entry"><p class="timeline-entry__period">September 2026 – Present</p><div class="timeline-entry__marker" aria-hidden="true"></div><div class="timeline-entry__body"><h3 class="timeline-entry__role">Software Engineering &amp; Technical Delivery</h3><p class="timeline-entry__company">Independent Software Projects</p><p class="timeline-entry__focus">Working independently on software engineering initiatives involving application development, technical architecture, and delivery planning. Applying software engineering practices including automated testing, CI/CD, code review, documentation, and maintainable software design. Exploring AI-assisted engineering workflows to improve technical investigation, implementation planning, and development productivity.</p></div><p class="timeline-entry__location">Remote</p></article><article class="timeline-entry"><p class="timeline-entry__period">April 2019 – August 2026</p><div class="timeline-entry__marker" aria-hidden="true"></div><div class="timeline-entry__body"><h3 class="timeline-entry__role">Technical Lead / Senior Full Stack Developer</h3><p class="timeline-entry__company">Premium Programmatic</p><p class="timeline-entry__focus">Led technical direction and day-to-day engineering delivery across web applications, APIs, integrations, and production systems. Coordinated developers, QA, DevOps, releases, technical priorities, and production troubleshooting. Defined technical approaches, reviewed code, supported architecture decisions, and improved engineering processes and delivery reliability. Worked hands-on with .NET, C#, SQL Server, Angular, JavaScript/TypeScript, Azure, Azure Functions, CI/CD, and observability, while collaborating with leadership on system evolution, infrastructure, reliability, and technical decision-making.</p></div><p class="timeline-entry__location">Remote, Brazil</p></article><article class="timeline-entry"><p class="timeline-entry__period">May 2017 – April 2019</p><div class="timeline-entry__marker" aria-hidden="true"></div><div class="timeline-entry__body"><h3 class="timeline-entry__role">Web Developer</h3><p class="timeline-entry__company">XL Solutions</p><p class="timeline-entry__focus">Developed and maintained web and mobile applications for third-party clients using React Native, Node.js, AngularJS, and TypeScript.</p></div><p class="timeline-entry__location">Maringá, Brazil</p></article><article class="timeline-entry"><p class="timeline-entry__period">2008 – 2016</p><div class="timeline-entry__marker" aria-hidden="true"></div><div class="timeline-entry__body"><h3 class="timeline-entry__role">Web Developer / PHP Programmer</h3><p class="timeline-entry__company">USES SaaS &amp; UOL BoaCompra &amp; Earlier Experience</p><p class="timeline-entry__focus">Developed websites and web application interfaces for small and mid-sized clients using AngularJS, Angular Material, Laravel, JavaScript, HTML, and CSS. Worked on web application features related to financial systems and internal operations in a larger engineering environment using Scrum/Kanban, Jira, Jenkins, Confluence, TDD, QUnit, and pair programming. Built and maintained websites, ecommerce projects, classifieds platforms, admin systems, client web applications, and internal systems for companies including FTI Tecnologia da Informação, O Diário, Vivaweb Internet, RedFeet, aiqfome.com, and Itecnetwork, using PHP, C#, ASP.NET, Magento, Zend Framework, JavaScript, jQuery, HTML, and CSS.</p></div><p class="timeline-entry__location">Maringá, Brazil</p></article></div>
       </div>
-    </section>
-
-    <section class="visual-break visual-break--secondary" aria-hidden="true">
+    </section><section class="visual-break visual-break--secondary" aria-hidden="true">
       <div class="visual-break__frame">
         <div class="visual-break__inner" data-image-slot="visualBreakSecondary"></div>
       </div>
     </section>
-
-    <section class="section section-surface">
+    <section class="section section-surface" data-card-section="3">
       <div class="container personal-note">
         <div class="personal-note__content">
           <p class="section-kicker" data-page-heading="personal-note-kicker">Beyond the Stack</p>
@@ -214,35 +216,34 @@
         </div>
       </div>
     </section>
-
-    <section class="section career-direction">
+    <section class="section career-direction" data-card-section="3">
       <div class="container career-direction__inner">
         <p class="section-kicker" data-page-heading="career-direction-kicker">Open to Remote Opportunities</p>
         <h2 data-page-heading="career-direction-title">Technical leadership, delivery, and senior engineering</h2>
         <p class="career-direction__text" data-career-direction>I'm open to remote opportunities in Technical Lead, Engineering Lead, Engineering Manager, Delivery Manager, and related positions, as well as Senior Full Stack roles aligned with my experience. My career direction is focused on engineering leadership, team coordination, technical strategy, delivery management, and improving how engineering teams work.</p>
       </div>
-    </section>
-
-    <section id="contact" class="section closing">
+    </section><div class="card-chrome card-chrome--bottom"><span>15 CONSECUTIVE YEARS WORKING WITH SOFTWARE</span><span class="card-chrome__action">1 CARD REMAINING</span></div></article><article class="deck-card" data-deck-card="4" aria-hidden="true"><div class="card-chrome card-chrome--top"><span class="card-chrome__tag card-chrome__tag--mint">CONNECT</span><span>DIRECT CONTACT</span><span class="card-chrome__index">CARD 05 / 05 • OUTSIDE WORK &amp; CONTACT</span></div>
+    <section id="contact" class="section closing" data-card-section="4">
       <div class="container closing__grid">
         <div class="closing__intro">
-          <p class="section-kicker" data-page-heading="contact-kicker">Contact</p>
-          <h2 data-page-heading="contact-title">Let's connect</h2>
+          <p class="section-kicker" data-page-heading="contact-kicker">Get in touch</p>
+          <h2 data-page-heading="contact-title">Let's talk</h2>
+          <p class="closing__description">Have a project in mind, something you're working on, or just want to connect? Feel free to reach out.</p>
         </div>
-        <div id="contact-links" class="contact-links"><a class="contact-links__item contact-links__item--primary" href="https://www.linkedin.com/in/rochapabloricardo" target="_blank" rel="noopener noreferrer">LinkedIn</a><a class="contact-links__item" href="https://github.com/rochapablo" target="_blank" rel="noopener noreferrer">GitHub</a><a class="contact-links__item" href="mailto:rocha.pabloricardo@gmail.com">Email</a><a class="contact-links__item" href="https://cert.efset.org/kq8FRZ" target="_blank" rel="noopener noreferrer">Official EF SET Certificate</a></div>
+        <div id="contact-links" class="contact-links"><a class="contact-links__item contact-links__item--primary" href="https://www.linkedin.com/in/rochapabloricardo" target="_blank" rel="noopener noreferrer"><span class="material-symbols-outlined contact-links__icon">link</span><span class="contact-links__copy"><small class="contact-links__label">LinkedIn</small><strong class="contact-links__value">LinkedIn Profile</strong></span></a><a class="contact-links__item" href="https://github.com/rochapablo" target="_blank" rel="noopener noreferrer"><span class="material-symbols-outlined contact-links__icon">code</span><span class="contact-links__copy"><small class="contact-links__label">GitHub</small><strong class="contact-links__value">GitHub Repos</strong></span></a><a class="contact-links__item" href="mailto:rocha.pabloricardo@gmail.com"><span class="material-symbols-outlined contact-links__icon">mail</span><span class="contact-links__copy"><small class="contact-links__label">Email</small><strong class="contact-links__value">Send a message</strong></span></a><a class="contact-links__item" href="https://cert.efset.org/kq8FRZ" target="_blank" rel="noopener noreferrer"><span class="material-symbols-outlined contact-links__icon">verified</span><span class="contact-links__copy"><small class="contact-links__label">English Certificate</small><strong class="contact-links__value">EF SET Proficient (C2)</strong></span></a></div>
         <div class="closing__media" aria-hidden="true">
           <div class="media-slot media-slot--closing" data-image-slot="closingProfile"><img class="media-slot__image" src="/public/images/1786487393228.jpg" alt="" width="302" height="302" loading="lazy" decoding="async" aria-hidden="true" style="--image-position: center center; --image-position-mobile: 42% 12%;"></div>
+          <div class="closing__caption"><strong>Outside of work</strong><p>When I'm not working on software, I enjoy spending time with my family, getting some exercise, and enjoying the simpler parts of life.</p></div></div>
         </div>
+        </div>
+    </section><div class="card-chrome card-chrome--bottom"><span>MARINGÁ, BRAZIL • UTC-3</span><button type="button" class="card-chrome__action" data-deck-restart>↺ RESTART DECK</button></div></article>
       </div>
-    </section>
+      <div class="deck-footer" aria-live="polite"><button type="button" class="deck-control deck-control--prev" data-deck-prev><span aria-hidden="true">←</span><span>Prev</span></button><div class="deck-footer__center"><div class="deck-dots" aria-label="Choose dossier card"><button type="button" aria-label="Card 1" data-deck-dot="0"></button><button type="button" aria-label="Card 2" data-deck-dot="1"></button><button type="button" aria-label="Card 3" data-deck-dot="2"></button><button type="button" aria-label="Card 4" data-deck-dot="3"></button><button type="button" aria-label="Card 5" data-deck-dot="4"></button></div><span class="deck-counter" data-deck-counter>01 / 05 <span class="deck-footer__hint">• Use [← / →] Keys</span></span></div><button type="button" class="deck-control deck-control--next" data-deck-next>Next card <span aria-hidden="true">→</span></button></div>
+    </div>
   </main>
-
   <footer class="site-footer">
-    <div class="container site-footer__inner">
-      <p><span data-footer-name>Pablo Ricardo Rocha</span> &copy; <span id="current-year"></span></p>
+    <div class="site-footer__inner"><span class="footer-identity"><span class="footer-mark">PR</span><span data-footer-name>Pablo Ricardo Rocha</span><span>• Software Developer • Maringá, Brazil</span></span><span class="footer-meta">© <span id="current-year"></span><span>•</span><strong>TACTILE DECK</strong></span>
     </div>
   </footer>
-
-  <script type="module" src="./src/js/main.js"></script>
-</body>
-</html>
+  <script defer src="https://cdn.jsdelivr.net/npm/motion@12.43.0/dist/motion.js"></script><script type="module" src="./src/js/main.js"></script>
+</body></html>

@@ -29,11 +29,20 @@ function createLink(link, className, location) {
   const element = createElement("a", {
     className,
     href: link.href,
-    text: link.label,
     target: link.target,
     rel: link.rel,
     download: link.download
   });
+
+  if (location === "contact") {
+    const icon = createElement("span", { className: "material-symbols-outlined contact-links__icon", text: link.label === "Email" ? "mail" : link.label === "GitHub" ? "code" : link.label.includes("Certificate") ? "verified" : "link" });
+    const copy = createElement("span", { className: "contact-links__copy" });
+    copy.append(createElement("small", { className: "contact-links__label", text: link.label === "Official EF SET Certificate" ? "English Certificate" : link.label }));
+    copy.append(createElement("strong", { className: "contact-links__value", text: link.label === "Email" ? "Send a message" : link.label === "GitHub" ? "GitHub Repos" : link.label === "LinkedIn" ? "LinkedIn Profile" : "EF SET Proficient (C2)" }));
+    element.append(icon, copy);
+  } else {
+    element.textContent = link.label;
+  }
 
   const tracking = getTrackingDetails(link, location);
 

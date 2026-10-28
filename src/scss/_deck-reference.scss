@@ -1,0 +1,75 @@
+ :root {
+  --color-bg: #0a1110; --color-surface: #141d1a; --color-surface-strong: #1e2926;
+  --color-text: #e6edea; --color-text-muted: #9fb3ae; --color-primary: #f1f5f4;
+  --color-primary-strong: #0a1110; --color-inverse: #0e1515; --color-inverse-muted: #b6c5c0;
+  --color-accent: #ffb877; --color-accent-strong: #e28723; --color-border: rgba(255,255,255,.1);
+  --color-focus: #4edea3; --max-width: 1180px; --reading-width: 760px;
+  --font-size-body: .96rem; --font-size-small: .82rem; --font-size-label: .68rem;
+  --line-height-body: 1.6; --space-4: 1rem; --space-5: 1.5rem; --space-6: 2rem;
+}
+
+/* Compact reference treatments for the deck's secondary records. */
+.deck-card[data-deck-card="1"] .snapshot { display: none; }
+.deck-card[data-deck-card="1"] > .section:has(.snapshot) { display: none; }
+.deck-card[data-deck-card="1"] .strengths { display: flex; height: 100%; flex-direction: column; justify-content: center; }
+.deck-card[data-deck-card="1"] .strengths .section-heading { margin-bottom: 1rem; }
+.deck-card[data-deck-card="1"] .strengths .section-kicker { visibility: hidden; }
+.deck-card[data-deck-card="1"] .strengths .section-heading h2 { max-width: none; font-size: 1.8rem; }
+.deck-card[data-deck-card="1"] .strengths__intro { margin: .25rem 0 1rem; color: #9fb3ae; font-size: .75rem; line-height: 1.45; }
+.deck-card[data-deck-card="1"] .strength-group { display: flex; min-height: 17rem; flex-direction: column; justify-content: space-between; padding: 1rem; border: 1px solid #3a4f46; border-radius: .7rem; background: #1b2520; }
+.deck-card[data-deck-card="1"] .strength-group::before { display: block; width: fit-content; margin-bottom: .7rem; padding: .15rem .4rem; border: 1px solid #3b514a; border-radius: .2rem; background: #2b3c36; color: #ffb877; content: "01 // CAPABILITY"; font: .52rem "JetBrains Mono", monospace; letter-spacing: .08em; }
+.deck-card[data-deck-card="1"] .strength-group:nth-child(2)::before { background: #1a3830; color: #4edea3; content: "02 // STACK"; }
+.deck-card[data-deck-card="1"] .strength-group:nth-child(3)::before { background: #152e39; color: #38bdf8; content: "03 // SYSTEMS"; }
+.deck-card[data-deck-card="1"] .strength-group__list { margin-top: auto; padding: .65rem; border: 1px solid #243530; border-radius: .45rem; background: #121a18; }
+.deck-card[data-deck-card="1"] .strength-group__item { font: .62rem "JetBrains Mono", monospace; }
+.deck-card[data-deck-card="1"] .strength-group__icon { color: #4edea3; font-size: 1.1rem; }
+.deck-card[data-deck-card="1"] .strength-group__header { display: flex; align-items: center; justify-content: space-between; gap: .5rem; margin-bottom: .55rem; }
+.deck-card[data-deck-card="1"] .strength-group__header .strength-group__title { margin: 0; }
+.deck-card[data-deck-card="1"] .strength-group__header .strength-group__icon { order: 2; }
+.deck-card[data-deck-card="1"] .strength-group__list { list-style: none; }
+.deck-card[data-deck-card="1"] .strength-group__list .material-symbols-outlined { margin-right: .35rem; color: #4edea3; font-size: .75rem; vertical-align: -2px; }
+.deck-card[data-deck-card="1"] .strength-group__description { min-height: 2.7rem; margin: .35rem 0 .7rem; color: #9fb3ae; font-size: .68rem; line-height: 1.45; }
+.deck-card[data-deck-card="3"] .timeline-entry { margin-bottom: .55rem; padding: .75rem; border: 1px solid #233430; border-left: 4px solid #4edea3; border-radius: .55rem; background: #0e1615; }
+.deck-card[data-deck-card="3"] .timeline-entry:nth-child(2) { border-left-color: #e28723; }
+.deck-card[data-deck-card="3"] .timeline-entry:nth-child(3) { border-left-color: #38bdf8; }
+.deck-card[data-deck-card="3"] .timeline-entry:nth-child(n+4) { border-left-color: #64748b; }
+.deck-card[data-deck-card="3"] .visual-break, .deck-card[data-deck-card="3"] .personal-note, .deck-card[data-deck-card="3"] .career-direction { display: none; }
+.deck-card[data-deck-card="3"] .experience-section > .section-heading { display: none; }
+.deck-card[data-deck-card="3"] .experience-section { overflow: hidden; }
+.deck-card[data-deck-card="3"] .experience-timeline { padding-top: 1.5rem; }
+.deck-card[data-deck-card="3"] .timeline-entry:nth-child(n+3) { padding-top: .4rem; padding-bottom: .4rem; }
+.deck-card[data-deck-card="3"] .timeline-entry:nth-child(n+3) { padding-top: .2rem; padding-bottom: .2rem; }
+.deck-card[data-deck-card="3"] .timeline-entry:nth-child(n+3) .timeline-entry__focus { font-size: .62rem; line-height: 1.2; }
+.deck-card[data-deck-card="3"] .experience-section .section-heading h2 { font-size: 1.8rem; }
+.deck-card[data-deck-card="3"] .timeline-entry { padding: .45rem .6rem; }
+.deck-card[data-deck-card="3"] .timeline-entry__focus { display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 1; font-size: .7rem; line-height: 1.35; }
+.deck-card[data-deck-card="3"] .timeline-entry__role { font-size: .82rem; }
+.deck-card[data-deck-card="3"] .timeline-entry__company { font-size: .68rem; }
+.deck-card[data-deck-card="4"] .contact-links { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .6rem; }
+.deck-card[data-deck-card="4"] .contact-links__item { min-height: 3.2rem; padding: .7rem; border: 1px solid #233531; border-radius: .45rem; background: #0e1615; }
+.deck-card[data-deck-card="4"] .contact-links__item { align-items: center; justify-content: flex-start; }
+.deck-card[data-deck-card="4"] .contact-links__item::after { margin-left: auto; }
+.deck-card[data-deck-card="4"] .contact-links__icon { color: #ffb877; font-size: 1.15rem; }
+.deck-card[data-deck-card="4"] .contact-links__copy { display: grid; gap: .15rem; }
+.deck-card[data-deck-card="4"] .contact-links__label { color: #708882; font: .52rem "JetBrains Mono", monospace; text-transform: uppercase; }
+.deck-card[data-deck-card="4"] .contact-links__value { color: #f1f5f4; font-size: .68rem; }
+.deck-card[data-deck-card="4"] .closing__intro { grid-column: 1; }
+.deck-card[data-deck-card="4"] .contact-links { grid-column: 1; }
+.deck-card[data-deck-card="4"] .closing__media { display: block; width: 240px; grid-column: 2; grid-row: 1 / span 2; align-self: center; padding: .75rem; border: 1px solid #2e423d; border-radius: .75rem; background: #162320; box-shadow: 0 1.25rem 2rem rgba(0,0,0,.35); transform: rotate(1deg); }
+.deck-card[data-deck-card="4"] .closing__media .media-slot--closing { width: 100%; }
+.deck-card[data-deck-card="4"] .closing__description { max-width: 34rem; margin: -.35rem 0 .5rem; color: #9fb3ae; font-size: .75rem; line-height: 1.5; }
+.deck-card[data-deck-card="4"] .closing__caption { width: min(100%, 240px); margin: .45rem auto 0; text-align: center; }
+.deck-card[data-deck-card="4"] .closing__caption strong { display: block; color: #f1f5f4; font-size: .75rem; }
+.deck-card[data-deck-card="4"] .closing__caption p { margin-top: .25rem; color: #8fa7a2; font-size: .64rem; line-height: 1.35; }
+.skills-reference-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .75rem; }
+.skills-reference-card { min-width: 0; padding: .7rem; border: 1px solid #233531; border-radius: .65rem; background: #0e1615; }
+.skills-reference-card__header { display: flex; align-items: center; justify-content: space-between; gap: .5rem; padding-bottom: .55rem; margin-bottom: .55rem; border-bottom: 1px solid #1b2b27; }
+.skills-reference-card__title { display: flex; align-items: center; gap: .4rem; color: #38bdf8; font: 600 .65rem "JetBrains Mono", monospace; }
+.skills-reference-card__title--backend { color: #4edea3; } .skills-reference-card__title--cloud { color: #ffb877; } .skills-reference-card__title--lead { color: #fb7185; }
+.skills-reference-card__icon { font-size: .62rem; font-weight: 700; } .skills-reference-card__secondary { color: #708882; font: .52rem "JetBrains Mono", monospace; }
+.skills-reference-card__list { display: grid; gap: .35rem; }
+.skills-reference-card__row { display: flex; align-items: center; justify-content: space-between; gap: .4rem; padding: .35rem .45rem; border: 1px solid #233430; border-radius: .25rem; background: #15211e; color: #f1f5f4; font-size: .62rem; }
+.skills-reference-card__row small { color: #8fa7a2; font: .48rem "JetBrains Mono", monospace; }
+@media (max-width: 699px) { .deck-card[data-deck-card="4"] .contact-links { grid-template-columns: 1fr; } }
+@media (max-width: 999px) { .skills-reference-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 699px) { .skills-reference-grid { grid-template-columns: 1fr; } }

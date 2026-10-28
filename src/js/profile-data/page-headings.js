@@ -13,14 +13,14 @@ export const pageHeadings = {
   },
 
   strengths: {
-    kicker: "Strengths",
-    title: "Where I create the most impact"
+    kicker: "What I do",
+    title: "A little about me and what I do"
   },
 
   skills: {
-    kicker: "Skills & Technologies",
-    title: "Skills built through real-world experience",
-    support: "Years of hands-on experience"
+    kicker: "Technologies",
+    title: "What I work with",
+    support: "Some of the technologies and tools I've used throughout my career."
   },
 
   experience: {
@@ -39,7 +39,7 @@ export const pageHeadings = {
   },
 
   contact: {
-    kicker: "Contact",
-    title: "Let's connect"
+    kicker: "Get in touch",
+    title: "Let's talk"
   }
 };
