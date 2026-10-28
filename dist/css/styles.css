@@ -455,9 +455,10 @@ h1, h2, h3, .brand__name {
 .eyebrow, .section-kicker {
   margin-bottom: 0.8rem;
   color: var(--color-accent);
-  font-size: var(--font-size-label);
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-size: var(--type-label-md-size);
+  font-weight: var(--type-label-md-weight);
+  line-height: var(--type-label-md-line);
+  letter-spacing: var(--type-label-md-track);
   text-transform: uppercase;
 }
 
@@ -465,15 +466,19 @@ h1 {
   max-width: 11ch;
   margin-bottom: 1rem;
   color: #f1f5f4;
-  font-size: clamp(2.6rem, 7vw, 5rem);
-  line-height: 1.04;
+  font-size: var(--type-headline-xl-size);
+  font-weight: var(--type-headline-xl-weight);
+  line-height: var(--type-headline-xl-line);
+  letter-spacing: var(--type-headline-xl-track);
 }
 
 h2 {
   max-width: 15ch;
   color: #f1f5f4;
-  font-size: clamp(1.7rem, 4vw, 2.5rem);
-  line-height: 1.12;
+  font-size: var(--type-headline-md-size);
+  font-weight: var(--type-headline-md-weight);
+  line-height: var(--type-headline-md-line);
+  letter-spacing: var(--type-headline-md-track);
 }
 
 .hero__title {
@@ -546,14 +551,15 @@ h2 {
 
 .fact-item__label {
   color: #869c97;
-  font-size: 0.62rem;
-  letter-spacing: 0.08em;
+  font: var(--type-label-sm-weight) var(--type-label-sm-size)/var(--type-label-sm-line) "JetBrains Mono", monospace;
+  letter-spacing: var(--type-label-sm-track);
   text-transform: uppercase;
 }
 
 .fact-item__value {
   color: #f1f5f4;
-  font-size: 0.84rem;
+  font-size: var(--type-body-sm-size);
+  line-height: var(--type-body-sm-line);
   font-weight: 500;
 }
 
@@ -578,7 +584,9 @@ h2 {
 .strength-group__title {
   margin-bottom: 0.85rem;
   color: #f1f5f4;
-  font-size: 1rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.4;
 }
 
 .strength-group__list {
@@ -590,7 +598,8 @@ h2 {
 
 .strength-group__item {
   color: #9fb3ae;
-  font-size: 0.83rem;
+  font-size: var(--type-body-sm-size);
+  line-height: var(--type-body-sm-line);
 }
 
 .strength-group__item::before {
@@ -655,12 +664,14 @@ h2 {
 
 .skill-row__name {
   color: #f1f5f4;
-  font-size: 0.85rem;
+  font-size: var(--type-body-sm-size);
+  line-height: var(--type-body-sm-line);
+  font-weight: 500;
 }
 
 .skill-row__years {
   color: #ffb877;
-  font-size: 0.68rem;
+  font: var(--type-label-sm-weight) var(--type-label-sm-size)/var(--type-label-sm-line) "JetBrains Mono", monospace;
   white-space: nowrap;
 }
 
@@ -825,6 +836,13 @@ h2 {
   }
   .timeline-entry__location {
     text-align: right;
+  }
+}
+@media (min-width: 700px) {
+  .hero__content h1 {
+    font-size: var(--type-headline-lg-size);
+    line-height: var(--type-headline-lg-line);
+    letter-spacing: var(--type-headline-lg-track);
   }
 }
 @media (min-width: 960px) {
@@ -1015,27 +1033,30 @@ body:has(.deck-card[data-deck-card="4"].is-active) .deck-viewport > .card-chrome
 
 .card-chrome {
   display: flex;
-  flex: 0 0 auto;
+  box-sizing: border-box;
+  height: 2rem;
+  min-height: 2rem;
+  flex: 0 0 2rem;
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
+  padding-block: 0.25rem;
+  line-height: var(--type-label-sm-line);
   border-color: #21302c;
   color: #8fa7a2;
-  font: 600 0.62rem "JetBrains Mono", monospace;
-  letter-spacing: 0.08em;
+  font: var(--type-label-sm-weight) var(--type-label-sm-size)/var(--type-label-sm-line) "JetBrains Mono", monospace;
+  letter-spacing: var(--type-label-sm-track);
   text-transform: uppercase;
 }
 
 .card-chrome--top {
-  min-height: 2rem;
   border-bottom: 1px solid #21302c;
 }
 
 .card-chrome--bottom {
-  min-height: 2rem;
   border-top: 1px solid #21302c;
   color: #809792;
-  font-size: 0.58rem;
+  font-size: var(--type-label-sm-size);
 }
 
 .card-chrome__index {
@@ -1137,14 +1158,16 @@ body:has(.deck-card[data-deck-card="4"].is-active) .deck-viewport > .card-chrome
 .hero__content h1 {
   max-width: none;
   margin-bottom: 0.6rem;
-  font-size: clamp(1.7rem, 3vw, 2.35rem);
-  line-height: 1.15;
+  font-size: var(--type-headline-lg-mobile-size);
+  font-weight: var(--type-headline-xl-weight);
+  line-height: var(--type-headline-lg-mobile-line);
+  letter-spacing: var(--type-headline-lg-mobile-track);
 }
 
 .hero__content .hero__summary {
   margin-bottom: 1rem;
-  font-size: 0.84rem;
-  line-height: 1.55;
+  font-size: var(--type-body-sm-size);
+  line-height: var(--type-body-sm-line);
 }
 
 .hero__tagline {
@@ -1169,8 +1192,8 @@ body:has(.deck-card[data-deck-card="4"].is-active) .deck-viewport > .card-chrome
 .intro-summary-card span, .intro-summary-card small {
   display: block;
   color: #79908a;
-  font: 0.55rem "JetBrains Mono", monospace;
-  letter-spacing: 0.06em;
+  font: var(--type-label-sm-weight) var(--type-label-sm-size)/var(--type-label-sm-line) "JetBrains Mono", monospace;
+  letter-spacing: var(--type-label-sm-track);
   text-transform: uppercase;
 }
 
@@ -1178,8 +1201,9 @@ body:has(.deck-card[data-deck-card="4"].is-active) .deck-viewport > .card-chrome
   display: block;
   margin: 0.2rem 0;
   color: #ffb877;
-  font-size: 1.05rem;
-  line-height: 1.1;
+  font-size: var(--type-headline-sm-size);
+  font-weight: 700;
+  line-height: var(--type-headline-sm-line);
 }
 
 .intro-summary-card:nth-child(2) strong {
@@ -1193,7 +1217,8 @@ body:has(.deck-card[data-deck-card="4"].is-active) .deck-viewport > .card-chrome
 .intro-summary-card small {
   color: #9fb3ae;
   font-family: "Space Grotesk", sans-serif;
-  font-size: 0.58rem;
+  font-size: var(--type-body-sm-size);
+  line-height: var(--type-body-sm-line);
   letter-spacing: 0;
   text-transform: none;
 }
@@ -1210,7 +1235,8 @@ body:has(.deck-card[data-deck-card="4"].is-active) .deck-viewport > .card-chrome
   border-radius: 0.25rem;
   background: #172320;
   color: #dde6e4;
-  font: 0.62rem "JetBrains Mono", monospace;
+  font: var(--type-label-md-weight) var(--type-label-md-size)/var(--type-label-md-line) "JetBrains Mono", monospace;
+  letter-spacing: var(--type-label-md-track);
 }
 
 .portrait-card {
@@ -1311,7 +1337,9 @@ body:has(.deck-card[data-deck-card="4"].is-active) .deck-viewport > .card-chrome
 .skills-section__intro h2 {
   max-width: none;
   margin: 0;
-  font-size: 1.8rem;
+  font-size: var(--type-headline-sm-size);
+  font-weight: var(--type-headline-sm-weight);
+  line-height: var(--type-headline-sm-line);
 }
 
 .skills-section__sidebar {
@@ -1704,6 +1732,36 @@ body:has(.deck-card[data-deck-card="4"].is-active) .deck-viewport > .card-chrome
   --space-4: 1rem;
   --space-5: 1.5rem;
   --space-6: 2rem;
+  --type-headline-xl-size: 3rem;
+  --type-headline-xl-weight: 700;
+  --type-headline-xl-line: 3.5rem;
+  --type-headline-xl-track: -.03em;
+  --type-headline-lg-size: 2.25rem;
+  --type-headline-lg-weight: 600;
+  --type-headline-lg-line: 2.75rem;
+  --type-headline-lg-track: -.02em;
+  --type-headline-lg-mobile-size: 1.625rem;
+  --type-headline-lg-mobile-line: 2.125rem;
+  --type-headline-lg-mobile-track: -.01em;
+  --type-headline-md-size: 1.5rem;
+  --type-headline-md-weight: 600;
+  --type-headline-md-line: 2rem;
+  --type-headline-md-track: -.01em;
+  --type-headline-sm-size: 1.25rem;
+  --type-headline-sm-weight: 500;
+  --type-headline-sm-line: 1.75rem;
+  --type-body-md-size: .9375rem;
+  --type-body-md-line: 1.5rem;
+  --type-body-sm-size: .8125rem;
+  --type-body-sm-line: 1.25rem;
+  --type-label-md-size: .75rem;
+  --type-label-md-weight: 500;
+  --type-label-md-line: 1rem;
+  --type-label-md-track: .06em;
+  --type-label-sm-size: .625rem;
+  --type-label-sm-weight: 500;
+  --type-label-sm-line: .875rem;
+  --type-label-sm-track: .08em;
 }
 
 /* Compact reference treatments for the deck's secondary records. */
@@ -1732,7 +1790,10 @@ body:has(.deck-card[data-deck-card="4"].is-active) .deck-viewport > .card-chrome
 
 .deck-card[data-deck-card="1"] .strengths .section-heading h2 {
   max-width: none;
-  font-size: 1.8rem;
+  font-size: var(--type-headline-md-size);
+  font-weight: var(--type-headline-md-weight);
+  line-height: var(--type-headline-md-line);
+  letter-spacing: var(--type-headline-md-track);
 }
 
 .deck-card[data-deck-card="1"] .strengths__intro {
@@ -1884,7 +1945,10 @@ body:has(.deck-card[data-deck-card="4"].is-active) .deck-viewport > .card-chrome
 }
 
 .deck-card[data-deck-card="3"] .experience-section .section-heading h2 {
-  font-size: 1.8rem;
+  font-size: var(--type-headline-md-size);
+  font-weight: var(--type-headline-md-weight);
+  line-height: var(--type-headline-md-line);
+  letter-spacing: var(--type-headline-md-track);
 }
 
 .deck-card[data-deck-card="3"] .timeline-entry {
@@ -2079,6 +2143,15 @@ body:has(.deck-card[data-deck-card="4"].is-active) .deck-viewport > .card-chrome
 .skills-reference-card__row small {
   color: #8fa7a2;
   font: 0.48rem "JetBrains Mono", monospace;
+}
+
+/* Shared card typography follows the documented Space Grotesk / JetBrains Mono scale. */
+.deck-card h1, .deck-card h2, .deck-card h3, .deck-card p, .deck-card strong {
+  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+}
+
+.deck-card .card-chrome, .deck-card .section-kicker, .deck-card .eyebrow, .deck-card .fact-item__label, .deck-card .skill-row__years, .deck-card .timeline-entry__period, .deck-card .timeline-entry__location, .deck-card .timeline-entry__company, .deck-card .contact-links__label, .deck-card .intro-availability, .deck-card .intro-tags span {
+  font-family: "JetBrains Mono", monospace;
 }
 
 @media (max-width: 699px) {
